@@ -7,7 +7,7 @@ This is where you should write a short paragraph that describes what your module
 how it does it, and why people should use it.
 
 ============== ==============================================================
-PyPI           ``pip install dls_python3_skeleton``
+PyPI           ``pip install dls-python3-skeleton``
 Source code    https://github.com/dls-controls/dls-python3-skeleton
 Documentation  https://dls-controls.github.io/dls-python3-skeleton
 Releases       https://github.com/dls-controls/dls-python3-skeleton/releases
@@ -40,8 +40,8 @@ Or if it is a commandline tool then you might put some example commands here::
     :target: https://codecov.io/gh/dls-controls/dls-python3-skeleton
     :alt: Test Coverage
 
-.. |pypi_version| image:: https://img.shields.io/pypi/v/dls_python3_skeleton.svg
-    :target: https://pypi.org/project/dls_python3_skeleton
+.. |pypi_version| image:: https://img.shields.io/pypi/v/dls-python3-skeleton.svg
+    :target: https://pypi.org/project/dls-python3-skeleton
     :alt: Latest PyPI version
 
 .. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg

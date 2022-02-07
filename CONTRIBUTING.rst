@@ -49,6 +49,26 @@ commit`` on just the files that have changed::
 .. _mypy: https://github.com/python/mypy
 .. _pre-commit: https://pre-commit.com/
 
+Docstrings are pre-processed using the Sphinx Napoleon extension. As such,
+google-style_ is considered as standard for this repository. Please use type
+hints in the function signature for types. For example::
+
+    def func(arg1: str, arg2: int) -> bool:
+        """Summary line.
+
+        Extended description of function.
+
+        Args:
+            arg1: Description of arg1
+            arg2: Description of arg2
+
+        Returns:
+            Description of return value
+        """
+        return True
+
+.. _google-style: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/index.html#google-vs-numpy
+
 Documentation
 -------------
 

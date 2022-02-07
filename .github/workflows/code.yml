@@ -13,7 +13,7 @@ on:
   pull_request:
   schedule:
     # Run every Monday at 8am to check latest versions of dependencies
-    - cron: '0 8 * * MON'
+    - cron: "0 8 * * MON"
 
 jobs:
   lint:
@@ -40,21 +40,22 @@ jobs:
           umask 0002
           SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct) pipx run build --sdist --wheel
 
-      - name: Test cli works from the installed wheel
-        # Can remove the repository reference after https://github.com/pypa/pipx/pull/733
-        run: pipx run --spec dist/*.whl ${GITHUB_REPOSITORY##*/} --version
-
       - name: Upload Wheel and Sdist as artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
           path: dist/*
 
+      - name: Install wheel in a venv and check cli works
+        # ${GITHUB_REPOSITORY##*/} is the repo name without org
+        # Replace this with the cli command if different to the repo name
+        run: pipx run --spec dist/*.whl ${GITHUB_REPOSITORY##*/} --version
+
   test:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest"]  # can add windows-latest, macos-latest
+        os: ["ubuntu-latest"] # can add windows-latest, macos-latest
         python: ["3.7", "3.8", "3.9"]
         pipenv: ["skip-lock"]
 
@@ -98,7 +99,7 @@ jobs:
       - name: Github Release
         # We pin to the SHA, not the tag, for security reasons.
         # https://docs.github.com/en/actions/learn-github-actions/security-hardening-for-github-actions#using-third-party-actions
-        uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5  # v0.1.14
+        uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5 # v0.1.14
         with:
           files: dist/*
           generate_release_notes: true

@@ -35,7 +35,7 @@ Installing the library
 
 You can now use ``pip`` to install the library::
 
-    python3 -m pip install dls_python3_skeleton
+    python3 -m pip install dls-python3-skeleton
 
 If you require a feature that is not currently released you can also install
 from github::
