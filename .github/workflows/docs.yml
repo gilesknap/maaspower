@@ -28,6 +28,9 @@ jobs:
         with:
           pipenv-run: docs
 
+      - name: Check links resolve
+        run: pipenv run docs -b linkcheck
+
       - name: Move to versioned directory
         # e.g. master or 0.1.2
         run: mv build/html ".github/pages/${GITHUB_REF##*/}"
