@@ -1,5 +1,5 @@
 # The purpose of __all__ is to define the public API of this module, and which
-# objects are imported if we call "from dls_python3_skeleton.hello import *"
+# objects are imported if we call "from maaspower.hello import *"
 __all__ = [
     "HelloClass",
     "say_hello_lots",

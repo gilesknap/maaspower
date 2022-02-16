@@ -4,15 +4,15 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import dls_python3_skeleton
+import maaspower
 
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = "dls-python3-skeleton"
+project = "maaspower"
 
 # The full version, including alpha/beta/rc tags.
-release = dls_python3_skeleton.__version__
+release = maaspower.__version__
 
 # The short X.Y version.
 if "+" in release:

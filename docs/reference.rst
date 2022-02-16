@@ -10,7 +10,7 @@ Practical step-by-step guides for the more experienced user.
 
     reference/api
     reference/contributing
-    Releases <https://github.com/dls-controls/dls-python3-skeleton/releases>
+    Releases <https://github.com/dls-controls/maaspower/releases>
     Index <genindex.html#http://>
 
 ..

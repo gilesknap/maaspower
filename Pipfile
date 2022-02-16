@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-dls-python3-skeleton = {editable = true, extras = ["dev"], path = "."}
+maaspower = {editable = true, extras = ["dev"], path = "."}
 
 [packages]
-dls-python3-skeleton = {editable = true, path = "."}
+maaspower = {editable = true, path = "."}
 
 [scripts]
 lint = "pre-commit run --all-files --show-diff-on-failure --color=always -v"

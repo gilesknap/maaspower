@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-from dls_python3_skeleton import __main__, __version__, hello
+from maaspower import __main__, __version__, hello
 
 
 def test_hello_class_formats_greeting() -> None:
@@ -24,5 +24,5 @@ def test_cli_greets(capsys) -> None:
 
 
 def test_cli_version():
-    cmd = [sys.executable, "-m", "dls_python3_skeleton", "--version"]
+    cmd = [sys.executable, "-m", "maaspower", "--version"]
     assert subprocess.check_output(cmd).decode().strip() == __version__
