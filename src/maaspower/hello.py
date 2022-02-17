@@ -1,41 +1,55 @@
-# The purpose of __all__ is to define the public API of this module, and which
-# objects are imported if we call "from maaspower.hello import *"
-__all__ = [
-    "HelloClass",
-    "say_hello_lots",
-]
+import asyncio
+import time
+from ast import Str
+from ctypes import cast
+from typing import List, Literal, Optional, Tuple
+
+import aiohttp
+from pysmartthings import Device, SmartThings
 
 
 class HelloClass:
     """A class whose only purpose in life is to say hello"""
 
-    def __init__(self, name: str):
+    def __init__(self, token):
         """
         Args:
             name: The initial value of the name of the person who gets greeted
         """
         #: The name of the person who gets greeted
-        self.name = name
+        self.token = token
 
-    def format_greeting(self) -> str:
-        """Return a greeting for `name`
+    def test(self):
+        pass
 
-        >>> HelloClass("me").format_greeting()
-        'Hello me'
-        """
-        greeting = f"Hello {self.name}"
-        return greeting
+    async def send_command(self, api: SmartThings, device_id: str, command: List[str]):
+        devices = await api.devices()
+        for device in devices:
+            if device.device_id == device_id:
+                await device.command(*command)
+            print(device_id)
+            break
+        else:
+            raise ValueError("Device not know")
+
+    async def switch(self, on_off: str):
+        async with aiohttp.ClientSession() as session:
+            api = SmartThings(session, self.token)
+
+            command = ["main", "switch", on_off]
+            device_id = "1c72370a-885a-4485-9721-ffaf6586101b"
+            try:
+                await self.send_command(api, device_id, command)
+            except Exception as e:
+                print(f"command {command} in device {device_id} failed")
+                print(str(e))
+
+    def run_switch(self, on_off: str):
+        asyncio.run(self.switch(on_off))
 
 
-def say_hello_lots(hello: HelloClass = None, times=5):
-    """Print lots of greetings using the given `HelloClass`
-
-    Args:
-        hello: A `HelloClass` that `format_greeting` will be called on.
-            If not given, use a HelloClass with name="me"
-        times: The number of times to call it
-    """
-    if hello is None:
-        hello = HelloClass("me")
-    for _ in range(times):
-        print(hello.format_greeting())
+def run_test(token):
+    h = HelloClass(token)
+    h.run_switch("off")
+    time.sleep(1)
+    h.run_switch("on")
