@@ -28,8 +28,35 @@
     "devices": {
       "type": "array",
       "items": {
-        "type": "object",
-        "additionalProperties": false
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "CommandLine",
+                "default": "CommandLine"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "SmartThingDevice",
+                "default": "SmartThingDevice"
+              },
+              "api_token": {
+                "type": "string",
+                "description": "user account's API token for smart things see https://account.smartthings.com/login",
+                "default": "none"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
       },
       "description": "A list of the devices that this webhook server will control"
     }

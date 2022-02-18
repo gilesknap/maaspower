@@ -8,20 +8,43 @@ file, plus provide a schema for the the config.
 """
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Sequence, Type
+from typing import Any, Mapping, Optional, Sequence, Type, Union
 
-from apischema import deserialize
+from apischema import UndefinedType, deserialize, serializer
+from apischema.conversions import Conversion, deserializer, identity
 from typing_extensions import Annotated as A
 
 from .globals import T, desc
 
 
-@dataclass
-class Devices:
+class SwitchDevice:
     """
-    A base class for the devices that the webhook server will control
-    concrete subclasses are found in the devices subfolder
+    A base class for the switching devices that the webhook server will control.
+    Concrete subclasses are found in the devices subfolder
     """
+
+    # name: A[str, desc("A name for the switching device")]
+    # description: A[str, desc("A description of the device's purpose")]
+    # type: str  # a literal to distinguish the subclasses of Device
+    # default: Any
+
+    _union: Any = None
+
+    # https://wyfo.github.io/apischema/0.17/examples/subclass_union/
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        deserializer(Conversion(identity, source=cls, target=SwitchDevice))
+        SwitchDevice._union = (
+            cls if SwitchDevice._union is None else Union[SwitchDevice._union, cls]
+        )
+        serializer(
+            Conversion(
+                identity,
+                source=SwitchDevice,
+                target=SwitchDevice._union,
+                inherited=False,
+            )
+        )
 
 
 @dataclass
@@ -42,7 +65,7 @@ class MaasConfig:
     password: A[str, desc("password for connecting to webhook")]
 
     devices: A[
-        Sequence[Devices],
+        Sequence[SwitchDevice],
         desc("A list of the devices that this webhook server will control"),
     ]
 
