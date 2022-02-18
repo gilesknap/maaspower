@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for this webhook server instance"
+    },
+    "rooturi": {
+      "type": "string",
+      "description": "The root URI for all webhooks served"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "IP address to listen on"
+    },
+    "port": {
+      "type": "integer",
+      "description": "port to listen on"
+    },
+    "username": {
+      "type": "string",
+      "description": "username for connecting to webhook"
+    },
+    "password": {
+      "type": "string",
+      "description": "password for connecting to webhook"
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "description": "A list of the devices that this webhook server will control"
+    }
+  },
+  "required": [
+    "name",
+    "rooturi",
+    "ip_address",
+    "port",
+    "username",
+    "password",
+    "devices"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft/2020-12/schema#"
+}

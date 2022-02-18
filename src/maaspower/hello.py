@@ -34,11 +34,10 @@ class HelloClass:
 
     async def switch(self, on_off: str):
         async with aiohttp.ClientSession() as session:
-            api = SmartThings(session, self.token)
-
             command = ["main", "switch", on_off]
             device_id = "1c72370a-885a-4485-9721-ffaf6586101b"
             try:
+                api = SmartThings(session, self.token)
                 await self.send_command(api, device_id, command)
             except Exception as e:
                 print(f"command {command} in device {device_id} failed")
