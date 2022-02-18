@@ -8,15 +8,16 @@ file, plus provide a schema for the the config.
 """
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Sequence, Type, Union
+from typing import Any, Mapping, Optional, Sequence, Type
 
-from apischema import UndefinedType, deserialize, serializer
+from apischema import deserialize
 from apischema.conversions import Conversion, deserializer, identity
 from typing_extensions import Annotated as A
 
-from .globals import T, desc
+from .globals import MaasResponse, T, desc
 
 
+@dataclass
 class SwitchDevice:
     """
     A base class for the switching devices that the webhook server will control.
@@ -24,37 +25,40 @@ class SwitchDevice:
     """
 
     name: A[str, desc("A name for the switching device")]
-    description: A[str, desc("A description of the device's purpose")]
-    type: str  # a literal to distinguish the subclasses of Device
-    default: Any
 
-    _union: Any = None
+    on: A[str, desc("command line string to switch device on")]
+    off: A[str, desc("command line string to switch device off")]
+    query: A[str, desc("command line string to query device state")] = "none"
 
-    # https://wyfo.github.io/apischema/0.17/examples/subclass_union/
-    def __init_subclass__(cls, **kwargs):
-        super().__init_subclass__(**kwargs)
+    description: A[Optional[str], desc("A description of the device's purpose")] = ""
+
+    type: str = "none"  # a literal to distinguish the subclasses of Device
+
+    # https://wyfo.github.io/apischema/examples/subclass_union/
+    def __init_subclass__(cls):
+        # Deserializers stack directly as a Union
         deserializer(Conversion(identity, source=cls, target=SwitchDevice))
-        SwitchDevice._union = (
-            cls if SwitchDevice._union is None else Union[SwitchDevice._union, cls]
-        )
-        serializer(
-            Conversion(
-                identity,
-                source=SwitchDevice,
-                target=SwitchDevice._union,
-                inherited=False,
-            )
-        )
 
     # command functions to be implemented in the derived classes
-    def turn_on(self):
+    def turn_on(self) -> MaasResponse:
         raise (NotImplementedError)
 
-    def turn_off(self):
+    def turn_off(self) -> MaasResponse:
         raise (NotImplementedError)
 
-    def query_state(self):
+    def query_state(self) -> MaasResponse:
         raise (NotImplementedError)
+
+    def do_command(self, command):
+        if command == "on":
+            res = self.turn_on()
+        elif command == "off":
+            res = self.turn_off()
+        elif command == "query":
+            res = self.query_state()
+        else:
+            raise ValueError("Illegal Command")
+        return res.value
 
 
 @dataclass
@@ -68,7 +72,6 @@ class MaasConfig:
     """
 
     name: A[str, desc("The name for this webhook server instance")]
-    rooturi: A[str, desc("The root URI for all webhooks served")]
     ip_address: A[str, desc("IP address to listen on")]
     port: A[int, desc("port to listen on")]
     username: A[str, desc("username for connecting to webhook")]
@@ -82,3 +85,9 @@ class MaasConfig:
     @classmethod
     def deserialize(cls: Type[T], d: Mapping[str, Any]) -> T:
         return deserialize(cls, d)
+
+    def find_device(self, name: str):
+        for device in self.devices:
+            if device.name == name:
+                return device
+        return None

@@ -7,12 +7,17 @@ username: test_user
 password: test_pass
 devices:
   - type: SmartThingDevice
+    uri: nuc1
+    name: plug for nuc1
     api_token: hello
     device_id: test
-    on: do my thing
-    off: do asdf
+    off: off string
+    on: on string
+    query: query string
+
   - type: CommandLine
-    on: this is a test
-    off: so is this
-    query: me too
-  - type: CommandLine
+    uri: pi1
+    name: pi one
+    on: on command
+    off: off command
+    query: query command

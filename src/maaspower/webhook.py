@@ -1,24 +1,44 @@
+"""
+Use Flask to implement a web server that provides web hooks based on
+the provided configuration
+"""
+
 from typing import Dict
+from urllib import response
 
 from flask import Flask, request
+from flask.wrappers import Response
+
+from .maasconfig import MaasConfig
 
 app = Flask("maaspower")
 
 
 @app.route("/")
 def hello():
-    return "Webhooks with Python"
+    return "MAAS Power Web Hooks Server"
 
 
-@app.route("/test", methods=["POST"])
-def my_test():
+@app.route("/maaspower/<devicename>/<command>", methods=["POST", "GET"])
+def command(devicename: str, command: str):
+    c: MaasConfig = app.config["mass_config"]
+    print(f"device: {devicename} command: {command}")
     if request.authorization is not None:
         auth: Dict = request.authorization
-        user = auth.get("username")
-        password = auth.get("password")
-        print(f"Test user {user}, pass {password}")
-    return "OK"
+        if auth.get("username") != c.username or auth.get("password") != c.password:
+            raise (ValueError("bad credentials"))
+        device = c.find_device(devicename)
+        if device is None:
+            raise ValueError("unknown device")
+        else:
+            result = device.do_command(command)
+    else:
+        raise (ValueError("no credentials"))
+    print(f"response: {result}")
+    resp = Response(result)
+    return resp
 
 
-def run_web_hook():
-    app.run(host="0.0.0.0", port=5000)
+def run_web_hook(c: MaasConfig):
+    app.config["mass_config"] = c
+    app.run(host=c.ip_address, port=c.port)

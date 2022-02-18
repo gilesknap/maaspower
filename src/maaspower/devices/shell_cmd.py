@@ -18,8 +18,4 @@ from ..globals import desc
 class CommandLine(SwitchDevice):
     """A device controlled via SmartThings"""
 
-    on: A[str, desc("command line string to switch device on")]
-    off: A[str, desc("command line string to switch device off")]
-    query: A[str, desc("command line string to query device state")]
-
     type: Literal["CommandLine"] = "CommandLine"

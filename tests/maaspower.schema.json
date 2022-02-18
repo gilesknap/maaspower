@@ -5,10 +5,6 @@
       "type": "string",
       "description": "The name for this webhook server instance"
     },
-    "rooturi": {
-      "type": "string",
-      "description": "The root URI for all webhooks served"
-    },
     "ip_address": {
       "type": "string",
       "description": "IP address to listen on"
@@ -32,32 +28,72 @@
           {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "description": "A name for the switching device"
+              },
+              "on": {
+                "type": "string",
+                "description": "command line string to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "command line string to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "command line string to query device state",
+                "default": "none"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A description of the device's purpose",
+                "default": ""
+              },
               "type": {
                 "type": "string",
                 "const": "CommandLine",
                 "default": "CommandLine"
-              },
-              "on": {
-                "type": "string",
-                "description": "command to switch device on",
-                "default": "none"
-              },
-              "off": {
-                "type": "string",
-                "description": "the command to switch device off",
-                "default": "none"
-              },
-              "query": {
-                "type": "string",
-                "description": "the command to query device state",
-                "default": "none"
               }
             },
+            "required": [
+              "name",
+              "on",
+              "off"
+            ],
             "additionalProperties": false
           },
           {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "description": "A name for the switching device"
+              },
+              "on": {
+                "type": "string",
+                "description": "command line string to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "command line string to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "command line string to query device state",
+                "default": "none"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A description of the device's purpose",
+                "default": ""
+              },
               "type": {
                 "type": "string",
                 "const": "SmartThingDevice",
@@ -65,31 +101,19 @@
               },
               "api_token": {
                 "type": "string",
-                "description": "user account's API token for smart things see https://account.smartthings.com/login"
+                "description": "user account's API token for smart things see https://account.smartthings.com/login",
+                "default": "none"
               },
               "device_id": {
                 "type": "string",
-                "description": "The identifier for the individual device"
-              },
-              "on": {
-                "type": "string",
-                "description": "command to switch device on"
-              },
-              "off": {
-                "type": "string",
-                "description": "the command to switch device off"
-              },
-              "query": {
-                "type": "string",
-                "description": "the command to query device state"
+                "description": "The identifier for the individual device",
+                "default": "none"
               }
             },
             "required": [
-              "api_token",
-              "device_id",
+              "name",
               "on",
-              "off",
-              "query"
+              "off"
             ],
             "additionalProperties": false
           }
@@ -100,7 +124,6 @@
   },
   "required": [
     "name",
-    "rooturi",
     "ip_address",
     "port",
     "username",
