@@ -6,6 +6,7 @@ See https://www.smartthings.com/
 """
 import asyncio
 from dataclasses import dataclass
+from enum import Enum
 from typing import Literal
 
 import aiohttp
@@ -15,6 +16,19 @@ from typing_extensions import Annotated as A
 from maaspower.maasconfig import SwitchDevice
 
 from ..globals import MaasResponse, desc
+
+
+class QueryParts(Enum):
+    """
+    The query string is a space separated sequence of
+    - the key into the device status values dictionary in which to look
+    - it's value for when the device is on
+    - it's value for when the device is off
+    """
+
+    status_key = 0
+    on_value = 1
+    off_value = 2
 
 
 @dataclass
@@ -56,7 +70,9 @@ class SmartThing(SwitchDevice):
 
     async def switch(self, cmd: str, query: bool = False):
         async with aiohttp.ClientSession() as session:
+            # commands and queries are space separated sequences of identifiers
             command = cmd.split(" ")
+            result = True  # satisfy pylance even though all paths set result
 
             api = SmartThings(session, self.api_token)
             devices = await api.devices()
@@ -64,10 +80,12 @@ class SmartThing(SwitchDevice):
                 if device.device_id == self.device_id:
                     if query:
                         await device.status.refresh()
-                        switch_state = device.status.values.get(command[0])
-                        if switch_state == command[1]:
+                        switch_state = device.status.values.get(
+                            command[QueryParts.status_key.value]
+                        )
+                        if switch_state == command[QueryParts.on_value.value]:
                             result = True
-                        elif switch_state == command[2]:
+                        elif switch_state == command[QueryParts.off_value.value]:
                             result = False
                         else:
                             raise ValueError("unknown device state")
