@@ -1,23 +1,54 @@
 # yaml-language-server: $schema=maaspower.schema.json
-name: test_hooks
-rooturi: /power
+# NOTE: above relative path to a schema file from 'maaspower schema <filename>'
+
+name: my maas power control webhooks
 ip_address: 0.0.0.0
 port: 5000
 username: test_user
 password: test_pass
+
 devices:
+  # This requires a smartThing compatible switching device and related
+  # token, device ID.
   - type: SmartThingDevice
-    uri: nuc1
-    name: plug for nuc1
-    api_token: hello
-    device_id: test
-    off: off string
-    on: on string
-    query: query string
+    name: nuc1
+    # token and id redacted
+    api_token: zzzzzzzz-aaaa-4d46-bcf9-vvvvvvvvvvvv
+    device_id: rrrrrrrr-bbbb-4485-9721-rrrrrrrrrrrr
+    off: main switch off
+    on: main switch on
+    query: switch
+
+  # These require that the server is running on a machine with USB
+  # connection to a power control USB hub and the uhubctl utility installed.
+  - type: CommandLine
+    name: pi1
+    on: uhubctl -a 1 -p 1
+    off: uhubctl -a 0 -p 1
+    query: uhubctl -p 1
+    query_on_regex: .*power$
+    query_off_regex: .*off$
 
   - type: CommandLine
-    uri: pi1
-    name: pi one
-    on: on command
-    off: off command
-    query: query command
+    name: pi2
+    on: uhubctl -a 1 -p 2
+    off: uhubctl -a 0 -p 2
+    query: uhubctl -p 2
+    query_on_regex: .*power$
+    query_off_regex: .*off$
+
+  - type: CommandLine
+    name: pi3
+    on: uhubctl -a 1 -p 3
+    off: uhubctl -a 0 -p 3
+    query: uhubctl -p 3
+    query_on_regex: .*power$
+    query_off_regex: .*off$
+
+  - type: CommandLine
+    name: pi4
+    on: uhubctl -a 1 -p 4
+    off: uhubctl -a 0 -p 4
+    query: uhubctl -p 4
+    query_on_regex: .*power$
+    query_off_regex: .*off$

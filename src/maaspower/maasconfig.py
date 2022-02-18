@@ -60,12 +60,15 @@ class SwitchDevice:
             self.turn_off()
         elif command == "query":
             query_response = self.query_state()
-            if re.match(query_response, self.query_on_regex):
+            if re.search(self.query_on_regex, query_response, flags=re.MULTILINE):
                 result = MaasResponse.on.value
-            elif re.match(query_response, self.query_off_regex):
+            elif re.search(self.query_off_regex, query_response, flags=re.MULTILINE):
                 result = MaasResponse.off.value
             else:
-                raise ValueError(f"Unknown power state response {query_response}")
+                raise ValueError(
+                    f"Unknown power state response: \n{query_response}\n"
+                    f"\nfor regexes {self.query_on_regex}, {self.query_off_regex}"
+                )
         else:
             raise ValueError("Illegal Command")
         return result
@@ -74,11 +77,11 @@ class SwitchDevice:
 @dataclass
 class MaasConfig:
     """
-    Provides global information regarding webhook root URLs, passwords etc.
+    Provides global information regarding webhook address, passwords etc.
 
-    Plus a list of devices. The devices are generic in this module,
+    Plus a list of switch devices. The devices are generic in this module,
     config definitions and function for specific device types are
-    in the devices folder
+    in the devices folder.
     """
 
     name: A[str, desc("The name for this webhook server instance")]

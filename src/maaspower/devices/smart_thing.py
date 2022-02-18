@@ -37,15 +37,12 @@ class SmartThing(SwitchDevice):
     ] = "none"
 
     def turn_on(self):
-        print("turn on", self.on)
         asyncio.run(self.switch(self.on))
 
     def turn_off(self):
-        print("turn off", self.off)
         asyncio.run(self.switch(self.off))
 
     def query_state(self) -> str:
-        print("query", self.query)
         return asyncio.run(self.switch(self.query, True))
 
     async def switch(self, cmd: str, query: bool = False):
