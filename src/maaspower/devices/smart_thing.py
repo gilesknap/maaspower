@@ -9,7 +9,7 @@ from typing import Literal
 
 from typing_extensions import Annotated as A
 
-from maaspower.config import SwitchDevice
+from maaspower.maasconfig import SwitchDevice
 
 from ..globals import desc
 
@@ -18,12 +18,21 @@ from ..globals import desc
 class SmartThing(SwitchDevice):
     """A device controlled via SmartThings"""
 
-    type: Literal["SmartThingDevice"] = "SmartThingDevice"
-
     api_token: A[
         str,
         desc(
             "user account's API token for smart things "
             "see https://account.smartthings.com/login"
         ),
-    ] = "none"
+    ]
+
+    device_id: A[
+        str,
+        desc("The identifier for the individual device"),
+    ]
+
+    on: A[str, desc("space separated command tree to switch device on")]
+    off: A[str, desc("space separated command tree  to switch device off")]
+    query: A[str, desc("the command to query device state")]
+
+    type: Literal["SmartThingDevice"] = "SmartThingDevice"

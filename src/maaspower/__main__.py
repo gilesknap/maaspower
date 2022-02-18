@@ -7,14 +7,14 @@ from apischema.json_schema import deserialization_schema
 from ruamel.yaml import YAML
 
 from . import __version__
-from .config import MaasConfig
+from .maasconfig import MaasConfig
 
 # import all sublasses of SwitchDevice so ApiSchema sees them
 from .devices.shell_cmd import CommandLine
-from .devices.smart_thing import SmartThingDevice
+from .devices.smart_thing import SmartThing
 
 # avoid linter complaints
-required_to_find_subclasses = [SmartThingDevice, CommandLine]
+required_to_find_subclasses = [SmartThing, CommandLine]
 
 cli = typer.Typer()
 yaml = YAML()

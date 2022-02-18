@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=maaspower.schema.json
+name: test_hooks
+rooturi: /power
+ip_address: 0.0.0.0
+port: 5000
+username: test_user
+password: test_pass
+devices:
+  - type: SmartThingDevice
+    api_token: hello
+    device_id: test
+    on: do my thing
+    off: do asdf
+  - type: CommandLine
+    on: this is a test
+    off: so is this
+    query: me too
+  - type: CommandLine

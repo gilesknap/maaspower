@@ -23,10 +23,10 @@ class SwitchDevice:
     Concrete subclasses are found in the devices subfolder
     """
 
-    # name: A[str, desc("A name for the switching device")]
-    # description: A[str, desc("A description of the device's purpose")]
-    # type: str  # a literal to distinguish the subclasses of Device
-    # default: Any
+    name: A[str, desc("A name for the switching device")]
+    description: A[str, desc("A description of the device's purpose")]
+    type: str  # a literal to distinguish the subclasses of Device
+    default: Any
 
     _union: Any = None
 
@@ -45,6 +45,16 @@ class SwitchDevice:
                 inherited=False,
             )
         )
+
+    # command functions to be implemented in the derived classes
+    def turn_on(self):
+        raise (NotImplementedError)
+
+    def turn_off(self):
+        raise (NotImplementedError)
+
+    def query_state(self):
+        raise (NotImplementedError)
 
 
 @dataclass

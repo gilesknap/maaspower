@@ -36,6 +36,21 @@
                 "type": "string",
                 "const": "CommandLine",
                 "default": "CommandLine"
+              },
+              "on": {
+                "type": "string",
+                "description": "command to switch device on",
+                "default": "none"
+              },
+              "off": {
+                "type": "string",
+                "description": "the command to switch device off",
+                "default": "none"
+              },
+              "query": {
+                "type": "string",
+                "description": "the command to query device state",
+                "default": "none"
               }
             },
             "additionalProperties": false
@@ -50,10 +65,32 @@
               },
               "api_token": {
                 "type": "string",
-                "description": "user account's API token for smart things see https://account.smartthings.com/login",
-                "default": "none"
+                "description": "user account's API token for smart things see https://account.smartthings.com/login"
+              },
+              "device_id": {
+                "type": "string",
+                "description": "The identifier for the individual device"
+              },
+              "on": {
+                "type": "string",
+                "description": "command to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "the command to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "the command to query device state"
               }
             },
+            "required": [
+              "api_token",
+              "device_id",
+              "on",
+              "off",
+              "query"
+            ],
             "additionalProperties": false
           }
         ]
