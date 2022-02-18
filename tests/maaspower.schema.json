@@ -42,15 +42,24 @@
               },
               "query": {
                 "type": "string",
-                "description": "command line string to query device state",
-                "default": "none"
+                "description": "command line string to query device state"
+              },
+              "query_on_regex": {
+                "type": "string",
+                "description": "match the on status return from query",
+                "default": "on"
+              },
+              "query_off_regex": {
+                "type": "string",
+                "description": "match the off status return from query",
+                "default": "off"
               },
               "description": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "A description of the device's purpose",
+                "description": "A description of the device",
                 "default": ""
               },
               "type": {
@@ -62,7 +71,8 @@
             "required": [
               "name",
               "on",
-              "off"
+              "off",
+              "query"
             ],
             "additionalProperties": false
           },
@@ -83,15 +93,24 @@
               },
               "query": {
                 "type": "string",
-                "description": "command line string to query device state",
-                "default": "none"
+                "description": "command line string to query device state"
+              },
+              "query_on_regex": {
+                "type": "string",
+                "description": "match the on status return from query",
+                "default": "on"
+              },
+              "query_off_regex": {
+                "type": "string",
+                "description": "match the off status return from query",
+                "default": "off"
               },
               "description": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "A description of the device's purpose",
+                "description": "A description of the device",
                 "default": ""
               },
               "type": {
@@ -113,7 +132,8 @@
             "required": [
               "name",
               "on",
-              "off"
+              "off",
+              "query"
             ],
             "additionalProperties": false
           }

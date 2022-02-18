@@ -1,6 +1,6 @@
-from . import hello
+from . import maasconfig, webhook
 from ._version_git import __version__
 
 # __all__ defines the public API for the package.
 # Each module also defines its own __all__.
-__all__ = ["__version__", "hello"]
+__all__ = ["__version__", "maasconfig", "webhook"]

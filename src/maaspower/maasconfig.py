@@ -7,6 +7,7 @@ This module uses APISchema to serialize and deserialize the config
 file, plus provide a schema for the the config.
 """
 
+import re
 from dataclasses import dataclass
 from typing import Any, Mapping, Optional, Sequence, Type
 
@@ -28,10 +29,11 @@ class SwitchDevice:
 
     on: A[str, desc("command line string to switch device on")]
     off: A[str, desc("command line string to switch device off")]
-    query: A[str, desc("command line string to query device state")] = "none"
+    query: A[str, desc("command line string to query device state")]
+    query_on_regex: A[str, desc("match the on status return from query")] = "on"
+    query_off_regex: A[str, desc("match the off status return from query")] = "off"
 
-    description: A[Optional[str], desc("A description of the device's purpose")] = ""
-
+    description: A[Optional[str], desc("A description of the device")] = ""
     type: str = "none"  # a literal to distinguish the subclasses of Device
 
     # https://wyfo.github.io/apischema/examples/subclass_union/
@@ -40,25 +42,33 @@ class SwitchDevice:
         deserializer(Conversion(identity, source=cls, target=SwitchDevice))
 
     # command functions to be implemented in the derived classes
-    def turn_on(self) -> MaasResponse:
+    def turn_on(self) -> None:
         raise (NotImplementedError)
 
-    def turn_off(self) -> MaasResponse:
+    def turn_off(self) -> None:
         raise (NotImplementedError)
 
-    def query_state(self) -> MaasResponse:
+    def query_state(self) -> str:
         raise (NotImplementedError)
 
-    def do_command(self, command):
+    def do_command(self, command) -> Optional[str]:
+        result = None
+
         if command == "on":
-            res = self.turn_on()
+            self.turn_on()
         elif command == "off":
-            res = self.turn_off()
+            self.turn_off()
         elif command == "query":
-            res = self.query_state()
+            query_response = self.query_state()
+            if re.match(query_response, self.query_on_regex):
+                result = MaasResponse.on.value
+            elif re.match(query_response, self.query_off_regex):
+                result = MaasResponse.off.value
+            else:
+                raise ValueError(f"Unknown power state response {query_response}")
         else:
             raise ValueError("Illegal Command")
-        return res.value
+        return result
 
 
 @dataclass
