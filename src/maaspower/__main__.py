@@ -13,7 +13,7 @@ from . import __version__
 from .devices.shell_cmd import CommandLine
 from .devices.smart_thing import SmartThing
 from .maasconfig import MaasConfig
-from .webhook import app, run_web_hook
+from .webhook import run_web_hook
 
 # avoid linter complaints
 required_to_find_subclasses = [SmartThing, CommandLine]
