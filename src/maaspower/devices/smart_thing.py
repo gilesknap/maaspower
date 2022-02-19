@@ -9,11 +9,11 @@ See https://www.smartthings.com/
 """
 import asyncio
 from dataclasses import dataclass
-from typing import Literal
 
 import aiohttp
 from pysmartthings import SmartThings
 from typing_extensions import Annotated as A
+from typing_extensions import Literal
 
 from maaspower.maasconfig import SwitchDevice
 

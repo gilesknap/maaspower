@@ -9,7 +9,8 @@ e.g. smart power switching usb hubs https://github.com/mvp/uhubctl
 """
 import subprocess
 from dataclasses import dataclass
-from typing import Literal
+
+from typing_extensions import Literal
 
 from maaspower.maasconfig import SwitchDevice
 
