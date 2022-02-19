@@ -4,7 +4,7 @@ maaspower
 |code_ci| |docs_ci| |coverage| |pypi_version| |license|
 
 Power control webhook server for Canonical's MAAS. See here
-https://discourse.maas.io/t/creating-a-web-service-for-the-maas-webhook-power-driver/3756
+https://maas.io/docs/snap/2.9/ui/power-management#heading--webhook
 for details of the requirements.
 
 ============== ==============================================================
