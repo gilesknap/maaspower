@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>maaspower.maasconfig &mdash; maaspower 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="../../index.html" class="icon icon-home"> maaspower
+            <img src="../../_static/dls-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/getting-started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../how-to/addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-to/edit-yaml.html">YAML schema</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../explanations/purpose.html">Purpose of this Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/api.html">Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/dls-controls/maaspower/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">maaspower</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>maaspower.maasconfig</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for maaspower.maasconfig</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">massconfig.py</span>
+<span class="sd">-------------</span>
+
+<span class="sd">This module uses APISchema to serialize and deserialize the config</span>
+<span class="sd">file, plus provides a schema for easy editing of the config.</span>
+
+
+<span class="sd">The MaasConfig class plus SwitchDevice derived classes in the devices folder</span>
+<span class="sd">provide an in memory representation of the contents of</span>
+<span class="sd">the maaspower YAML configuration file that specifies the set of power</span>
+<span class="sd">manager devices for which to serve web hooks.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="kn">from</span> <span class="nn">apischema</span> <span class="kn">import</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">identity</span>
+<span class="kn">from</span> <span class="nn">apischema.conversions</span> <span class="kn">import</span> <span class="n">Conversion</span><span class="p">,</span> <span class="n">deserializer</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span> <span class="k">as</span> <span class="n">A</span>
+
+<span class="kn">from</span> <span class="nn">.globals</span> <span class="kn">import</span> <span class="n">MaasResponse</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">desc</span>
+
+
+<div class="viewcode-block" id="SwitchDevice"><a class="viewcode-back" href="../../reference/api.html#maaspower.maasconfig.SwitchDevice">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SwitchDevice</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class for the switching devices that the webhook server will control.</span>
+<span class="sd">    Concrete subclasses are found in the devices subfolder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;A name for the switching device&quot;</span><span class="p">)]</span>
+
+    <span class="n">on</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;command line string to switch device on&quot;</span><span class="p">)]</span>
+    <span class="n">off</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;command line string to switch device off&quot;</span><span class="p">)]</span>
+    <span class="n">query</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;command line string to query device state&quot;</span><span class="p">)]</span>
+    <span class="n">query_on_regex</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;match the on status return from query&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;on&quot;</span>
+    <span class="n">query_off_regex</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;match the off status return from query&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;off&quot;</span>
+
+    <span class="n">description</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;A description of the device&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span>  <span class="c1"># a literal to distinguish the subclasses of Device</span>
+
+    <span class="c1"># https://wyfo.github.io/apischema/examples/subclass_union/</span>
+    <span class="k">def</span> <span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># Deserializers stack directly as a Union</span>
+        <span class="n">deserializer</span><span class="p">(</span><span class="n">Conversion</span><span class="p">(</span><span class="n">identity</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">SwitchDevice</span><span class="p">))</span>
+
+    <span class="c1"># command functions to be implemented in the derived classes</span>
+    <span class="k">def</span> <span class="nf">turn_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">turn_off</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">query_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;on&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">turn_on</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;off&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">turn_off</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;query&quot;</span><span class="p">:</span>
+            <span class="n">query_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_state</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_on_regex</span><span class="p">,</span> <span class="n">query_response</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">MaasResponse</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_off_regex</span><span class="p">,</span> <span class="n">query_response</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">MaasResponse</span><span class="o">.</span><span class="n">off</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Unknown power state response: </span><span class="se">\n</span><span class="si">{</span><span class="n">query_response</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">for regexes </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">query_on_regex</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">query_off_regex</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Illegal Command&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="MaasConfig"><a class="viewcode-back" href="../../reference/api.html#maaspower.maasconfig.MaasConfig">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">MaasConfig</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provides global information regarding webhook address, passwords etc.</span>
+
+<span class="sd">    Plus a list of switch devices. The devices are generic in this module,</span>
+<span class="sd">    config definitions and function for specific device types are</span>
+<span class="sd">    in the devices folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;The name for this webhook server instance&quot;</span><span class="p">)]</span>
+    <span class="n">ip_address</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;IP address to listen on&quot;</span><span class="p">)]</span>
+    <span class="n">port</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;port to listen on&quot;</span><span class="p">)]</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;username for connecting to webhook&quot;</span><span class="p">)]</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;password for connecting to webhook&quot;</span><span class="p">)]</span>
+
+    <span class="n">devices</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span>
+        <span class="n">Sequence</span><span class="p">[</span><span class="n">SwitchDevice</span><span class="p">],</span>
+        <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;A list of the devices that this webhook server will control&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">d</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">find_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">device</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      0.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../../../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../../../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>
