@@ -6,8 +6,8 @@ How to add support for a new API
 Here we discuss how to extend this package to support new devices with
 APIs that are not currently covered.
 
-Overview
---------
+Steps
+-----
 
 There are only a few steps required.
 
@@ -25,8 +25,5 @@ There are only a few steps required.
 
 - regenerate a schema for helping define the configuration file
 
+  - ``maaspower schema <path to new schema file>``
 
-Details
--------
-
-TODO

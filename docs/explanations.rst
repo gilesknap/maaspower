@@ -9,3 +9,4 @@ Explanation of how the library works and why it works that way.
     :caption: Explanations
 
     explanations/purpose
+    explanations/security

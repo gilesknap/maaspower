@@ -1,9 +1,23 @@
+.. _yaml_schema:
+
 YAML schema
 ===========
 
 Maaspower provides a schema for its configuration file. If you use a schema 
 aware YAML editor then this will use hints and auto completion to help
 create the config.
+
+You can generate a schema file with the command::
+
+    masspower schema <schema file name>
+
+You can instruct schema aware editors to use a schema file with the following
+modeline at the start of the YAML file::
+
+    # yaml-language-server: $schema=https://my.url.to/the/schema
+
+Note that local schema files are supported with relative or absolute file names
+(at least in vscode).
 
 A popular choice for YAML aware editing is vscode.
 

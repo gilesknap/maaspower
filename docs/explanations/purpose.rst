@@ -1,7 +1,7 @@
 Purpose of this Package
 =======================
 
-Canonical's Metal As A Service (MAAS) commissions and deploys bare metal servers
+Canonical's Metal As A Service (MAAS) commissions and deploys bare metal machines
 automatically, see https://maas.io/. It uses PXE boot so any machine that
 can network boot can theoretically be managed with MAAS.
 
@@ -11,7 +11,7 @@ allows for this but consumer machines rarely do.
 
 MAAS allows for this by allowing a Web Hook to be configured for power
 cycling each machine. All you need is some remotely controlled power supply
-for your server and some software that provides a web hook understood by MAAS,
+for your machine and some software that provides a web hook understood by MAAS,
 and responds to the web hook by powering on/off the machine. 
 
 Each machine will need 3 web hooks:

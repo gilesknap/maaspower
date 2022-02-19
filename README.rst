@@ -3,9 +3,10 @@ maaspower
 
 |code_ci| |docs_ci| |coverage| |pypi_version| |license|
 
-Power control webhook server for Canonical's MAAS. See here
-https://maas.io/docs/snap/2.9/ui/power-management#heading--webhook
-for details of the requirements.
+Power control webhook server for Canonical's MAAS. The requirements for 
+such webhooks are defined here:
+
+- https://maas.io/docs/snap/3.1/ui/power-management#heading--webhook
 
 ============== ==============================================================
 PyPI           ``pip install maaspower``
@@ -14,9 +15,9 @@ Documentation  https://gilesknap.github.io/maaspower
 Releases       https://github.com/gilesknap/maaspower/releases
 ============== ==============================================================
 
-This project adds MAAS power control to servers that do not already have 
-a BMC type that MAAS supports. It uses a webhook to control switching 
-equipment that can power cycle such servers. 
+This project implements MAAS power control to machines that do not already have 
+a BMC type supported by MAAS. It uses webhooks to control any number of
+remote switching devices that can power cycle such machines. 
 
 The project uses an extensible architecture so more switching device types 
 may be added, see `add_api`.
