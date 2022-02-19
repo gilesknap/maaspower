@@ -120,12 +120,12 @@
               },
               "api_token": {
                 "type": "string",
-                "description": "user account's API token for smart things see https://account.smartthings.com/login",
+                "description": "SmartThings API token see https://account.smartthings.com/login",
                 "default": "none"
               },
               "device_id": {
                 "type": "string",
-                "description": "The identifier for the individual device",
+                "description": "The SmartThings identifier for an individual device",
                 "default": "none"
               }
             },

@@ -3,8 +3,9 @@ maaspower
 
 |code_ci| |docs_ci| |coverage| |pypi_version| |license|
 
-This is where you should write a short paragraph that describes what your module does,
-how it does it, and why people should use it.
+Power control webhook server for Canonical's MAAS. See here
+https://discourse.maas.io/t/creating-a-web-service-for-the-maas-webhook-power-driver/3756
+for details of the requirements.
 
 ============== ==============================================================
 PyPI           ``pip install maaspower``
@@ -13,9 +14,20 @@ Documentation  https://dls-controls.github.io/maaspower
 Releases       https://github.com/dls-controls/maaspower/releases
 ============== ==============================================================
 
-This is where you should put some images or code snippets that illustrate
-some relevant examples. If it is a library then you might put some
-introductory code here:
+This project adds MAAS power control to servers that do not already have 
+a BMC type that MAAS supports. It uses a webhook to control switching 
+equipment that can power cycle such servers. 
+
+The project uses an extensible architecture so more switching device types 
+may be added, see `How to add support for a new API`.
+
+At present it supports two flavours of switching control:
+
+- Command line interface. Anything that is controllable by a command line 
+  utility that can be installed on the machine running this webhook service. 
+- SmartThings API: a popular Samsung IoT protocol that is supported by 
+  thousands of devices
+
 
 .. code:: python
 

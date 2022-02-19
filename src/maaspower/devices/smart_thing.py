@@ -25,15 +25,12 @@ class SmartThing(SwitchDevice):
 
     api_token: A[
         str,
-        desc(
-            "user account's API token for smart things "
-            "see https://account.smartthings.com/login"
-        ),
+        desc("SmartThings API token see https://account.smartthings.com/login"),
     ] = "none"
 
     device_id: A[
         str,
-        desc("The identifier for the individual device"),
+        desc("The SmartThings identifier for an individual device"),
     ] = "none"
 
     def turn_on(self):
