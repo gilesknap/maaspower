@@ -1,0 +1,14 @@
+name: my maas power control webhooks
+ip_address: 0.0.0.0
+port: 5000
+username: a_user
+password: a_pass
+
+devices:
+  # This dummy cmd line device always returns on to query
+  # connection to a power control USB hub and the uhubctl utility installed.
+  - type: CommandLine
+    name: pi1
+    on: echo "turning on"
+    off: echo "turning off"
+    query: echo "on"
