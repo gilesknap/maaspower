@@ -27,6 +27,7 @@ jobs:
         uses: dls-controls/pipenv-run-action@v1
         with:
           pipenv-run: docs
+          python-version: "3.8"
 
       - name: Check links resolve
         run: pipenv run docs -b linkcheck
