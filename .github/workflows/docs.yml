@@ -29,8 +29,8 @@ jobs:
           pipenv-run: docs
           python-version: "3.8"
 
-      - name: Check links resolve
-        run: pipenv run docs -b linkcheck
+      # - name: Check links resolve
+      #   run: pipenv run docs -b linkcheck
 
       - name: Move to versioned directory
         # e.g. main or 0.1.2
