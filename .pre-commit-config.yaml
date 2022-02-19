@@ -28,3 +28,9 @@ repos:
         language: system
         entry: pipenv run mypy src tests
         pass_filenames: false
+
+      - id: lockfile
+        name: Check Pipfile.lock is up to date
+        stages: [commit]
+        language: system
+        entry: bash -c 'if [[ Pipfile -nt Pipfile.lock ]]; then exit 1 ; fi'
