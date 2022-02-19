@@ -9,9 +9,9 @@ for details of the requirements.
 
 ============== ==============================================================
 PyPI           ``pip install maaspower``
-Source code    https://github.com/dls-controls/maaspower
-Documentation  https://dls-controls.github.io/maaspower
-Releases       https://github.com/dls-controls/maaspower/releases
+Source code    https://github.com/gilesknap/maaspower
+Documentation  https://gilesknap.github.io/maaspower
+Releases       https://github.com/gilesknap/maaspower/releases
 ============== ==============================================================
 
 This project adds MAAS power control to servers that do not already have 
@@ -29,16 +29,16 @@ At present it supports two flavours of switching control:
   thousands of devices
 
 
-.. |code_ci| image:: https://github.com/dls-controls/maaspower/workflows/Code%20CI/badge.svg?branch=main
-    :target: https://github.com/dls-controls/maaspower/actions?query=workflow%3A%22Code+CI%22
+.. |code_ci| image:: https://github.com/gilesknap/maaspower/workflows/Code%20CI/badge.svg?branch=main
+    :target: https://github.com/gilesknap/maaspower/actions?query=workflow%3A%22Code+CI%22
     :alt: Code CI
 
-.. |docs_ci| image:: https://github.com/dls-controls/maaspower/workflows/Docs%20CI/badge.svg?branch=main
-    :target: https://github.com/dls-controls/maaspower/actions?query=workflow%3A%22Docs+CI%22
+.. |docs_ci| image:: https://github.com/gilesknap/maaspower/workflows/Docs%20CI/badge.svg?branch=main
+    :target: https://github.com/gilesknap/maaspower/actions?query=workflow%3A%22Docs+CI%22
     :alt: Docs CI
 
-.. |coverage| image:: https://codecov.io/gh/dls-controls/maaspower/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/dls-controls/maaspower
+.. |coverage| image:: https://codecov.io/gh/gilesknap/maaspower/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/gilesknap/maaspower
     :alt: Test Coverage
 
 .. |pypi_version| image:: https://img.shields.io/pypi/v/maaspower.svg
@@ -53,4 +53,4 @@ At present it supports two flavours of switching control:
     Anything below this line is used when viewing README.rst and will be replaced
     when included in index.rst
 
-See https://dls-controls.github.io/maaspower for more detailed documentation.
+See https://gilesknap.github.io/maaspower for more detailed documentation.

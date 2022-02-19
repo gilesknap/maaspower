@@ -12,3 +12,12 @@ devices:
     on: echo "turning on"
     off: echo "turning off"
     query: echo "on"
+
+  - type: SmartThingDevice
+    name: nuc1
+    # token and id redacted
+    api_token: zzzzzzzz-aaaa-4d46-bcf9-vvvvvvvvvvvv
+    device_id: rrrrrrrr-bbbb-4485-9721-rrrrrrrrrrrr
+    off: main switch off
+    on: main switch on
+    query: switch

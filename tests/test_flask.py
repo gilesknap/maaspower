@@ -5,6 +5,7 @@ out.
 
 from base64 import b64encode
 from pathlib import Path
+from unittest.mock import patch
 
 from ruamel.yaml import YAML
 
@@ -50,4 +51,27 @@ def test_webhook_cmdline(samples: Path):
         response = test_client.post("/maaspower/pi1/off", headers=headers)
         assert response.status_code == 200
         response = test_client.post("/maaspower/pi1/query", headers=headers)
+        assert response.data == b"status : running"
+
+
+@patch("pysmartthings.SmartThings")
+def test_webhook_smartthings(smarthings, samples: Path):
+    """
+    Load a smartthing controlled switch configuration and
+    confirm that we can call it via the webhooks, mock out the
+    smartthings backend
+    """
+
+    dummypath = samples / "dummy_cmd.yaml"
+    config_dict = YAML().load(dummypath)
+
+    maas_config = MaasConfig.deserialize(config_dict)
+    load_web_hook(maas_config)
+
+    with app.test_client() as test_client:
+        response = test_client.post("/maaspower/nuc1/on", headers=headers)
+        assert response.status_code == 200
+        response = test_client.post("/maaspower/nuc1/off", headers=headers)
+        assert response.status_code == 200
+        response = test_client.post("/maaspower/nuc1/query", headers=headers)
         assert response.data == b"status : running"
