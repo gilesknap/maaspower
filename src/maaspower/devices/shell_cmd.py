@@ -1,4 +1,7 @@
 """
+shell_cmd.py
+------------
+
 Classes to represent the configuration and functionality for devices
 that can be controlled via a command line utility.
 

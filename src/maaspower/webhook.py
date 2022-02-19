@@ -1,4 +1,6 @@
 """
+webhook.py
+----------
 Use Flask to implement a web server that provides web hooks based on
 the provided configuration
 """
@@ -20,6 +22,9 @@ def hello():
 
 @app.route("/maaspower/<devicename>/<command>", methods=["POST", "GET"])
 def command(devicename: str, command: str):
+    """
+    Accept webhooks at /maaspower/<devicename>/<command>
+    """
     c: MaasConfig = app.config["mass_config"]
     print(f"device: {devicename} command: {command}")
     if request.authorization is not None:
@@ -39,5 +44,8 @@ def command(devicename: str, command: str):
 
 
 def run_web_hook(c: MaasConfig):
+    """
+    Launch the webserver
+    """
     app.config["mass_config"] = c
     app.run(host=c.ip_address, port=c.port)

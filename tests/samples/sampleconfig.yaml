@@ -36,19 +36,3 @@ devices:
     query: uhubctl -p 2
     query_on_regex: .*power$
     query_off_regex: .*off$
-
-  - type: CommandLine
-    name: pi3
-    on: uhubctl -a 1 -p 3
-    off: uhubctl -a 0 -p 3
-    query: uhubctl -p 3
-    query_on_regex: .*power$
-    query_off_regex: .*off$
-
-  - type: CommandLine
-    name: pi4
-    on: uhubctl -a 1 -p 4
-    off: uhubctl -a 0 -p 4
-    query: uhubctl -p 4
-    query_on_regex: .*power$
-    query_off_regex: .*off$

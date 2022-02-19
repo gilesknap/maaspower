@@ -1,4 +1,7 @@
 """
+smart_thing.py
+--------------
+
 Classes to represent the configuration and functionality for devices
 that can be controlled via the SmartThings API.
 

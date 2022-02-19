@@ -1,10 +1,15 @@
 """
-The MaasConfig class is an in memory representation of the contents of
-the maaspower YAML configuration file that specifies the set of power
-manager devices for which to serve web hooks.
+massconfig.py
+-------------
 
 This module uses APISchema to serialize and deserialize the config
-file, plus provide a schema for the the config.
+file, plus provides a schema for easy editing of the config.
+
+
+The MaasConfig class plus SwitchDevice derived classes in the devices folder
+provide an in memory representation of the contents of
+the maaspower YAML configuration file that specifies the set of power
+manager devices for which to serve web hooks.
 """
 
 import re

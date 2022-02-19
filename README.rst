@@ -1,5 +1,5 @@
 maaspower
-===========================
+=========
 
 |code_ci| |docs_ci| |coverage| |pypi_version| |license|
 
@@ -19,7 +19,7 @@ a BMC type that MAAS supports. It uses a webhook to control switching
 equipment that can power cycle such servers. 
 
 The project uses an extensible architecture so more switching device types 
-may be added, see `How to add support for a new API`.
+may be added, see `add_api`.
 
 At present it supports two flavours of switching control:
 
@@ -29,26 +29,15 @@ At present it supports two flavours of switching control:
   thousands of devices
 
 
-.. code:: python
-
-    from maaspower.hello import HelloClass
-
-    hello = HelloClass("me")
-    print(hello.format_greeting())
-
-Or if it is a commandline tool then you might put some example commands here::
-
-    maaspower person --times=2
-
-.. |code_ci| image:: https://github.com/dls-controls/maaspower/workflows/Code%20CI/badge.svg?branch=master
+.. |code_ci| image:: https://github.com/dls-controls/maaspower/workflows/Code%20CI/badge.svg?branch=main
     :target: https://github.com/dls-controls/maaspower/actions?query=workflow%3A%22Code+CI%22
     :alt: Code CI
 
-.. |docs_ci| image:: https://github.com/dls-controls/maaspower/workflows/Docs%20CI/badge.svg?branch=master
+.. |docs_ci| image:: https://github.com/dls-controls/maaspower/workflows/Docs%20CI/badge.svg?branch=main
     :target: https://github.com/dls-controls/maaspower/actions?query=workflow%3A%22Docs+CI%22
     :alt: Docs CI
 
-.. |coverage| image:: https://codecov.io/gh/dls-controls/maaspower/branch/master/graph/badge.svg
+.. |coverage| image:: https://codecov.io/gh/dls-controls/maaspower/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/dls-controls/maaspower
     :alt: Test Coverage
 

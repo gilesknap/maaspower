@@ -1,4 +1,7 @@
 """
+globals.py
+----------
+
 A few global defintions
 """
 from enum import Enum
@@ -11,6 +14,8 @@ T = TypeVar("T")
 
 
 class MaasResponse(Enum):
+    """Default  responses understood by the MAAS query webhook calls"""
+
     on = "status : running"
     off = "status : stopped"
     ok = "status: ok"

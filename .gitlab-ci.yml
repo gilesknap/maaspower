@@ -1,4 +1,4 @@
 include:
-  - project: 'controls/reports/ci_templates'
-    ref: master
-    file: 'python3/dls_py3_template.yml'
+  - project: "controls/reports/ci_templates"
+    ref: main
+    file: "python3/dls_py3_template.yml"

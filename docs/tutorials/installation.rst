@@ -1,15 +1,7 @@
+.. _install:
+
 Installation
 ============
-
-.. note::
-
-    For installation inside DLS, please see the internal documentation on
-    ``dls-python3`` and ``pipenv``. Although these instructions will work
-    inside DLS, they are intended for external use.
-
-    If you want to contribute to the library itself, please follow
-    the `../reference/contributing` instructions.
-
 
 Check your version of python
 ----------------------------
@@ -30,10 +22,10 @@ installation will not interfere with any existing Python software::
     source /path/to/venv/bin/activate
 
 
-Installing the library
-----------------------
+Running the application
+-----------------------
 
-You can now use ``pip`` to install the library::
+You can now use ``pip`` to install the application::
 
     python3 -m pip install maaspower
 
@@ -42,7 +34,7 @@ from github::
 
     python3 -m pip install git+git://github.com/dls-controls/maaspower.git
 
-The library should now be installed and the commandline interface on your path.
+The application should now be installed and the command line interface on your path.
 You can check the version that has been installed by typing::
 
     maaspower --version
