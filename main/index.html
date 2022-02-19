@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>maaspower &mdash; maaspower 0.1+2.g0e46d53 documentation</title>
+  <title>maaspower &mdash; maaspower 0.1+3.gaedb7f3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -46,7 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/getting-started.html">How to use MaasPower</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul>
@@ -56,6 +56,7 @@
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanations/security.html">Security</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -92,9 +93,11 @@
   <section id="maaspower">
 <h1>maaspower<a class="headerlink" href="#maaspower" title="Permalink to this headline"></a></h1>
 <p><a class="reference external" href="https://github.com/gilesknap/maaspower/actions?query=workflow%3A%22Code+CI%22"><img alt="Code CI" src="https://github.com/gilesknap/maaspower/workflows/Code%20CI/badge.svg?branch=main" /></a> <a class="reference external" href="https://github.com/gilesknap/maaspower/actions?query=workflow%3A%22Docs+CI%22"><img alt="Docs CI" src="https://github.com/gilesknap/maaspower/workflows/Docs%20CI/badge.svg?branch=main" /></a> <a class="reference external" href="https://codecov.io/gh/gilesknap/maaspower"><img alt="Test Coverage" src="https://codecov.io/gh/gilesknap/maaspower/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://pypi.org/project/maaspower"><img alt="Latest PyPI version" src="https://img.shields.io/pypi/v/maaspower.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="Apache License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
-<p>Power control webhook server for Canonical’s MAAS. See here
-<a class="reference external" href="https://maas.io/docs/snap/2.9/ui/power-management#heading--webhook">https://maas.io/docs/snap/2.9/ui/power-management#heading–webhook</a>
-for details of the requirements.</p>
+<p>Power control webhook server for Canonical’s MAAS. The requirements for
+such webhooks are defined here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://maas.io/docs/snap/3.1/ui/power-management#heading--webhook">https://maas.io/docs/snap/3.1/ui/power-management#heading–webhook</a></p></li>
+</ul>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 18%" />
@@ -115,9 +118,9 @@ for details of the requirements.</p>
 </tr>
 </tbody>
 </table>
-<p>This project adds MAAS power control to servers that do not already have
-a BMC type that MAAS supports. It uses a webhook to control switching
-equipment that can power cycle such servers.</p>
+<p>This project implements MAAS power control to machines that do not already have
+a BMC type supported by MAAS. It uses webhooks to control any number of
+remote switching devices that can power cycle such machines.</p>
 <p>The project uses an extensible architecture so more switching device types
 may be added, see <a class="reference internal" href="how-to/addapi.html#add-api"><span class="std std-ref">How to add support for a new API</span></a>.</p>
 <p>At present it supports two flavours of switching control:</p>
@@ -144,7 +147,12 @@ New users start here.</p>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/installation.html#running-the-application">Running the application</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/getting-started.html">How to use MaasPower</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/getting-started.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/getting-started.html#launch-the-web-hook-server">Launch the Web Hook server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/getting-started.html#configure-maas-to-connect-to-the-webhook">Configure MAAS to connect to the webhook</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -155,8 +163,7 @@ New users start here.</p>
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="how-to/addapi.html">How to add support for a new API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how-to/addapi.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how-to/addapi.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/addapi.html#steps">Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="how-to/edit-yaml.html">YAML schema</a></li>
@@ -170,6 +177,11 @@ New users start here.</p>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanations/security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="explanations/security.html#login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanations/security.html#network">Network</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

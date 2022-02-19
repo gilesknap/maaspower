@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YAML schema &mdash; maaspower 0.1+3.gaedb7f3 documentation</title>
+  <title>Security &mdash; maaspower 0.1+3.gaedb7f3 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Purpose of this Package" href="../explanations/purpose.html" />
-    <link rel="prev" title="How to add support for a new API" href="addapi.html" /> 
+    <link rel="next" title="Code" href="../reference/api.html" />
+    <link rel="prev" title="Purpose of this Package" href="purpose.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,14 +50,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">How to use MaasPower</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="addapi.html">How to add support for a new API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">YAML schema</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/edit-yaml.html">YAML schema</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network">Network</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -81,9 +85,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>YAML schema</li>
+      <li>Security</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/how-to/edit-yaml.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/explanations/security.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -91,34 +95,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="yaml-schema">
-<span id="id1"></span><h1>YAML schema<a class="headerlink" href="#yaml-schema" title="Permalink to this headline"></a></h1>
-<p>Maaspower provides a schema for its configuration file. If you use a schema
-aware YAML editor then this will use hints and auto completion to help
-create the config.</p>
-<p>You can generate a schema file with the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">masspower</span> <span class="n">schema</span> <span class="o">&lt;</span><span class="n">schema</span> <span class="n">file</span> <span class="n">name</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>You can instruct schema aware editors to use a schema file with the following
-modeline at the start of the YAML file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=https://my.url.to/the/schema</span>
-</pre></div>
-</div>
-<p>Note that local schema files are supported with relative or absolute file names
-(at least in vscode).</p>
-<p>A popular choice for YAML aware editing is vscode.</p>
-<p>Below is a useful discussion on yaml/json schema including how to enable
-schema validated editing of yaml files in vscode.</p>
-<p><a class="reference external" href="https://dev.to/brpaz/how-to-create-your-own-auto-completion-for-json-and-yaml-files-on-vs-code-with-the-help-of-json-schema-k1i">https://dev.to/brpaz/how-to-create-your-own-auto-completion-for-json-and-yaml-files-on-vs-code-with-the-help-of-json-schema-k1i</a></p>
+  <section id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this headline"></a></h1>
+<section id="login">
+<h2>Login<a class="headerlink" href="#login" title="Permalink to this headline"></a></h2>
+<p>At present maaspower supports the basic authentication method implemented
+in Flask and supported in MAAS by adding a username and password to the
+webhook config.</p>
+<p>Unless an SSL connection is configured, these credentials will be visible
+on the network.</p>
+<p>TODO: document setting up an SSL certificate.</p>
+<p>The username and password accepted by the server are given in the config
+file. Therefore the config file should be kept securely and usually have
+file mode of 600. This is how k8s kubectl config is secured.</p>
+</section>
+<section id="network">
+<h2>Network<a class="headerlink" href="#network" title="Permalink to this headline"></a></h2>
+<p>For the safest results it is recommended to configure the ip_address as
+127.0.0.1 or localhost. Then you would be required to run the webhook service
+on the same machine as the MAAS rack server (or servers).</p>
+<p>For a production system it is recommended that an SSL connection is used,
+and that Flask is configured for a production environment. See</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/">https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/</a></p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="addapi.html" class="btn btn-neutral float-left" title="How to add support for a new API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../explanations/purpose.html" class="btn btn-neutral float-right" title="Purpose of this Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="purpose.html" class="btn btn-neutral float-left" title="Purpose of this Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reference/api.html" class="btn btn-neutral float-right" title="Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
