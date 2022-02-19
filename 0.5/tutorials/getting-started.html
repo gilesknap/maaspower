@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to use MaasPower &mdash; maaspower 0.5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to add support for a new API" href="../how-to/addapi.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="../index.html" class="icon icon-home"> maaspower
+            <img src="../_static/dls-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use MaasPower</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch-the-web-hook-server">Launch the Web Hook server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-maas-to-connect-to-the-webhook">Configure MAAS to connect to the webhook</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/edit-yaml.html">YAML schema</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api.html">Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">maaspower</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>How to use MaasPower</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/getting-started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-use-maaspower">
+<h1>How to use MaasPower<a class="headerlink" href="#how-to-use-maaspower" title="Permalink to this headline"></a></h1>
+<p>To use maaspower you will first need to create a configuration file that
+describes the set of devices that you want to control and the webhooks that
+will be supplied to control them.</p>
+<p>Next launch the webhook server on an appropriate machine.</p>
+<p>Finally configure MAAS to talk to the webhook server on behalf of each of the
+bare metal machines you are controlling.</p>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
+<p>An example YAML config file is shown below. This configures 1 SmartThings
+switched power socket and 2 devices connected a switching USB
+power Hub.</p>
+<p>The example power hub is controlled via the uhubctl command line
+tool (see <a class="reference external" href="https://github.com/mvp/uhubctl">https://github.com/mvp/uhubctl</a>).</p>
+<p>SmartThings are IoT devices
+which are controlled using a SmartThing api token and SmartThing device
+ID. Once you have set up a SmartThing and operated through the associated
+App you will be able to discover your device ID via the App. You can get
+your api token by login in here: <a class="reference external" href="https://account.smartthings.com/login">https://account.smartthings.com/login</a>.</p>
+<p>Click the arrow to expand the example.</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span><span class="w"></span>
+<span class="c1"># NOTE: above relative path to a schema file from &#39;maaspower schema &lt;filename&gt;&#39;</span><span class="w"></span>
+
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my maas power control webhooks</span><span class="w"></span>
+<span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span><span class="w"></span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span><span class="w"></span>
+<span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_user</span><span class="w"></span>
+<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_pass</span><span class="w"></span>
+
+<span class="nt">devices</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># This requires a smartThing compatible switching device and related</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># token, device ID.</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># token and id redacted</span><span class="w"></span>
+<span class="w">    </span><span class="nt">api_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zzzzzzzz-aaaa-4d46-bcf9-vvvvvvvvvvvv</span><span class="w"></span>
+<span class="w">    </span><span class="nt">device_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rrrrrrrr-bbbb-4485-9721-rrrrrrrrrrrr</span><span class="w"></span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span><span class="w"></span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1"># These require that the server is running on a machine with USB</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># connection to a power control USB hub and the uhubctl utility installed.</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span><span class="w"></span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span><span class="w"></span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Note that the ip_address of 0.0.0.0 tells the server to listen on all
+interfaces on the machine on which it is running. Instead one could
+supply the IP of a single NIC or for best security use 127.0.0.1, meaning
+that only processes on the same machine will have access (in this cases
+you would run the webhook server on the maas rack server).</p>
+<p>SmartThing commands for switch devices will usually take the exact same form
+as in the above example. Command line devices will just take a command line
+to execute in the shell.</p>
+<p>In all cases the response from the query command is passed through a regex search
+and will return ‘on’ if the the response matches query_on_regex and ‘off’ it
+matches query_off_regex. Note that the defaults for these regex are ‘on’ and
+‘off’ which is what SmartThing devices devices will return in the switch
+status field by default. This is why the nuc1 example is not required to
+specify query_on_regex, query_off_regex.</p>
+<p>Note that the query response to MAAS is converted to MAAS default values
+and hence no configuration of regex in MAAS itself are required.</p>
+</section>
+<section id="launch-the-web-hook-server">
+<h2>Launch the Web Hook server<a class="headerlink" href="#launch-the-web-hook-server" title="Permalink to this headline"></a></h2>
+<p>Once you have the correct configuration you can launch the server from
+the command line. This assumes you have activated a virtual environment
+with maaspower installed, see <a class="reference internal" href="installation.html#install"><span class="std std-ref">Installation</span></a>.</p>
+<p>It is important to select an appropriate machine to run the Web Hook Server.
+First if there are any usb controlled hubs or other devices that are not
+network attached then the Web Server must run on the machine with these devices
+connected. A good option is to use a rack server and have all the necessary
+hardware connected to it.</p>
+<p>Use this command:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">maaspower run &lt;path to configuration file&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This command will validate your config file against the schema and report
+any issues. Schema validation failure will abort the web server.</p>
+<p>If you wish to get assistance with the format of the config file you can
+generate a schema file and use a schema aware editor which will give you
+hints and autocompletion. See <a class="reference internal" href="../how-to/edit-yaml.html#yaml-schema"><span class="std std-ref">YAML schema</span></a> for details.</p>
+</section>
+<section id="configure-maas-to-connect-to-the-webhook">
+<h2>Configure MAAS to connect to the webhook<a class="headerlink" href="#configure-maas-to-connect-to-the-webhook" title="Permalink to this headline"></a></h2>
+<p>For each device configured in the maaspower config file. There needs to be
+an equivalent configuration of a MAAS controlled machine.</p>
+<p>To do this select a Machine in the MAAS Web GUI and go to the configuration
+tab. Then select Power Configuration -&gt; Edit.</p>
+<p>An example configuration that matches the nuc1 device in the above config
+file is shown below. In this example the Webhook Server has been launched
+on a machine with IP 192.168.0.1.</p>
+<a class="reference internal image-reference" href="../_images/MaasGuiSettings.png"><img alt="Alternative text" src="../_images/MaasGuiSettings.png" style="width: 600px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../how-to/addapi.html" class="btn btn-neutral float-right" title="How to add support for a new API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      0.5
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>
