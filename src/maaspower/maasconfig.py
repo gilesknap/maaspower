@@ -11,8 +11,8 @@ import re
 from dataclasses import dataclass
 from typing import Any, Mapping, Optional, Sequence, Type
 
-from apischema import deserialize
-from apischema.conversions import Conversion, deserializer, identity
+from apischema import deserialize, identity
+from apischema.conversions import Conversion, deserializer
 from typing_extensions import Annotated as A
 
 from .globals import MaasResponse, T, desc

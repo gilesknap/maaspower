@@ -63,3 +63,9 @@ def run(
     maas_config = MaasConfig.deserialize(config_dict)
 
     run_web_hook(maas_config)
+
+
+# allow tests with:
+#     pipenv run python -m maaspower
+if __name__ == "__main__":
+    cli()

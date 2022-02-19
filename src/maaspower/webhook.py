@@ -4,7 +4,6 @@ the provided configuration
 """
 
 from typing import Dict
-from urllib import response
 
 from flask import Flask, request
 from flask.wrappers import Response
