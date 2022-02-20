@@ -114,4 +114,4 @@ html_css_files = ["theme_overrides.css"]
 
 # Logo
 html_logo = "images/MaasLogo.png"
-html_favicon = "images/favicon.ico"
+html_favicon = "images/dls-favicon.ico"
