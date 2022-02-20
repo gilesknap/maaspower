@@ -26,9 +26,6 @@ ID. Once you have set up a SmartThing and tested it via the associated
 App you will be able to discover your device ID via the App. You can get
 your api token by logging in here: https://account.smartthings.com/login.
 
-Click the arrow to expand the example.
-
-
     .. highlight:: yaml
 
     .. include:: ../../tests/samples/sampleconfig.yaml

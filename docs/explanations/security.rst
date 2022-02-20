@@ -1,6 +1,14 @@
 Security
 ========
 
+Code Execution
+--------------
+
+Note that the command line interface allows the remote execution of any
+command on the machine running the webhooks. Make sure good passwords
+are used and also use a localhost only service to avoid remote 
+execution if possible.
+
 Login
 -----
 
