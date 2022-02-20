@@ -113,5 +113,5 @@ html_show_copyright = False
 html_css_files = ["theme_overrides.css"]
 
 # Logo
-html_logo = "images/dls-logo.svg"
-html_favicon = "images/dls-favicon.ico"
+html_logo = "images/MaasLogo.png"
+html_favicon = "images/favicon.ico"

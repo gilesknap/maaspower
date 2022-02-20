@@ -15,7 +15,7 @@ Documentation  https://gilesknap.github.io/maaspower
 Releases       https://github.com/gilesknap/maaspower/releases
 ============== ==============================================================
 
-This project implements MAAS power control to machines that do not already have 
+This project implements MAAS power control for machines that do not already have 
 a BMC type supported by MAAS. It uses webhooks to control any number of
 remote switching devices that can power cycle such machines. 
 
