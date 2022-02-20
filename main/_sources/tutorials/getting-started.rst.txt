@@ -8,7 +8,7 @@ will be supplied to control them.
 Next launch the webhook server on an appropriate machine.
 
 Finally configure MAAS to talk to the webhook server on behalf of each of the
-bare metal machines you are controlling.
+bare metal machines that you are controlling.
 
 Configuration
 -------------
@@ -22,9 +22,9 @@ tool (see https://github.com/mvp/uhubctl).
 
 SmartThings are IoT devices
 which are controlled using a SmartThing api token and SmartThing device
-ID. Once you have set up a SmartThing and operated through the associated 
+ID. Once you have set up a SmartThing and tested it via the associated 
 App you will be able to discover your device ID via the App. You can get
-your api token by login in here: https://account.smartthings.com/login.
+your api token by logging in here: https://account.smartthings.com/login.
 
 Click the arrow to expand the example.
 
@@ -47,12 +47,13 @@ to execute in the shell.
 In all cases the response from the query command is passed through a regex search
 and will return 'on' if the the response matches query_on_regex and 'off' it
 matches query_off_regex. Note that the defaults for these regex are 'on' and
-'off' which is what SmartThing devices devices will return in the switch 
+'off' which is what SmartThing devices will return in the switch 
 status field by default. This is why the nuc1 example is not required to 
 specify query_on_regex, query_off_regex.
 
-Note that the query response to MAAS is converted to MAAS default values
-and hence no configuration of regex in MAAS itself are required.
+Note that the query response which goes to MAAS is converted to 
+MAAS default values and hence no configuration of regex in 
+MAAS itself are required.
 
 
 Launch the Web Hook server

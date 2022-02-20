@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to use MaasPower &mdash; maaspower 0.1+3.gaedb7f3 documentation</title>
+  <title>How to use MaasPower &mdash; maaspower 0.5+2.gd04784b documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -31,7 +31,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
             <a href="../index.html" class="icon icon-home"> maaspower
-            <img src="../_static/dls-logo.svg" class="logo" alt="Logo"/>
+            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
@@ -63,6 +63,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/todo.html">TODO: Outstanding Work</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -103,7 +104,7 @@ describes the set of devices that you want to control and the webhooks that
 will be supplied to control them.</p>
 <p>Next launch the webhook server on an appropriate machine.</p>
 <p>Finally configure MAAS to talk to the webhook server on behalf of each of the
-bare metal machines you are controlling.</p>
+bare metal machines that you are controlling.</p>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
 <p>An example YAML config file is shown below. This configures 1 SmartThings
@@ -113,9 +114,9 @@ power Hub.</p>
 tool (see <a class="reference external" href="https://github.com/mvp/uhubctl">https://github.com/mvp/uhubctl</a>).</p>
 <p>SmartThings are IoT devices
 which are controlled using a SmartThing api token and SmartThing device
-ID. Once you have set up a SmartThing and operated through the associated
+ID. Once you have set up a SmartThing and tested it via the associated
 App you will be able to discover your device ID via the App. You can get
-your api token by login in here: <a class="reference external" href="https://account.smartthings.com/login">https://account.smartthings.com/login</a>.</p>
+your api token by logging in here: <a class="reference external" href="https://account.smartthings.com/login">https://account.smartthings.com/login</a>.</p>
 <p>Click the arrow to expand the example.</p>
 <blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span><span class="w"></span>
@@ -170,11 +171,12 @@ to execute in the shell.</p>
 <p>In all cases the response from the query command is passed through a regex search
 and will return ‘on’ if the the response matches query_on_regex and ‘off’ it
 matches query_off_regex. Note that the defaults for these regex are ‘on’ and
-‘off’ which is what SmartThing devices devices will return in the switch
+‘off’ which is what SmartThing devices will return in the switch
 status field by default. This is why the nuc1 example is not required to
 specify query_on_regex, query_off_regex.</p>
-<p>Note that the query response to MAAS is converted to MAAS default values
-and hence no configuration of regex in MAAS itself are required.</p>
+<p>Note that the query response which goes to MAAS is converted to
+MAAS default values and hence no configuration of regex in
+MAAS itself are required.</p>
 </section>
 <section id="launch-the-web-hook-server">
 <h2>Launch the Web Hook server<a class="headerlink" href="#launch-the-web-hook-server" title="Permalink to this headline"></a></h2>
