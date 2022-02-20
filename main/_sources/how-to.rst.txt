@@ -10,3 +10,5 @@ Practical step-by-step guides for the more experienced user.
 
     how-to/addapi
     how-to/edit-yaml
+    how-to/mega4
+    how-to/taposmartplug

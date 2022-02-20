@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Purpose of this Package &mdash; maaspower 0.5+3.g1016cc5 documentation</title>
+  <title>TP Link Tapo Smart Plug &mdash; maaspower 0.5+3.g1016cc5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Security" href="security.html" />
-    <link rel="prev" title="TP Link Tapo Smart Plug" href="../how-to/taposmartplug.html" /> 
+    <link rel="next" title="Purpose of this Package" href="../explanations/purpose.html" />
+    <link rel="prev" title="UUGear MEGA4 USB Hub" href="mega4.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,17 +50,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">How to use MaasPower</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/addapi.html">How to add support for a new API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/edit-yaml.html">YAML schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/mega4.html">UUGear MEGA4 USB Hub</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/taposmartplug.html">TP Link Tapo Smart Plug</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edit-yaml.html">YAML schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mega4.html">UUGear MEGA4 USB Hub</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TP Link Tapo Smart Plug</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Purpose of this Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO: Outstanding Work</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/todo.html">TODO: Outstanding Work</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -84,9 +84,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Purpose of this Package</li>
+      <li>TP Link Tapo Smart Plug</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/explanations/purpose.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/how-to/taposmartplug.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -94,42 +94,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="purpose-of-this-package">
-<h1>Purpose of this Package<a class="headerlink" href="#purpose-of-this-package" title="Permalink to this headline"></a></h1>
-<p>Canonical’s Metal As A Service (MAAS) commissions and deploys bare metal machines
-automatically, see <a class="reference external" href="https://maas.io/">https://maas.io/</a>. It uses PXE boot so any machine that
-can network boot can theoretically be managed with MAAS.</p>
-<p>However, MAAS does need to be able to remotely power cycle a machine in order
-to complete its function. Data centre machines will all have a BMC that
-allows for this but consumer machines rarely do.</p>
-<p>MAAS allows for this by allowing a Web Hook to be configured for power
-cycling each machine. All you need is some remotely controlled power supply
-for your machine and some software that provides a web hook understood by MAAS,
-and responds to the web hook by powering on/off the machine.</p>
-<p>Each machine will need 3 web hooks:</p>
-<ul class="simple">
-<li><p>power on</p></li>
-<li><p>power off</p></li>
-<li><p>query power state</p></li>
-</ul>
-<p>This python package can stand up multiple web hooks and connect them to a
-variety of back end remote control devices. The package has an extensible
-architecture and at present supports two types of backend which will cover
-a large number of devices. The backends supported are:</p>
-<ul class="simple">
-<li><p>SmartThings API: a popular Samsung IoT protocol that is supported by
-thousands of devices</p></li>
-<li><p>Command line interface. Anything that is controllable by a command line
-utility that can be installed on the machine running this webhook service.</p></li>
-</ul>
+  <section id="tp-link-tapo-smart-plug">
+<h1>TP Link Tapo Smart Plug<a class="headerlink" href="#tp-link-tapo-smart-plug" title="Permalink to this headline"></a></h1>
+<p>MaasPower has been tested with this device. It provides a remote switchable
+power socket and could be used to control power switching on any machine.</p>
+<a class="reference internal image-reference" href="../_images/tapo.png"><img alt="Alternative text" src="../_images/tapo.png" style="width: 400px;" /></a>
+<p>To use this device, first install the Tapo App on a phone, create an
+account and register the device. Now install the SmartThings App and create
+an account. You can now register your Tapo device as a SmartThing via
+the 2nd App.</p>
+<p>You can now go into the SmartThings website at <a class="reference external" href="https://account.smartthings.com/">https://account.smartthings.com/</a>.
+On this site you will find the Device Network ID to supply in MaasPower’s
+config file.</p>
+<p>The config also requires an API Token which can be created by going to this URL:
+<a class="reference external" href="https://account.smartthings.com/tokens">https://account.smartthings.com/tokens</a>.
+The API Token can be reused for multiple devices.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../how-to/taposmartplug.html" class="btn btn-neutral float-left" title="TP Link Tapo Smart Plug" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mega4.html" class="btn btn-neutral float-left" title="UUGear MEGA4 USB Hub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../explanations/purpose.html" class="btn btn-neutral float-right" title="Purpose of this Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
