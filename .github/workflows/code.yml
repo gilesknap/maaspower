@@ -7,7 +7,6 @@ on:
       # PRs but stops CI running on internal branches without a PR. Delete the
       # next 5 lines to restore the original behaviour
       - main
-      - main
     tags:
       - "*"
   pull_request:
