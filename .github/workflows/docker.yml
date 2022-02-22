@@ -1,29 +1,19 @@
-# verify building a docker image if there is a folder called docker
-# containing a docker context. Push the image to ghcr.io for tagged
-# builds
-
-# The docker file pulls from pypi so this workflow will
-# deploy the last published version.
+# build a docker image on demand. Assumes that there
+# is a docker folder with docker context
 #
-# It is configured to only run this after a successful release
-# by only firing on the closure of a PR. It also requires a
-# semantic version tag.
-# Setting the main branch to protected ensures that this will
-# always happen when new tagged releases are pushed to main.
+# This workflow is triggered manually to test
+# the docker build or to push a tagged version to ghcr.io if requested
 #
-# TODO
-# There is an issue with this in that testing of the Dockerfile
-# only happens after a release
-# I'm still considering options to avoid this issue.
+# It pulls the latest release from pypi
 
 name: Build and publish a docker image to the organization
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+*"
+  workflow_dispatch:
+    inputs:
+      push:
+        description: "push to ghcr.io ?"
+        required: false
+        type: boolean
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -34,13 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Check file existence
-        id: docker
-        run: (test -d docker && echo "::set-output name=exists::true")
-
       - name: Cache Docker layers
-        if: steps.docker.outputs.exists == 'true'
-
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
@@ -49,8 +33,6 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Log in to GitHub Docker Registry
-        if: steps.docker.outputs.exists == 'true'
-
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
@@ -58,20 +40,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Docker Buildx
-        if: steps.docker.outputs.exists == 'true'
-
         id: buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Build runtime image
-        if: steps.docker.outputs.exists == 'true'
-
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: docker/
           # push the image to ghcr.io for tagged builds
-          push: ${{ startsWith(github.ref, 'refs/tags') }}
+          push: ${{ github.event.inputs.push }}
           tags: |
             ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           target: runtime
