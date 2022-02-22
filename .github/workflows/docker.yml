@@ -15,10 +15,6 @@ on:
         description: "push to ghcr.io ?"
         required: false
         type: boolean
-      tag:
-        description: "tag to push to ghcr.io ?"
-        required: false
-        type: string
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -26,6 +22,10 @@ jobs:
       contents: read
       packages: write
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
