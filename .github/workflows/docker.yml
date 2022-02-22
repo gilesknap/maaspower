@@ -1,10 +1,11 @@
-# build a docker image on demand. Assumes that there
-# is a docker folder with docker context
+# build a docker image on demand. Assumes that there is a docker folder with
+# docker context and Dockerfile
 #
-# This workflow is triggered manually to test
-# the docker build or to push a tagged version to ghcr.io if requested
+# This workflow is triggered manually since the Dockerfile will typically
+# rely on a deployed version of the package in Pypi.
 #
-# It pulls the latest release from pypi
+# The option 'push' determines whether this is a test build or the results
+# are pushed to the image registry at ghcr.io
 
 name: Build and publish a docker image to the organization
 on:
@@ -14,6 +15,10 @@ on:
         description: "push to ghcr.io ?"
         required: false
         type: boolean
+      tag:
+        description: "tag to push to ghcr.io ?"
+        required: false
+        type: string
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -21,9 +26,6 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
@@ -51,7 +53,7 @@ jobs:
           # push the image to ghcr.io for tagged builds
           push: ${{ github.event.inputs.push }}
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}:${{ github.event.inputs.push }}
           target: runtime
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
