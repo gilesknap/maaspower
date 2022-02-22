@@ -5,7 +5,6 @@ on:
     branches:
       # Add more branches here to publish docs from other branches
       - main
-      - main
     tags:
       - "*"
   pull_request:
