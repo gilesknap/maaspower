@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; maaspower 0.5+4.g7ff634c documentation</title>
+  <title>Installation &mdash; maaspower 0.5+7.g6408277 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -47,9 +47,13 @@
               <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#check-your-version-of-python">Check your version of python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-the-application">Running the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-using-python-and-pip">Install using python and pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-your-version-of-python">Check your version of python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-application">Running the application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#install-using-the-container">Install using the container</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">How to use MaasPower</a></li>
@@ -101,8 +105,10 @@
              
   <section id="installation">
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<section id="install-using-python-and-pip">
+<h2>Install using python and pip<a class="headerlink" href="#install-using-python-and-pip" title="Permalink to this headline"></a></h2>
 <section id="check-your-version-of-python">
-<h2>Check your version of python<a class="headerlink" href="#check-your-version-of-python" title="Permalink to this headline"></a></h2>
+<h3>Check your version of python<a class="headerlink" href="#check-your-version-of-python" title="Permalink to this headline"></a></h3>
 <p>You will need python 3.8 or later. You can check your version of python by
 typing into a terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
@@ -110,7 +116,7 @@ typing into a terminal:</p>
 </div>
 </section>
 <section id="create-a-virtual-environment">
-<h2>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Permalink to this headline"></a></h2>
+<h3>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Permalink to this headline"></a></h3>
 <p>It is recommended that you install into a “virtual environment” so this
 installation will not interfere with any existing Python software:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">venv</span>
@@ -119,7 +125,7 @@ installation will not interfere with any existing Python software:</p>
 </div>
 </section>
 <section id="running-the-application">
-<h2>Running the application<a class="headerlink" href="#running-the-application" title="Permalink to this headline"></a></h2>
+<h3>Running the application<a class="headerlink" href="#running-the-application" title="Permalink to this headline"></a></h3>
 <p>You can now use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">maaspower</span>
 </pre></div>
@@ -132,6 +138,35 @@ from github:</p>
 <p>The application should now be installed and the command line interface on your path.
 You can check the version that has been installed by typing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">maaspower</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-using-the-container">
+<h2>Install using the container<a class="headerlink" href="#install-using-the-container" title="Permalink to this headline"></a></h2>
+<p>Releases of MaasPower include a container that holds python, maaspower and
+also the uhubctl command line utility. This can be a convenient way to
+deploy since you will only need a container runtime on the target machine.</p>
+<p>If you use docker you can tell it to restart the container on reboot of the
+machine so this is a convenient way to install it as a ‘service’.</p>
+<p>Assuming you already have docker (or podman) installed then the following
+command line will launch maaspower as a background task and restart it
+on reboot.</p>
+<p>(replace CONFIG_FILE and CONFIG_PATH with your own config file details)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">volumes</span><span class="o">=</span><span class="s2">&quot;-v &lt;CONFIG_PATH&gt;:/config&quot;</span>
+<span class="nv">service</span><span class="o">=</span><span class="s2">&quot;-d --restart unless-stopped&quot;</span>
+<span class="nv">image</span><span class="o">=</span><span class="s2">&quot;ghcr.io/gilesknap/maaspower:0.5&quot;</span>
+<span class="nv">sudo</span><span class="o">=</span><span class="s2">&quot;--privileged --net host&quot;</span>
+docker run -it --name maaspower <span class="nv">$volumes</span> <span class="nv">$service</span> <span class="nv">$sudo</span> <span class="nv">$image</span> run /config/&lt;CONFIG_FILE&gt;
+</pre></div>
+</div>
+<p>You can look at the output to verify all is well with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker logs maaspower
+</pre></div>
+</div>
+<p>And stop the web server with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker stop maaspower
+docker container delete maaspower
 </pre></div>
 </div>
 </section>
