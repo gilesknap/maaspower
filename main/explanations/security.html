@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Security &mdash; maaspower 0.5+14.g5508979 documentation</title>
+  <title>Security &mdash; maaspower 0.5+15.gfd4a4b0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -107,6 +107,9 @@
 command on the machine running the webhooks. Make sure good passwords
 are used and also use a localhost only service to avoid remote
 execution if possible.</p>
+<p>This is less serious than it sounds because the only way to change
+the commands executed is by modifying the config file. So protecting the
+config file via file permissions is also important.</p>
 </section>
 <section id="login">
 <h2>Login<a class="headerlink" href="#login" title="Permalink to this headline"></a></h2>

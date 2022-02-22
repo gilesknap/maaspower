@@ -9,6 +9,10 @@ command on the machine running the webhooks. Make sure good passwords
 are used and also use a localhost only service to avoid remote 
 execution if possible.
 
+This is less serious than it sounds because the only way to change 
+the commands executed is by modifying the config file. So protecting the 
+config file via file permissions is also important.
+
 Login
 -----
 
