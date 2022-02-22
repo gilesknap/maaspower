@@ -53,7 +53,7 @@ jobs:
           # push the image to ghcr.io for tagged builds
           push: ${{ github.event.inputs.push }}
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.event.inputs.push }}
+            ghcr.io/${{ github.repository }}:${{ github.ref }}
           target: runtime
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
