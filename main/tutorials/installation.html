@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; maaspower 0.5+15.gfd4a4b0 documentation</title>
+  <title>Installation &mdash; maaspower 0.5+16.gf5e6c71 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -127,7 +127,9 @@ installation will not interfere with any existing Python software:</p>
 <section id="running-the-application">
 <h3>Running the application<a class="headerlink" href="#running-the-application" title="Permalink to this headline"></a></h3>
 <p>You can now use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the application:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">maaspower</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># first make sure pip and wheel are up to date</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span> <span class="n">wheel</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">maaspower</span>
 </pre></div>
 </div>
 <p>If you require a feature that is not currently released you can also install
