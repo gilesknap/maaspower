@@ -31,6 +31,8 @@ Running the application
 
 You can now use ``pip`` to install the application::
 
+    # first make sure pip and wheel are up to date
+    python3 -m pip install --upgrade pip wheel
     python3 -m pip install maaspower
 
 If you require a feature that is not currently released you can also install
