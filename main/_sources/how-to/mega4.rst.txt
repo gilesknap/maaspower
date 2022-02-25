@@ -39,7 +39,7 @@ The commands you will need are as follows:
     uhubctl -a 1 -p 3
 
     # turn off port 3
-    uhubctl -a 1 -p 3
+    uhubctl -a 0 -p 3
 
     # get status for port 3
     uhubctl -p 3
