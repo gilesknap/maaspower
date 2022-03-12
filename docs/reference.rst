@@ -10,6 +10,7 @@ Practical step-by-step guides for the more experienced user.
 
     reference/api
     reference/contributing
+    reference/poe
     Releases <https://github.com/gilesknap/maaspower/releases>
     Index <genindex.html#http://>
 
