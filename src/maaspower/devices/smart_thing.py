@@ -51,16 +51,20 @@ class SmartThing(SwitchDevice):
 
             api = SmartThings(session, self.api_token)
             devices = await api.devices()
+            print(f"DEBUG {self.device_id} '{cmd}'")
             for device in devices:
+                print(device.device_id)
                 if device.device_id == self.device_id:
                     if query:
                         await device.status.refresh()
+                        print(f"DEBUG {self.device_id} '{cmd}'")
                         result = device.status.values.get(cmd)
                     else:
                         # commands are space separated sequences of identifiers
                         command = cmd.split(" ")
+                        print(f"DEBUG {command}")
                         await device.command(*command)
-                break
+                    break
             else:
                 raise ValueError("Device not know to smartThings")
 
