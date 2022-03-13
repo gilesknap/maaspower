@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes on Using a PoE switch With maaspower &mdash; maaspower 0.5.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="../index.html" class="icon icon-home"> maaspower
+            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.5.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">How to use MaasPower</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/edit-yaml.html">YAML schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/mega4.html">UUGear MEGA4 USB Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/taposmartplug.html">TP Link Tapo Smart Plug</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/todo.html">TODO: Outstanding Work</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes on Using a PoE switch With maaspower</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">maaspower</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Notes on Using a PoE switch With maaspower</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/poe.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="notes-on-using-a-poe-switch-with-maaspower">
+<h1>Notes on Using a PoE switch With maaspower<a class="headerlink" href="#notes-on-using-a-poe-switch-with-maaspower" title="Permalink to this headline"></a></h1>
+<p>I plan to add a PoE switch power type to maaspower, which will likely
+involve webscraping the management interface.</p>
+<p>Candidates for PoE to the RPIs
+- No need to look further:
+- <a class="reference external" href="https://thepihut.com/products/raspberry-pi-poe-plus-hat">https://thepihut.com/products/raspberry-pi-poe-plus-hat</a>
+- plus matching case:
+- <a class="reference external" href="https://thepihut.com/products/poe-hat-case-for-raspberry-pi-4">https://thepihut.com/products/poe-hat-case-for-raspberry-pi-4</a></p>
+<p>Some candidates for switches
+- <a class="reference external" href="https://eu.store.ui.com/collections/unifi-network-routing-switching/products/unifi-switch-lite-8-poe">https://eu.store.ui.com/collections/unifi-network-routing-switching/products/unifi-switch-lite-8-poe</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>no details of the API or even if they can power switch ports</p></li>
+<li><p>8 ports for an OK good price</p></li>
+<li><p>according to this post it can be CLI controlled via SSH
+<a class="reference external" href="https://community.ui.com/questions/Need-to-be-able-to-toggle-power-on-ports-of-a-POE-switch/2545782f-0938-4b12-937c-24818a1957e6">https://community.ui.com/questions/Need-to-be-able-to-toggle-power-on-ports-of-a-POE-switch/2545782f-0938-4b12-937c-24818a1957e6</a></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.co.uk/TP-Link-TL-SG1005P-Ethernet-Configuration-Required/dp/B0769C24T1?th=1">https://www.amazon.co.uk/TP-Link-TL-SG1005P-Ethernet-Configuration-Required/dp/B0769C24T1?th=1</a></p>
+<ul>
+<li><p>awesome value, this is probably not switchable though</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.amazon.co.uk/NETGEAR-Gigabit-Ethernet-Unmanaged-Network/dp/B08P54XZSJ/ref=pd_lpo_1?pd_rd_i=B09178VJK9&amp;th=1">https://www.amazon.co.uk/NETGEAR-Gigabit-Ethernet-Unmanaged-Network/dp/B08P54XZSJ/ref=pd_lpo_1?pd_rd_i=B09178VJK9&amp;th=1</a></p>
+<ul>
+<li><p>looks good for #57</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.broadbandbuyer.com/products/35019-zyxel-gs1200-5hpv2-gb0101f/">https://www.broadbandbuyer.com/products/35019-zyxel-gs1200-5hpv2-gb0101f/</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.uk/dp/B08P53DL46?psc=1&amp;smid=A2F15VRCPPJB05&amp;ref_=chk_typ_imgToDp">https://www.amazon.co.uk/dp/B08P53DL46?psc=1&amp;smid=A2F15VRCPPJB05&amp;ref_=chk_typ_imgToDp</a></p>
+<ul>
+<li><p>Bought this one</p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      0.5.2
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>
