@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>maaspower.devices.smart_thing &mdash; maaspower 0.5+23.g23d578f documentation</title>
+  <title>maaspower.devices.smart_thing &mdash; maaspower 0.5+24.g686d7b6 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -146,18 +146,14 @@
 
             <span class="n">api</span> <span class="o">=</span> <span class="n">SmartThings</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_token</span><span class="p">)</span>
             <span class="n">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">api</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="si">}</span><span class="s2"> &#39;</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">device_id</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">query</span><span class="p">:</span>
                         <span class="k">await</span> <span class="n">device</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="si">}</span><span class="s2"> &#39;</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
                         <span class="n">result</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># commands are space separated sequences of identifiers</span>
                         <span class="n">command</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                         <span class="k">await</span> <span class="n">device</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">*</span><span class="n">command</span><span class="p">)</span>
                     <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
