@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TP Link Tapo Smart Plug &mdash; maaspower 0.5+23.g23d578f documentation</title>
+  <title>TP Link Tapo Smart Plug &mdash; maaspower 0.5+24.g686d7b6 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -117,7 +117,7 @@ config file. Go to the ‘My Devices’ tab and copy the id from the
 the ID used by the python library. I provide a small test utility to find
 out the IDs of your Smarthings Devices. First make sure you have your
 venv activated as described in <a class="reference internal" href="../tutorials/installation.html#install"><span class="std std-ref">Installation</span></a>. Then run the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O https://raw.githubusercontent.com/gilesknap/maaspower/main/tests/smartthingtest.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O https://raw.githubusercontent.com/gilesknap/maaspower/main/utils/smartthingtest.py
 python smartthingtest.py
 
 <span class="c1"># you will see this and supply your API key when prompted</span>
@@ -134,6 +134,11 @@ Please enter the device network ID <span class="o">(</span>blank <span class="k"
 <dt>found device:  a60xxxxx-axxxx-xxxx-xxxx-xxxxx778b82 c2c-switch nuc1 power</dt><dd><p>device status is :on</p>
 </dd>
 </dl>
+<p>Also Note that you can test your running WebHook Server with a command like
+this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --user test_user:test_pass http://192.168.0.104:5000/maaspower/nuc1/query
+</pre></div>
+</div>
 </section>
 
 

@@ -35,7 +35,7 @@ venv activated as described in `install`. Then run the following commands:
 
 .. code-block:: bash
 
-    curl -O https://raw.githubusercontent.com/gilesknap/maaspower/main/tests/smartthingtest.py
+    curl -O https://raw.githubusercontent.com/gilesknap/maaspower/main/utils/smartthingtest.py
     python smartthingtest.py
 
     # you will see this and supply your API key when prompted
@@ -50,3 +50,9 @@ found device:  ab9xxxxx-xxxx-xxxx-xxxx-xxxxx4199a0e c2c-switch Virgin Router
 found device:  a60xxxxx-axxxx-xxxx-xxxx-xxxxx778b82 c2c-switch nuc1 power
  device status is :on
 
+Also Note that you can test your running WebHook Server with a command like
+this:
+
+.. code-block:: bash
+
+    curl --user test_user:test_pass http://192.168.0.104:5000/maaspower/nuc1/query
