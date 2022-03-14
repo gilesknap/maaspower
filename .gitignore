@@ -63,3 +63,5 @@ target/
 /venv/
 /lightweight-venv/
 /installed.files
+
+**/chromedriver
