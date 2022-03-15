@@ -2,8 +2,7 @@ UUGear MEGA4 USB Hub
 ====================
 
 MaasPower has been tested with this device. It can power and control 
-4 Raspberry Pi 4's. Other USB powered SBCs should also work but note 
-that maximum current is 5A in total across the 4 ports.
+4 Raspberry Pi 4's. Other USB powered SBCs should also work.
 
 .. image:: ../images/mega4.png
   :width: 600
@@ -14,7 +13,8 @@ by it. However I used a USB extension cable with type A socket to connect it
 to the back of my NAS.
 
 A suitable power supply is required to be plugged into the USB C port (J5).
-I recommend a 65W USB C Power Delivery device.
+For details of power supply choice 
+[see here](https://github.com/gilesknap/IaC-at-home/blob/main/nas/03-maas/PowerSupply.md)
 
 The usb hub control utility here works well https://github.com/mvp/uhubctl.
 See the github repo for details on compiling this utility.

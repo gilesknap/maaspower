@@ -1,14 +1,24 @@
 # Web UI playground.
-# to work out the sequence of elements you need to interact with to
+#
+# To work out the sequence of elements you need to interact with to
 # Web scrape the power control and query from your device use this module
-# with ipython
+# with ipython (replace URL with your device)
 #
 #    activate your venv
 #    pip install ipython
-#    ipython webtestui.py -i
+#    ipython webtestui.py -i http://192.168.0.137/index.cgi
 #
-# this will run the code below and drop you into a prompt
+# This will run the code below and drop you into a prompt and pop up a Chrome
+# window
+# Now you can use the (right-click ) inspect in chrome to take a look at
+# which HTML elements you need to poke to login, and control PoE ports.
+# You will need to find a unique property of the element to identify
+# it. This code supports classname, name, partial link text and ID. See
+# class FindBy for details
 #
+# take a look at the example sequences login/enable/disable/logout and
+# develop your own for your device. These can then be added to the config
+# file for your maaspower setup.
 
 # You need Chrome or Chromium installed for this to work
 # Also you need to download the ChromeDriver
@@ -20,6 +30,7 @@
 
 import os
 import re
+import sys
 from enum import Enum
 from pathlib import Path
 from time import sleep
@@ -35,8 +46,7 @@ os.chdir(this_dir)
 
 driver = webdriver.Chrome("./chromedriver")
 
-# TODO CHANGE this to the URL you need
-url = "http://192.168.0.137/index.cgi"
+url = sys.argv[1]
 
 driver.get(url)
 driver.timeouts._implicit_wait = 20
@@ -129,7 +139,7 @@ def sequence(elements: List[str]):
             sleep(float(match.group(2)))
 
 
-# these example sequences work for the Netgear
+# these example sequences work for the Netgear G308EP
 
 login = ["send/cls/pwd-field-text/MYPASSWORD\n", "click/link/POE"]
 

@@ -12,3 +12,4 @@ Practical step-by-step guides for the more experienced user.
     how-to/edit-yaml
     how-to/mega4
     how-to/taposmartplug
+    how-to/web_ui

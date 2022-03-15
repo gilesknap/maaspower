@@ -9,14 +9,15 @@ from ruamel.yaml import YAML
 
 from . import __version__
 
-# import all sublasses of SwitchDevice so ApiSchema sees them
+# import all subclasses of SwitchDevice so ApiSchema sees them
 from .devices.shell_cmd import CommandLine
 from .devices.smart_thing import SmartThing
+from .devices.web_ui import WebGui
 from .maasconfig import MaasConfig
 from .webhook import run_web_hook
 
 # avoid linter complaints
-required_to_find_subclasses = [SmartThing, CommandLine]
+required_to_find_subclasses = [SmartThing, CommandLine, WebGui]
 
 cli = typer.Typer()
 yaml = YAML()
