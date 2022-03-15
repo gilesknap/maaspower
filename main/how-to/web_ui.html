@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power Config via Web UI &mdash; maaspower 0.5.2+4.ga39e6b0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Purpose of this Package" href="../explanations/purpose.html" />
+    <link rel="prev" title="TP Link Tapo Smart Plug" href="taposmartplug.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="../index.html" class="icon icon-home"> maaspower
+            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                main
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">How to use MaasPower</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edit-yaml.html">YAML schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mega4.html">UUGear MEGA4 USB Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taposmartplug.html">TP Link Tapo Smart Plug</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Power Config via Web UI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-notes-for-gs308ep">API Notes for GS308EP</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/todo.html">TODO: Outstanding Work</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api.html">Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">maaspower</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Power Config via Web UI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/how-to/web_ui.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="power-config-via-web-ui">
+<h1>Power Config via Web UI<a class="headerlink" href="#power-config-via-web-ui" title="Permalink to this headline"></a></h1>
+<p>For those power control devices that are configured by a web UI only we provide
+a Web Scraping device type.</p>
+<p>This has been tested with the Netgear GS3008EP. We have tried to make a generic
+DLS that allows for most possible sequences of Web Element interactions but
+YMMV.</p>
+<p>To experiment with the approach and develop your own command sequences for
+this device type [see this playground script](../../../utils/webtest.py)</p>
+<section id="api-notes-for-gs308ep">
+<h2>API Notes for GS308EP<a class="headerlink" href="#api-notes-for-gs308ep" title="Permalink to this headline"></a></h2>
+<p>In the case of the Netgear GS308EP there is an underlying CGI API, perhaps we
+should be calling this instead. It looks to still be intimately entwined with
+UI but that does not make it worse than web scraping.</p>
+<p>For example, here is a useful function from /functions.js on the device:</p>
+<p>My impression is that it would be harder to specify a call to this function
+than it was to ‘press’ the correct buttons in the UI. However the resulting
+solution would not require Chrome and might be more robust.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">submitPoePortEdit</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#hash&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">portId</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePortID&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">portPwr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePortPwrSelect&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">portPrio</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePortPrioSelect&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">pwrMode</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePwrModeSelect&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">limitType</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePwrLimitTypeSelect&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">limit</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePwrLimit&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">detecType</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poeDetecTypeSelect&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">datas</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+    <span class="nx">datas</span> <span class="o">=</span> <span class="s2">&quot;hash=&quot;</span> <span class="o">+</span> <span class="nx">hash</span> <span class="o">+</span> <span class="s2">&quot;&amp;ACTION=Apply&quot;</span> <span class="o">+</span> <span class="s2">&quot;&amp;portID=&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">portId</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&amp;ADMIN_MODE=&quot;</span> <span class="o">+</span> <span class="nx">portPwr</span> <span class="o">+</span> <span class="s2">&quot;&amp;PORT_PRIO=&quot;</span> <span class="o">+</span> <span class="nx">portPrio</span><span class="p">;</span>
+    <span class="nx">datas</span> <span class="o">=</span> <span class="nx">datas</span> <span class="o">+</span> <span class="s2">&quot;&amp;POW_MOD=&quot;</span> <span class="o">+</span> <span class="nx">pwrMode</span> <span class="o">+</span> <span class="s2">&quot;&amp;POW_LIMT_TYP=&quot;</span> <span class="o">+</span> <span class="nx">limitType</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePwrLimit&quot;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">datas</span> <span class="o">=</span> <span class="nx">datas</span> <span class="o">+</span> <span class="s2">&quot;&amp;DETEC_TYP=&quot;</span> <span class="o">+</span> <span class="nx">detecType</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">datas</span> <span class="o">=</span> <span class="nx">datas</span> <span class="o">+</span> <span class="s2">&quot;&amp;POW_LIMT=&quot;</span> <span class="o">+</span> <span class="nx">limit</span> <span class="o">+</span> <span class="s2">&quot;&amp;DETEC_TYP=&quot;</span> <span class="o">+</span> <span class="nx">detecType</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#poePwrLimit&quot;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">limitType</span> <span class="o">==</span> <span class="mf">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">pwrMode</span> <span class="o">==</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">limit</span> <span class="o">&gt;=</span> <span class="mf">3.0</span> <span class="o">&amp;&amp;</span> <span class="nx">limit</span> <span class="o">&lt;=</span> <span class="mf">15.4</span><span class="p">)){</span>
+                    <span class="nx">toggleModalWindow</span><span class="p">(</span><span class="s2">&quot;alert&quot;</span><span class="p">,</span><span class="s2">&quot;ml337&quot;</span><span class="p">,</span><span class="s2">&quot;ml371&quot;</span><span class="p">);</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">limit</span> <span class="o">&gt;=</span> <span class="mf">3.0</span> <span class="o">&amp;&amp;</span> <span class="nx">limit</span> <span class="o">&lt;=</span> <span class="mf">30.0</span><span class="p">)){</span>
+                    <span class="nx">toggleModalWindow</span><span class="p">(</span><span class="s2">&quot;alert&quot;</span><span class="p">,</span><span class="s2">&quot;ml337&quot;</span><span class="p">,</span><span class="s2">&quot;ml372&quot;</span><span class="p">);</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">footerMsg</span><span class="p">(</span><span class="s2">&quot;Applying&quot;</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/PoEPortConfig.cgi&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span> <span class="nx">datas</span><span class="p">,</span>
+        <span class="nx">dataType</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+        <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">data</span> <span class="o">==</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">){</span>
+                <span class="nx">footerMsg</span><span class="p">(</span><span class="s2">&quot;Applied&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">data</span> <span class="o">==</span> <span class="s2">&quot;CHECK HASH FAILED&quot;</span><span class="p">){</span>
+                <span class="nx">redirectToLoginPage</span><span class="p">();</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="mf">6</span><span class="p">)</span><span class="o">==</span><span class="s2">&quot;&lt;html&gt;&quot;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.footer&quot;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s2">&quot;display&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="nx">toggleModalWindow</span><span class="p">(</span><span class="s2">&quot;alert&quot;</span><span class="p">,</span><span class="s2">&quot;ml337&quot;</span><span class="p">,</span><span class="nx">data</span><span class="p">);</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.footer&quot;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s2">&quot;display&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">cancelSettingPage</span><span class="p">(</span><span class="s2">&quot;PoEPortConfig&quot;</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">toggleModalWindow</span><span class="p">(</span><span class="s2">&quot;alert&quot;</span><span class="p">,</span><span class="s2">&quot;ml337&quot;</span><span class="p">,</span><span class="s2">&quot;ml179&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="taposmartplug.html" class="btn btn-neutral float-left" title="TP Link Tapo Smart Plug" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../explanations/purpose.html" class="btn btn-neutral float-right" title="Purpose of this Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      main
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UUGear MEGA4 USB Hub &mdash; maaspower 0.5.2+1.gd2c042d documentation</title>
+  <title>UUGear MEGA4 USB Hub &mdash; maaspower 0.5.2+4.ga39e6b0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -55,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="edit-yaml.html">YAML schema</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">UUGear MEGA4 USB Hub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taposmartplug.html">TP Link Tapo Smart Plug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_ui.html">Power Config via Web UI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul>
@@ -98,14 +99,14 @@
   <section id="uugear-mega4-usb-hub">
 <h1>UUGear MEGA4 USB Hub<a class="headerlink" href="#uugear-mega4-usb-hub" title="Permalink to this headline"></a></h1>
 <p>MaasPower has been tested with this device. It can power and control
-4 Raspberry Pi 4’s. Other USB powered SBCs should also work but note
-that maximum current is 5A in total across the 4 ports.</p>
+4 Raspberry Pi 4’s. Other USB powered SBCs should also work.</p>
 <a class="reference internal image-reference" href="../_images/mega4.png"><img alt="Alternative text" src="../_images/mega4.png" style="width: 600px;" /></a>
 <p>This board is designed to be mounted on top of a Raspberry Pi and controlled
 by it. However I used a USB extension cable with type A socket to connect it
 to the back of my NAS.</p>
 <p>A suitable power supply is required to be plugged into the USB C port (J5).
-I recommend a 65W USB C Power Delivery device.</p>
+For details of power supply choice
+[see here](<a class="reference external" href="https://github.com/gilesknap/IaC-at-home/blob/main/nas/03-maas/PowerSupply.md">https://github.com/gilesknap/IaC-at-home/blob/main/nas/03-maas/PowerSupply.md</a>)</p>
 <p>The usb hub control utility here works well <a class="reference external" href="https://github.com/mvp/uhubctl">https://github.com/mvp/uhubctl</a>.
 See the github repo for details on compiling this utility.</p>
 <p>On linux you need to enable permissions using the device’s vendor ID. The
