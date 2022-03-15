@@ -106,8 +106,9 @@ class WebGui(SwitchDevice):
                 return
 
     def connect(self, retries=2):
-        print("connect")
-        self.c_driver = webdriver.Chrome(self.driver)
+        options = webdriver.ChromeOptions()
+        options.add_argument("headless")
+        self.c_driver = webdriver.Chrome(self.driver, options=options)
 
         self.c_driver.get(self.connect_url)
         self.c_driver.timeouts._implicit_wait = self.timeout
