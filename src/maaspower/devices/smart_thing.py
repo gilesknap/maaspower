@@ -17,7 +17,7 @@ from typing_extensions import Literal
 
 from maaspower.maasconfig import SwitchDevice
 
-from ..globals import desc
+from ..maas_globals import desc
 
 
 @dataclass

@@ -20,7 +20,7 @@ from apischema import deserialize, identity
 from apischema.conversions import Conversion, deserializer
 from typing_extensions import Annotated as A
 
-from .globals import MaasResponse, T, desc
+from .maas_globals import MaasResponse, T, desc
 
 
 @dataclass

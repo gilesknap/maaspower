@@ -16,7 +16,7 @@ from typing_extensions import Literal
 
 from maaspower.maasconfig import SwitchDevice
 
-from ..globals import desc
+from ..maas_globals import desc
 
 command_regex = re.compile(r"([^\/]*)\/([^\/]*)\/?([^\/]*)?\/?([^\/]*)?$")
 index_regex = re.compile(r"(.*)\[([0-9]*)\]")
@@ -50,15 +50,22 @@ class WebGui(SwitchDevice):
     def __del__(self):
         self.disconnect()
 
-    def turn_on(self):
-        self.execute_command(self.on)
+    def connect(self, retries=2):
+        options = webdriver.ChromeOptions()
+        options.add_argument("headless")
+        self.c_driver = webdriver.Chrome(self.driver, options=options)
 
-    def turn_off(self):
-        self.execute_command(self.off)
+        self.c_driver.get(self.connect_url)
+        self.c_driver.timeouts._implicit_wait = self.timeout
 
-    def query_state(self) -> str:
-        self.execute_command(self.query)
-        return self.last_get
+        self.execute_command(self.login, retries=retries)
+
+    def disconnect(self):
+        self.execute_command(self.logout, retries=0)
+        try:
+            self.c_driver.close()
+        except Exception:
+            pass
 
     def execute_command(self, command_list: str, retries=2):
         """
@@ -78,7 +85,6 @@ class WebGui(SwitchDevice):
             while retries >= 0:
                 try:
                     # invoke the command via selenium
-                    print(f"try {command_list}")
                     if command == "click":
                         self.click(match.group(2), match.group(3))
                     elif command == "send":
@@ -92,36 +98,16 @@ class WebGui(SwitchDevice):
                     elif command == "delay":
                         sleep(float(match.group(2)))
                 except Exception:
-                    print(f"exception {command_list}")
                     retries -= 1
                     if retries > 0:
                         self.disconnect()
                         self.connect(retries=0)
                 else:
                     # success - leave the retry loop
-                    print(f"success {command_list}")
                     break
             else:
                 # abort remaining commands when failed retry times
                 return
-
-    def connect(self, retries=2):
-        options = webdriver.ChromeOptions()
-        options.add_argument("headless")
-        self.c_driver = webdriver.Chrome(self.driver, options=options)
-
-        self.c_driver.get(self.connect_url)
-        self.c_driver.timeouts._implicit_wait = self.timeout
-
-        self.execute_command(self.login, retries=retries)
-
-    def disconnect(self):
-        self.execute_command(self.logout, retries=0)
-        try:
-            self.c_driver.close()
-        except Exception:
-            print("exception disconnect")
-            pass
 
     def process_arguments(
         self, by_str: str, value: str

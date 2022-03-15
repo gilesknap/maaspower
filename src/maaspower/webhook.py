@@ -30,7 +30,7 @@ def command(devicename: str, command: str):
     print(f"device: {devicename} command: {command}")
     device = c.find_device(devicename)
     if device is None:
-        raise ValueError("unknown device")
+        raise ValueError(f"unknown device {devicename}")
     else:
         result = device.do_command(command)
 

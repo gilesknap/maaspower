@@ -136,6 +136,133 @@
               "query"
             ],
             "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "A name for the switching device"
+              },
+              "on": {
+                "type": "string",
+                "description": "command line string to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "command line string to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "command line string to query device state"
+              },
+              "query_on_regex": {
+                "type": "string",
+                "description": "match the on status return from query",
+                "default": "on"
+              },
+              "query_off_regex": {
+                "type": "string",
+                "description": "match the off status return from query",
+                "default": "off"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A description of the device",
+                "default": ""
+              },
+              "type": {
+                "type": "string",
+                "const": "WebGui",
+                "default": "WebGui"
+              },
+              "connect_url": {
+                "type": "string",
+                "description": "URL to Web UI",
+                "default": "none"
+              },
+              "login": {
+                "type": "string",
+                "description": "command sequence to log in",
+                "default": "none"
+              },
+              "logout": {
+                "type": "string",
+                "description": "command sequence to log out",
+                "default": "none"
+              },
+              "timeout": {
+                "type": "integer",
+                "description": "max timeout on any UI transitions",
+                "default": 10
+              },
+              "driver": {
+                "type": "string",
+                "description": "Path to chromedriver binary",
+                "default": "./chromedriver"
+              }
+            },
+            "required": [
+              "name",
+              "on",
+              "off",
+              "query"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "A name for the switching device"
+              },
+              "on": {
+                "type": "string",
+                "description": "command line string to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "command line string to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "command line string to query device state"
+              },
+              "query_on_regex": {
+                "type": "string",
+                "description": "match the on status return from query",
+                "default": "on"
+              },
+              "query_off_regex": {
+                "type": "string",
+                "description": "match the off status return from query",
+                "default": "off"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A description of the device",
+                "default": ""
+              },
+              "type": {
+                "type": "string",
+                "const": "WebDevice",
+                "default": "WebDevice"
+              }
+            },
+            "required": [
+              "name",
+              "on",
+              "off",
+              "query"
+            ],
+            "additionalProperties": false
           }
         ]
       },

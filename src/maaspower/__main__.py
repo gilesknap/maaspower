@@ -7,7 +7,7 @@ import typer
 from apischema.json_schema import deserialization_schema
 from ruamel.yaml import YAML
 
-from . import __version__
+from . import __version__, maas_globals
 
 # import all subclasses of SwitchDevice so ApiSchema sees them
 from .devices.shell_cmd import CommandLine
@@ -61,9 +61,9 @@ def run(
     schema_config = deserialization_schema(MaasConfig)
     jsonschema.validate(config_dict, schema_config)
 
-    maas_config = MaasConfig.deserialize(config_dict)
+    maas_globals.maas_config = MaasConfig.deserialize(config_dict)
 
-    run_web_hook(maas_config)
+    run_web_hook(maas_globals.maas_config)
 
 
 # allow tests with:

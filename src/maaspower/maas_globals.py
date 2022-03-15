@@ -5,12 +5,14 @@ globals.py
 A few global defintions
 """
 from enum import Enum
-from typing import TypeVar
+from typing import Any, TypeVar
 
 from apischema import schema
 
 #: A generic Type for use in type hints
 T = TypeVar("T")
+
+maas_config: Any = None
 
 
 class MaasResponse(Enum):
