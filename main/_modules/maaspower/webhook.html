@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>maaspower.webhook &mdash; maaspower 0.5.2+4.ga39e6b0 documentation</title>
+  <title>maaspower.webhook &mdash; maaspower 0.5.2+5.gf5536f6 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -126,7 +126,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;device: </span><span class="si">{</span><span class="n">devicename</span><span class="si">}</span><span class="s2"> command: </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">device</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">find_device</span><span class="p">(</span><span class="n">devicename</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown device&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown device </span><span class="si">{</span><span class="n">devicename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 
