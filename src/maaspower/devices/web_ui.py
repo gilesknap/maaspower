@@ -60,13 +60,13 @@ class WebGui(SwitchDevice):
         self.execute_command(self.query)
         return self.last_get
 
-    def execute_command(self, command: str, retries=2):
+    def execute_command(self, command_list: str, retries=2):
         """
         Take a sequence of command strings separated by \n.
         Each command identifies and interacts with an HTML element
         """
 
-        element_list = command.split("\n")[:-1]
+        element_list = command_list.split("\n")[:-1]
         for element in element_list:
             # separate out the elements of the string
             match = command_regex.match(element)
@@ -75,9 +75,10 @@ class WebGui(SwitchDevice):
 
             command = match.group(1)
 
-            while retries > 0:
+            while retries >= 0:
                 try:
                     # invoke the command via selenium
+                    print(f"try {command_list}")
                     if command == "click":
                         self.click(match.group(2), match.group(3))
                     elif command == "send":
@@ -91,15 +92,21 @@ class WebGui(SwitchDevice):
                     elif command == "delay":
                         sleep(float(match.group(2)))
                 except Exception:
+                    print(f"exception {command_list}")
                     retries -= 1
-                    self.disconnect()
-                    # retries 0 avoids infinite recursion
-                    self.connect(retries=0)
+                    if retries > 0:
+                        self.disconnect()
+                        self.connect(retries=0)
                 else:
                     # success - leave the retry loop
+                    print(f"success {command_list}")
                     break
+            else:
+                # abort remaining commands when failed retry times
+                return
 
     def connect(self, retries=2):
+        print("connect")
         self.c_driver = webdriver.Chrome(self.driver)
 
         self.c_driver.get(self.connect_url)
@@ -109,7 +116,11 @@ class WebGui(SwitchDevice):
 
     def disconnect(self):
         self.execute_command(self.logout, retries=0)
-        self.c_driver.close()
+        try:
+            self.c_driver.close()
+        except Exception:
+            print("exception disconnect")
+            pass
 
     def process_arguments(
         self, by_str: str, value: str
