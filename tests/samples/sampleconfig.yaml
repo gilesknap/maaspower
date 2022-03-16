@@ -13,8 +13,8 @@ devices:
   - type: SmartThingDevice
     name: nuc1
     # token and id redacted
-    api_token: zzzzzzzz-aaaa-4d46-bcf9-vvvvvvvvvvvv
-    device_id: rrrrrrrr-bbbb-4485-9721-rrrrrrrrrrrr
+    api_token: YOUR_SMART_THINGS_API_TOKEN
+    device_id: YOUR_SMART_THING_DEVICE_ID
     off: main switch off
     on: main switch on
     query: switch
@@ -36,3 +36,36 @@ devices:
     query: uhubctl -p 2
     query_on_regex: .*power$
     query_off_regex: .*off$
+
+  - type: WebGui
+    name: GS308EP
+    connect_url: http://GS308EP_IP_ADDRESS
+    timeout: 10
+    driver: /home/giles/work/maaspower/utils/chromedriver
+    login: |
+      sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE
+      click/link/POE
+    logout: |
+      click/cls/src-views-header-nav-icon-button
+      click/cls/icon-logout
+      click/id/modal_footer_button_primary
+
+  - type: WebDevice
+    name: GS308EP-pi5
+    on: |
+      click/n/isShowPot3
+      click/n/editPot3
+      click/cls/poePortPwrTxt
+      click/link/Enable
+      click/n/submitPotedit
+    off: |
+      click/n/isShowPot3
+      click/n/editPot3
+      click/cls/poePortPwrTxt
+      click/link/Disable
+      click/n/submitPotedit
+    query: |
+      delay/5
+      get/cls/portPwr[2]
+    query_on_regex: Enable
+    query_off_regex: Disable

@@ -1,3 +1,5 @@
+.. _mega4:
+
 UUGear MEGA4 USB Hub
 ====================
 
