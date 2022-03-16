@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to use MaasPower &mdash; maaspower 0.5.2+5.gf5536f6 documentation</title>
+  <title>How to use MaasPower &mdash; maaspower 0.6.0+1.g2d46e6f documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -60,12 +60,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../how-to/edit-yaml.html">YAML schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/mega4.html">UUGear MEGA4 USB Hub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/taposmartplug.html">TP Link Tapo Smart Plug</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/web_ui.html">Power Config via Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/web_ui.html">Netgear GS803EP PoE 8 port switch</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/devicetypes.html">Supported Types of Device Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../explanations/security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of this Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../explanations/todo.html">TODO: Outstanding Work</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -111,16 +112,12 @@ will be supplied to control them.</p>
 bare metal machines that you are controlling.</p>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
-<p>An example YAML config file is shown below. This configures 1 SmartThings
-switched power socket and 2 devices connected a switching USB
-power Hub.</p>
-<p>The example power hub is controlled via the uhubctl command line
-tool (see <a class="reference external" href="https://github.com/mvp/uhubctl">https://github.com/mvp/uhubctl</a>).</p>
-<p>SmartThings are IoT devices
-which are controlled using a SmartThing api token and SmartThing device
-ID. Once you have set up a SmartThing and tested it via the associated
-App you will be able to discover your device ID via the App. You can get
-your api token by logging in here: <a class="reference external" href="https://account.smartthings.com/login">https://account.smartthings.com/login</a>.</p>
+<p>An example YAML config file is shown below. This configures the following
+devices, which include all device types currently supported</p>
+<ul>
+<li><p>A SmartThings controlled device, nuc1.</p></li>
+<li><p>2 Command line controlled devices pi1, p2.</p></li>
+<li><p>A Web GUI controlled device, pi5.</p>
 <blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span><span class="w"></span>
 <span class="c1"># NOTE: above relative path to a schema file from &#39;maaspower schema &lt;filename&gt;&#39;</span><span class="w"></span>
@@ -137,8 +134,8 @@ your api token by logging in here: <a class="reference external" href="https://a
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span><span class="w"></span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span><span class="w"></span>
 <span class="w">    </span><span class="c1"># token and id redacted</span><span class="w"></span>
-<span class="w">    </span><span class="nt">api_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zzzzzzzz-aaaa-4d46-bcf9-vvvvvvvvvvvv</span><span class="w"></span>
-<span class="w">    </span><span class="nt">device_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rrrrrrrr-bbbb-4485-9721-rrrrrrrrrrrr</span><span class="w"></span>
+<span class="w">    </span><span class="nt">api_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span><span class="w"></span>
+<span class="w">    </span><span class="nt">device_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span><span class="w"></span>
 <span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span><span class="w"></span>
 <span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span><span class="w"></span>
 <span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span><span class="w"></span>
@@ -160,26 +157,44 @@ your api token by logging in here: <a class="reference external" href="https://a
 <span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span><span class="w"></span>
 <span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
 <span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span><span class="w"></span>
+<span class="w">    </span><span class="nt">connect_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span><span class="w"></span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span><span class="w"></span>
+<span class="w">    </span><span class="nt">login</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/link/POE</span><span class="w"></span>
+<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/cls/src-views-header-nav-icon-button</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/cls/icon-logout</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/id/modal_footer_button_primary</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span><span class="w"></span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/n/editPot3</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/link/Enable</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/n/editPot3</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/link/Disable</span><span class="w"></span>
+<span class="w">      </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">delay/5</span><span class="w"></span>
+<span class="w">      </span><span class="no">get/cls/portPwr[2]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span><span class="w"></span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Note that the ip_address of 0.0.0.0 tells the server to listen on all
-interfaces on the machine on which it is running. Instead one could
-supply the IP of a single NIC or for best security use 127.0.0.1, meaning
-that only processes on the same machine will have access (in this cases
-you would run the webhook server on the maas rack server).</p>
-<p>SmartThing commands for switch devices will usually take the exact same form
-as in the above example. Command line devices will just take a command line
-to execute in the shell.</p>
-<p>In all cases the response from the query command is passed through a regex search
-and will return ‘on’ if the the response matches query_on_regex and ‘off’ it
-matches query_off_regex. Note that the defaults for these regex are ‘on’ and
-‘off’ which is what SmartThing devices will return in the switch
-status field by default. This is why the nuc1 example is not required to
-specify query_on_regex, query_off_regex.</p>
-<p>Note that the query response which goes to MAAS is converted to
-MAAS default values and hence no configuration of regex in
-MAAS itself are required.</p>
+</li>
+</ul>
 </section>
 <section id="launch-the-web-hook-server">
 <h2>Launch the Web Hook server<a class="headerlink" href="#launch-the-web-hook-server" title="Permalink to this headline"></a></h2>

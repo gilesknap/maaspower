@@ -13,44 +13,17 @@ bare metal machines that you are controlling.
 Configuration
 -------------
 
-An example YAML config file is shown below. This configures 1 SmartThings
-switched power socket and 2 devices connected a switching USB
-power Hub. 
+An example YAML config file is shown below. This configures the following 
+devices, which include all device types currently supported
 
-The example power hub is controlled via the uhubctl command line
-tool (see https://github.com/mvp/uhubctl). 
-
-SmartThings are IoT devices
-which are controlled using a SmartThing api token and SmartThing device
-ID. Once you have set up a SmartThing and tested it via the associated 
-App you will be able to discover your device ID via the App. You can get
-your api token by logging in here: https://account.smartthings.com/login.
+- A SmartThings controlled device, nuc1. 
+- 2 Command line controlled devices pi1, p2. 
+- A Web GUI controlled device, pi5. 
 
     .. highlight:: yaml
 
     .. include:: ../../tests/samples/sampleconfig.yaml
         :literal:
-
-Note that the ip_address of 0.0.0.0 tells the server to listen on all
-interfaces on the machine on which it is running. Instead one could
-supply the IP of a single NIC or for best security use 127.0.0.1, meaning
-that only processes on the same machine will have access (in this cases
-you would run the webhook server on the maas rack server).
-
-SmartThing commands for switch devices will usually take the exact same form 
-as in the above example. Command line devices will just take a command line 
-to execute in the shell.
-
-In all cases the response from the query command is passed through a regex search
-and will return 'on' if the the response matches query_on_regex and 'off' it
-matches query_off_regex. Note that the defaults for these regex are 'on' and
-'off' which is what SmartThing devices will return in the switch 
-status field by default. This is why the nuc1 example is not required to 
-specify query_on_regex, query_off_regex.
-
-Note that the query response which goes to MAAS is converted to 
-MAAS default values and hence no configuration of regex in 
-MAAS itself are required.
 
 
 Launch the Web Hook server

@@ -1,3 +1,5 @@
+.. _tapo:
+
 TP Link Tapo Smart Plug
 =======================
 
