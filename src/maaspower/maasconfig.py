@@ -99,15 +99,13 @@ class SwitchDevice:
         """
         result = deepcopy(self)
         result.name = new_name
-        substitutions = {f"m{n+1}": group for n, group in enumerate(match.groups())}
-        substitutions["name"] = new_name
 
         # TODO can't find an easy way to iterate over dataclass field instances
-        result.on = result.on.format(**substitutions)
-        result.off = result.off.format(**substitutions)
-        result.query = result.query.format(**substitutions)
-        result.query_on_regex = result.query_on_regex.format(**substitutions)
-        result.query_off_regex = result.query_off_regex.format(**substitutions)
+        result.on = match.expand(result.on)
+        result.off = match.expand(result.off)
+        result.query = match.expand(result.query)
+        result.query_on_regex = match.expand(result.query_on_regex)
+        result.query_off_regex = match.expand(result.query_off_regex)
 
         return result
 

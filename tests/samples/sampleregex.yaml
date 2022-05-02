@@ -10,10 +10,10 @@ password: a_pass
 devices:
   - type: CommandLine
     name: '192_168_\d{1,3}_\d{1,3}'
-    on: echo {name} on
-    off: echo {name} off
+    on: echo \g<0> on
+    off: echo \g<0> off
     # output 'power' i.e. match query on regex
-    query: echo {name} power
+    query: echo \g<0> power
     query_on_regex: .*power$
     query_off_regex: .*off$
 
@@ -22,6 +22,6 @@ devices:
     on: echo uhubctl -a 1 -p 1
     off: echo uhubctl -a 0 -p 1
     # output 'power' i.e. match query on regex
-    query: echo {name} power
+    query: echo \g<0> power
     query_on_regex: .*power$
     query_off_regex: .*off$

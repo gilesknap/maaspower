@@ -114,11 +114,14 @@ def test_substitution_matches(command_line, samples: Path):
 
     with app.test_client() as test_client:
         test_client.post("/maaspower/raspi1-p1/on", headers=headers)
-        assert command_line.call_args.args[0] == "uhubctl -a 1 -p 1"
+        assert (
+            command_line.call_args.args[0]
+            == "uhubctl -a 1 -p 1 # turn on raspi1 (full device name was raspi1-p1)"
+        )
         # verify the new match added a new device into the cache
         assert len(maas_config._devices) == 2
-        test_client.post("/maaspower/raspi2-p3/on", headers=headers)
-        assert command_line.call_args.args[0] == "uhubctl -a 1 -p 3"
+        test_client.post("/maaspower/raspi2-p3/query", headers=headers)
+        assert command_line.call_args.args[0] == "uhubctl -p 3"
         # verify the new match added a new device into the cache
         assert len(maas_config._devices) == 3
         test_client.post("/maaspower/raspi1-p1/off", headers=headers)
