@@ -6,6 +6,7 @@ out.
 from base64 import b64encode
 from pathlib import Path
 
+from mock import patch
 from ruamel.yaml import YAML
 
 # import all sublasses of SwitchDevice so ApiSchema sees them
@@ -54,6 +55,45 @@ def test_webhook_cmdline(samples: Path):
         assert response.status_code == 200
         response = test_client.post("/maaspower/pi1/query", headers=headers)
         assert response.data == b"status : running"
+
+
+def test_regex(tmp_path: Path, samples: Path):
+    """
+    Load up a config that tests regex in device names and call the webook
+    with various matching names
+    """
+
+    samplepath = samples / "sampleregex.yaml"
+    config_dict = YAML().load(samplepath)
+
+    maas_config = MaasConfig.deserialize(config_dict)
+    load_web_hook(maas_config)
+
+    with app.test_client() as test_client:
+        response = test_client.post("/maaspower/hello1/query", headers=headers)
+        assert response.data == b"status : running"
+        response = test_client.post("/maaspower/192_168_1_3/query", headers=headers)
+        assert response.data == b"status : running"
+
+
+@patch("maaspower.devices.shell_cmd.CommandLine.execute_command")
+def test_substitution(command_line, tmp_path: Path, samples: Path):
+    """
+    Load up a config that tests regex in device names and call the webook
+    with various matching names
+    """
+
+    samplepath = samples / "sampleregex.yaml"
+    config_dict = YAML().load(samplepath)
+
+    maas_config = MaasConfig.deserialize(config_dict)
+    load_web_hook(maas_config)
+
+    with app.test_client() as test_client:
+        test_client.post("/maaspower/hello1/query", headers=headers)
+        assert command_line.call_args.args[0] == "echo hello1 power"
+        test_client.post("/maaspower/192_168_1_3/query", headers=headers)
+        assert command_line.call_args.args[0] == "echo 192_168_1_3 power"
 
 
 # @patch("pysmartthings.SmartThings")
