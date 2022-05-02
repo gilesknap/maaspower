@@ -87,7 +87,7 @@ class SwitchDevice:
             raise ValueError("Illegal Command")
         return result
 
-    def copy(self, new_name: str, match: re.Match) -> "SwitchDevice":
+    def copy(self, new_name: str, match) -> "SwitchDevice":
         """
         Create a copy of this device with a new name.
         All the fields of the object are reformatted with substitutions in
