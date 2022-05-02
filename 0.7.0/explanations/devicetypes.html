@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supported Types of Device Control &mdash; maaspower 0.7.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Security" href="security.html" />
+    <link rel="prev" title="Netgear GS803EP PoE 8 port switch" href="../how-to/web_ui.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="../index.html" class="icon icon-home"> maaspower
+            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.7.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">How to use MaasPower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced.html">Using Regular Expressions in Device Names</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/addapi.html">How to add support for a new API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/edit-yaml.html">YAML schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/mega4.html">UUGear MEGA4 USB Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/taposmartplug.html">TP Link Tapo Smart Plug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/web_ui.html">Netgear GS803EP PoE 8 port switch</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Supported Types of Device Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-control">Command Line Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smartthings-control">SmartThings Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-gui-control">Web GUI Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#per-control-device-configuration">Per Control Device Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#field-identifiers">Field Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Per Control Device Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-another-web-gui">Working with another Web GUI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO: Outstanding Work</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api.html">Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">maaspower</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Supported Types of Device Control</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/explanations/devicetypes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="supported-types-of-device-control">
+<h1>Supported Types of Device Control<a class="headerlink" href="#supported-types-of-device-control" title="Permalink to this headline"></a></h1>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<p>This project has been tested against 3 power control devices. These specific
+examples have their own documentation pages as follows:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a> - Command line example</p></li>
+<li><p><a class="reference internal" href="../how-to/mega4.html#mega4"><span class="std std-ref">UUGear MEGA4 USB Hub</span></a> - SmartThings example</p></li>
+<li><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a>  - Web GUI example</p></li>
+</ul>
+</section>
+<section id="command-line-control">
+<h2>Command Line Control<a class="headerlink" href="#command-line-control" title="Permalink to this headline"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a></p>
+</dd>
+</dl>
+<p>The simplest form of control is to execute a command line utility. Clearly
+the command tool needs to be installed on the machine running the webhook
+server, the server account needs permission to run it and the tool must
+be able to contact the device from the server.</p>
+<p>A common example for RPI power is a switchable USB hub. Most of these can be
+controlled by the uhubctl command line tool.
+(see <a class="reference external" href="https://github.com/mvp/uhubctl">https://github.com/mvp/uhubctl</a>).</p>
+<p>Using uhubctl implies that the hub in question is plugged into a USB port
+on the webhook server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">example yaml</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_on_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_off_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="smartthings-control">
+<h2>SmartThings Control<a class="headerlink" href="#smartthings-control" title="Permalink to this headline"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a></p>
+</dd>
+</dl>
+<p>SmartThings are IoT devices
+which are controlled using a SmartThing api token and SmartThing device
+ID. Once you have set up a SmartThing and tested it via the associated
+App you will be able to discover your device ID via the App. You can get
+your api token by logging in here: <a class="reference external" href="https://account.smartthings.com/login">https://account.smartthings.com/login</a>.</p>
+<p>Note that the ip_address of 0.0.0.0 tells the server to listen on all
+interfaces on the machine on which it is running. Instead one could
+supply the IP of a single NIC or for best security use 127.0.0.1, meaning
+that only processes on the same machine will have access (in this cases
+you would run the webhook server on the maas rack server).</p>
+<p>SmartThing commands for switch devices will usually take the exact same form
+as in the above example. Command line devices will just take a command line
+to execute in the shell.</p>
+<p>In all cases the response from the query command is passed through a regex search
+and will return ‘on’ if the the response matches query_on_regex and ‘off’ it
+matches query_off_regex. Note that the defaults for these regex are ‘on’ and
+‘off’ which is what SmartThing devices will return in the switch
+status field by default. This is why the nuc1 example is not required to
+specify query_on_regex, query_off_regex.</p>
+<p>Note that the query response which goes to MAAS is converted to
+MAAS default values and hence no configuration of regex in
+MAAS itself are required.</p>
+<p>example yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># token and id redacted</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">api_token</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">device_id</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="web-gui-control">
+<h2>Web GUI Control<a class="headerlink" href="#web-gui-control" title="Permalink to this headline"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a></p>
+</dd>
+</dl>
+<p>For those power control devices that are configured by a web UI only, I provide
+a Web Scraping device type. This uses the python selenium library to
+click buttons and send text to forms on any Web UI. Defining the correct
+sequence should allow you to login to any Web GUI and control it.</p>
+<section id="per-control-device-configuration">
+<h3>Per Control Device Configuration<a class="headerlink" href="#per-control-device-configuration" title="Permalink to this headline"></a></h3>
+<p>For this device type there are two types of entry. First is the global entry
+where you configure how to connect/disconnect to/from each device. (i.e.
+if you had 2 PoE switches you would have 2 of these)</p>
+<p>example WebGui yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">connect_url</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">login</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/link/POE</span><span class="w"></span>
+<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/cls/src-views-header-nav-icon-button</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/cls/icon-logout</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/id/modal_footer_button_primary</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You will need the chromedriver for selenium for this to work. Download from
+here (pick one that matches your Chrome version):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://chromedriver.storage.googleapis.com/index.html">https://chromedriver.storage.googleapis.com/index.html</a></p></li>
+</ul>
+<p>The configuration ‘driver:’ needs to point at the downloaded file. ‘timeout:’
+should be the max time taken for any transitions in the click sequences you
+specify.</p>
+<p>‘login:’ and ‘logout’: specify the sequence of clicks to perform these two
+tasks.</p>
+<p>The configuration strings are ‘/’ separated fields as follows:</p>
+<section id="commands">
+<h4>Commands<a class="headerlink" href="#commands" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>:click/…</dt><dd><p>clicks on the specified HTML Element</p>
+</dd>
+<dt>send/…/text_to_send</dt><dd><p>sends text to a specified HTML Element</p>
+</dd>
+<dt>sendcr/…/text_to_send</dt><dd><p>sends text plus carriage return to a specified HTML Element</p>
+</dd>
+<dt>get/…</dt><dd><p>gets the text from a specified HTML Element</p>
+</dd>
+<dt>delay/n</dt><dd><p>pauses for n seconds (floating point supported)</p>
+</dd>
+</dl>
+</section>
+<section id="field-identifiers">
+<h4>Field Identifiers<a class="headerlink" href="#field-identifiers" title="Permalink to this headline"></a></h4>
+<p>The second and third parts of the / separated strings identify the HTML
+Element to target:</p>
+<dl class="simple">
+<dt>n/value</dt><dd><p>finds the fields whose name is ‘value’</p>
+</dd>
+<dt>cls/value</dt><dd><p>finds the fields whose class is ‘value’</p>
+</dd>
+<dt>link/value</dt><dd><p>find the fields with link contents specified by a partial match on ‘value’</p>
+</dd>
+<dt>id/value</dt><dd><p>find the fields whose id is ‘value’</p>
+</dd>
+</dl>
+<p>NOTE: in all cases if more than one field is matched you can index it like this:</p>
+<blockquote>
+<div><p>command/match_type/value[n]</p>
+</div></blockquote>
+<p>Where n is the 0 based index into the list of fields.</p>
+<p>NOTE: in all cases the code will wait for the specified field to be seen
+if it cannot immediately be seen.
+‘timeout’ specifies the maximum wait time before an error.</p>
+<p>When the web scraper detects an error it will execute the logout script
+(ignoring errors) followed by the login script and try again. This has
+been shown to successfully recover on the GS308EP when it has timed out
+due to inactivity and gone back to the login screen.</p>
+</section>
+</section>
+<section id="id1">
+<h3>Per Control Device Configuration<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p>For each computer that you want to power control you will need an additional
+entry like the following example. On, Off and Query use the same syntax as
+described above.</p>
+<p>Note that the name has the entry above’s name followed by a computer name
+separated by ‘-’ this is important as it associates this entry with the
+correct Web Device. Only one instance of the selenium driver is loaded
+per web device and can control any number of target PCs.</p>
+<p>The _regex parameters are regular expressions which will try to match
+the text returned from the final get in the query sequence. If there is
+a match it will return on or off to MAAS, or an error if there is none.</p>
+<p>example WebDevice yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/n/editPot3</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/link/Enable</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/n/editPot3</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/link/Disable</span><span class="w"></span>
+<span class="w">        </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">delay/5</span><span class="w"></span>
+<span class="w">        </span><span class="no">get/cls/portPwr[2]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span><span class="w"></span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="working-with-another-web-gui">
+<h2>Working with another Web GUI<a class="headerlink" href="#working-with-another-web-gui" title="Permalink to this headline"></a></h2>
+<p>This has been tested with the Netgear GS3008EP. I have tried to make a generic
+DSL that allows for most possible sequences of Web Element interactions, but
+YMMV.</p>
+<p>To experiment with the approach and develop your own command sequences for
+this device type see the python script here:
+<a class="reference external" href="https://github.com/gilesknap/maaspower/blob/main/utils/webuitest.py">https://github.com/gilesknap/maaspower/blob/main/utils/webuitest.py</a>
+You can launch this script interactively with iPython and experiment with
+your device to get the right sequence of commands to turn devices on/off and
+query their state. See the comments in the file for details.</p>
+<p>If you are brave enough to create your own config for a new device, please
+report any problems here <a class="reference external" href="https://github.com/gilesknap/maaspower/issues">https://github.com/gilesknap/maaspower/issues</a>. Also
+post any working configurations too (you can do a PR to the docs or
+report in issues).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../how-to/web_ui.html" class="btn btn-neutral float-left" title="Netgear GS803EP PoE 8 port switch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      0.7.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>
