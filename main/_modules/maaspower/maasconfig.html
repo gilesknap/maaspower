@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>maaspower.maasconfig &mdash; maaspower 0.6.0+1.g2d46e6f documentation</title>
+  <title>maaspower.maasconfig &mdash; maaspower 0.6.0+10.g8293da9 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -45,6 +45,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/getting-started.html">How to use MaasPower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/advanced.html">Using Regular Expressions in Device Names</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul>
@@ -110,8 +111,9 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span> <span class="nn">apischema</span> <span class="kn">import</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">identity</span>
 <span class="kn">from</span> <span class="nn">apischema.conversions</span> <span class="kn">import</span> <span class="n">Conversion</span><span class="p">,</span> <span class="n">deserializer</span>
@@ -137,6 +139,14 @@
 
     <span class="n">description</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;A description of the device&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span>  <span class="c1"># a literal to distinguish the subclasses of Device</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># allow regular expressions for names but if the name is an</span>
+        <span class="c1"># illegal expression then just use it as a simple string match</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_name_regx</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">re</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_name_regx</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="c1"># https://wyfo.github.io/apischema/examples/subclass_union/</span>
     <span class="k">def</span> <span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -173,7 +183,29 @@
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Illegal Command&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span></div>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="SwitchDevice.copy"><a class="viewcode-back" href="../../reference/api.html#maaspower.maasconfig.SwitchDevice.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SwitchDevice&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a copy of this device with a new name.</span>
+<span class="sd">        All the fields of the object are reformatted with substitutions in</span>
+<span class="sd">        regex matches using {name} for the whole match and {m1} {m2} etc</span>
+<span class="sd">        for matching subgroups.</span>
+
+<span class="sd">        This is used for creating a specific instance of a device from</span>
+<span class="sd">        a regex defined device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span>
+
+        <span class="c1"># TODO can&#39;t find an easy way to iterate over dataclass field instances</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">on</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">off</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">off</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">query_on_regex</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">query_on_regex</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">query_off_regex</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">query_off_regex</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div></div>
 
 
 <div class="viewcode-block" id="MaasConfig"><a class="viewcode-back" href="../../reference/api.html#maaspower.maasconfig.MaasConfig">[docs]</a><span class="nd">@dataclass</span>
@@ -197,15 +229,37 @@
         <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;A list of the devices that this webhook server will control&quot;</span><span class="p">),</span>
     <span class="p">]</span>
 
+    <span class="c1"># this is a classvar to stop it appearing in the schema</span>
+    <span class="n">_devices</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SwitchDevice</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">d</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="c1"># create indexed list of devices</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">_devices</span> <span class="o">=</span> <span class="p">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">device</span> <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">devices</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">config</span>
 
-    <span class="k">def</span> <span class="nf">find_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="MaasConfig.find_device"><a class="viewcode-back" href="../../reference/api.html#maaspower.maasconfig.MaasConfig.find_device">[docs]</a>    <span class="k">def</span> <span class="nf">find_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        use the indexed list to find the device or walk through the and check</span>
+<span class="sd">        for regex matches.</span>
+<span class="sd">        A regex match creates a new device which goes in the _devices cache</span>
+<span class="sd">        so will not need matching a second time</span>
+
+<span class="sd">        TODO https://github.com/gilesknap/maaspower/issues/10#issue-1222292918</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_devices</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_devices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">device</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
+            <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">_name_regx</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">_name_regx</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="c1"># create a copy with the correct name and substituted commands</span>
+                    <span class="c1"># and cache it</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_devices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_devices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span></div></div>
 </pre></div>
 
            </div>
