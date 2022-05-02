@@ -96,6 +96,37 @@ def test_substitution(command_line, tmp_path: Path, samples: Path):
         assert command_line.call_args.args[0] == "echo 192_168_1_3 power"
 
 
+@patch("maaspower.devices.shell_cmd.CommandLine.execute_command")
+def test_substitution_matches(command_line, samples: Path):
+    """
+    Load up a config that tests regex in device names and call the webook
+    with various matching names, also using a match group to do
+    substitutions into the command strings
+    """
+
+    samplepath = samples / "sampleregex2.yaml"
+    config_dict = YAML().load(samplepath)
+
+    maas_config = MaasConfig.deserialize(config_dict)
+    load_web_hook(maas_config)
+
+    assert len(maas_config._devices) == 1
+
+    with app.test_client() as test_client:
+        test_client.post("/maaspower/raspi1-p1/on", headers=headers)
+        assert command_line.call_args.args[0] == "uhubctl -a 1 -p 1"
+        # verify the new match added a new device into the cache
+        assert len(maas_config._devices) == 2
+        test_client.post("/maaspower/raspi2-p3/on", headers=headers)
+        assert command_line.call_args.args[0] == "uhubctl -a 1 -p 3"
+        # verify the new match added a new device into the cache
+        assert len(maas_config._devices) == 3
+        test_client.post("/maaspower/raspi1-p1/off", headers=headers)
+        assert command_line.call_args.args[0] == "uhubctl -a 0 -p 1"
+        # verify the previous match did not update the cache
+        assert len(maas_config._devices) == 3
+
+
 # @patch("pysmartthings.SmartThings")
 # def test_webhook_smartthings(smarthings, samples: Path):
 #     """
