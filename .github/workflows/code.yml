@@ -21,6 +21,7 @@ jobs:
       - name: Run black, flake8, mypy
         uses: dls-controls/pipenv-run-action@v1
         with:
+          python-version: "3.8"
           pipenv-run: lint
 
   wheel:

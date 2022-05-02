@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=maaspower.schema.json
+# NOTE: above relative path to a schema file from 'maaspower schema <filename>'
+
+name: my maas power control webhooks
+ip_address: 0.0.0.0
+port: 5000
+username: a_user
+password: a_pass
+
+devices:
+  - type: CommandLine
+    name: '192_168_\d{1,3}_\d{1,3}'
+    on: echo \g<0> on
+    off: echo \g<0> off
+    # output 'power' i.e. match query on regex
+    query: echo \g<0> power
+    query_on_regex: .*power$
+    query_off_regex: .*off$
+
+  - type: CommandLine
+    name: "[a-z]+[0-9]"
+    on: echo uhubctl -a 1 -p 1
+    off: echo uhubctl -a 0 -p 1
+    # output 'power' i.e. match query on regex
+    query: echo \g<0> power
+    query_on_regex: .*power$
+    query_off_regex: .*off$

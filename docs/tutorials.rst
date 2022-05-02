@@ -11,4 +11,5 @@ New users start here.
 
     tutorials/installation
     tutorials/getting-started
+    tutorials/advanced
 

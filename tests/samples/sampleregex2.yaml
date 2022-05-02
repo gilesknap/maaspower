@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=maaspower.schema.json
+# NOTE: above relative path to a schema file from 'maaspower schema <filename>'
+
+name: my maas power control webhooks
+ip_address: 0.0.0.0
+port: 5000
+username: a_user
+password: a_pass
+
+devices:
+  - type: CommandLine
+    # encode the machine name and uhubctl port in the name like this
+    # raspi2-p3
+    name: '(raspi\d+)-p(\d+)'
+    on: 'uhubctl -a 1 -p \2 # turn on \1 (full device name was \g<0>)'
+    off: 'uhubctl -a 0 -p \2'
+    query: 'uhubctl -p \2'
+    query_on_regex: .*power$
+    query_off_regex: .*off$

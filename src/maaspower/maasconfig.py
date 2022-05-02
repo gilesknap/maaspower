@@ -13,8 +13,9 @@ manager devices for which to serve web hooks.
 """
 
 import re
+from copy import deepcopy
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Sequence, Type
+from typing import Any, ClassVar, Dict, Mapping, Optional, Sequence, Type
 
 from apischema import deserialize, identity
 from apischema.conversions import Conversion, deserializer
@@ -40,6 +41,14 @@ class SwitchDevice:
 
     description: A[Optional[str], desc("A description of the device")] = ""
     type: str = "none"  # a literal to distinguish the subclasses of Device
+
+    def __post_init__(self):
+        # allow regular expressions for names but if the name is an
+        # illegal expression then just use it as a simple string match
+        try:
+            self._name_regx = re.compile(self.name)
+        except re.error:
+            self._name_regx = None
 
     # https://wyfo.github.io/apischema/examples/subclass_union/
     def __init_subclass__(cls):
@@ -78,6 +87,28 @@ class SwitchDevice:
             raise ValueError("Illegal Command")
         return result
 
+    def copy(self, new_name: str, match) -> "SwitchDevice":
+        """
+        Create a copy of this device with a new name.
+        All the fields of the object are reformatted with substitutions in
+        regex matches using {name} for the whole match and {m1} {m2} etc
+        for matching subgroups.
+
+        This is used for creating a specific instance of a device from
+        a regex defined device.
+        """
+        result = deepcopy(self)
+        result.name = new_name
+
+        # TODO can't find an easy way to iterate over dataclass field instances
+        result.on = match.expand(result.on)
+        result.off = match.expand(result.off)
+        result.query = match.expand(result.query)
+        result.query_on_regex = match.expand(result.query_on_regex)
+        result.query_off_regex = match.expand(result.query_off_regex)
+
+        return result
+
 
 @dataclass
 class MaasConfig:
@@ -100,12 +131,34 @@ class MaasConfig:
         desc("A list of the devices that this webhook server will control"),
     ]
 
+    # this is a classvar to stop it appearing in the schema
+    _devices: ClassVar[Dict[str, SwitchDevice]] = {}
+
     @classmethod
     def deserialize(cls: Type[T], d: Mapping[str, Any]) -> T:
-        return deserialize(cls, d)
+        config: Any = deserialize(cls, d)
+        # create indexed list of devices
+        config._devices = {device.name: device for device in config.devices}
+        return config
 
     def find_device(self, name: str):
+        """
+        use the indexed list to find the device or walk through the and check
+        for regex matches.
+        A regex match creates a new device which goes in the _devices cache
+        so will not need matching a second time
+
+        TODO https://github.com/gilesknap/maaspower/issues/10#issue-1222292918
+        """
+
+        if name in self._devices:
+            return self._devices[name]
         for device in self.devices:
-            if device.name == name:
-                return device
+            if device._name_regx:
+                match = device._name_regx.match(name)
+                if match:
+                    # create a copy with the correct name and substituted commands
+                    # and cache it
+                    self._devices[name] = device.copy(name, match)
+                    return self._devices[name]
         return None
