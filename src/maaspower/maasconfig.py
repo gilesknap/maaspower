@@ -140,7 +140,7 @@ class MaasConfig:
     def deserialize(cls: Type[T], d: Mapping[str, Any]) -> T:
         config: Any = deserialize(cls, d)
         # create indexed list of devices
-        config._devices.update({device.name: device for device in config.devices})
+        config._devices = {device.name: device for device in config.devices}
         return config
 
     def find_device(self, name: str):
