@@ -1,6 +1,6 @@
 .. _netgear:
 
-Netgear GS803EP PoE 8 port switch
+Netgear GS308EP PoE 8 port switch
 ---------------------------------
 
 I have successfully powered 3 RPIs with this device, but it should have no
