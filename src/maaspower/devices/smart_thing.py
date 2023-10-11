@@ -9,20 +9,25 @@ See https://www.smartthings.com/
 """
 import asyncio
 from dataclasses import dataclass
+from typing import Optional
 
 import aiohttp
 from pysmartthings import SmartThings
-from typing_extensions import Annotated as A
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated as A
 
-from maaspower.maasconfig import SwitchDevice
-
-from ..maas_globals import desc
+from maaspower.maasconfig import RegexSwitchDevice
+from maaspower.maas_globals import desc
 
 
-@dataclass
-class SmartThing(SwitchDevice):
+@dataclass(kw_only=True)
+class SmartThing(RegexSwitchDevice):
     """A device controlled via SmartThings"""
+
+    on: A[str, desc("command line string to switch device on")]
+    off: A[str, desc("command line string to switch device off")]
+    query: A[str, desc("command line string to query device state")]
+    query_on_regex: A[str, desc("match the on status return from query")] = "on"
+    query_off_regex: A[str, desc("match the off status return from query")] = "off"
 
     type: Literal["SmartThingDevice"] = "SmartThingDevice"
 
@@ -42,7 +47,7 @@ class SmartThing(SwitchDevice):
     def turn_off(self):
         asyncio.run(self.switch(self.off))
 
-    def query_state(self) -> str:
+    def run_query(self) -> str:
         return asyncio.run(self.switch(self.query, True))
 
     async def switch(self, cmd: str, query: bool = False):

@@ -32,17 +32,28 @@
                 "type": "string",
                 "description": "A name for the switching device"
               },
-              "on": {
+              "query_on_regex": {
                 "type": "string",
-                "description": "command line string to switch device on"
+                "description": "match the on status return from query",
+                "default": "on"
               },
-              "off": {
+              "query_off_regex": {
                 "type": "string",
-                "description": "command line string to switch device off"
-              },
-              "query": {
+                "description": "match the off status return from query",
+                "default": "off"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
                 "type": "string",
-                "description": "command line string to query device state"
+                "description": "A name for the switching device"
               },
               "query_on_regex": {
                 "type": "string",
@@ -54,13 +65,17 @@
                 "description": "match the off status return from query",
                 "default": "off"
               },
-              "description": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "description": "A description of the device",
-                "default": ""
+              "on": {
+                "type": "string",
+                "description": "command line string to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "command line string to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "command line string to query device state"
               },
               "type": {
                 "type": "string",
@@ -83,6 +98,16 @@
                 "type": "string",
                 "description": "A name for the switching device"
               },
+              "query_on_regex": {
+                "type": "string",
+                "description": "match the on status return from query",
+                "default": "on"
+              },
+              "query_off_regex": {
+                "type": "string",
+                "description": "match the off status return from query",
+                "default": "off"
+              },
               "on": {
                 "type": "string",
                 "description": "command line string to switch device on"
@@ -94,24 +119,6 @@
               "query": {
                 "type": "string",
                 "description": "command line string to query device state"
-              },
-              "query_on_regex": {
-                "type": "string",
-                "description": "match the on status return from query",
-                "default": "on"
-              },
-              "query_off_regex": {
-                "type": "string",
-                "description": "match the off status return from query",
-                "default": "off"
-              },
-              "description": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "description": "A description of the device",
-                "default": ""
               },
               "type": {
                 "type": "string",
@@ -144,18 +151,6 @@
                 "type": "string",
                 "description": "A name for the switching device"
               },
-              "on": {
-                "type": "string",
-                "description": "command line string to switch device on"
-              },
-              "off": {
-                "type": "string",
-                "description": "command line string to switch device off"
-              },
-              "query": {
-                "type": "string",
-                "description": "command line string to query device state"
-              },
               "query_on_regex": {
                 "type": "string",
                 "description": "match the on status return from query",
@@ -165,14 +160,6 @@
                 "type": "string",
                 "description": "match the off status return from query",
                 "default": "off"
-              },
-              "description": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "description": "A description of the device",
-                "default": ""
               },
               "type": {
                 "type": "string",
@@ -206,10 +193,7 @@
               }
             },
             "required": [
-              "name",
-              "on",
-              "off",
-              "query"
+              "name"
             ],
             "additionalProperties": false
           },
@@ -241,14 +225,6 @@
                 "type": "string",
                 "description": "match the off status return from query",
                 "default": "off"
-              },
-              "description": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "description": "A description of the device",
-                "default": ""
               },
               "type": {
                 "type": "string",

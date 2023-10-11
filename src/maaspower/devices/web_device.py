@@ -4,18 +4,24 @@
 from dataclasses import dataclass
 from typing import Optional, cast
 
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated as A
 
 from maaspower.maasconfig import MaasConfig, SwitchDevice
+from maaspower.maas_globals import desc
 
 from ..webhook import app
 from .web_ui import WebGui
 
 
-@dataclass
+@dataclass(kw_only=True)
 class WebDevice(SwitchDevice):
     """Commands for a  device controlled via a Web GUI"""
 
+    on: A[str, desc("command line string to switch device on")]
+    off: A[str, desc("command line string to switch device off")]
+    query: A[str, desc("command line string to query device state")]
+    query_on_regex: A[str, desc("match the on status return from query")] = "on"
+    query_off_regex: A[str, desc("match the off status return from query")] = "off"
     type: Literal["WebDevice"] = "WebDevice"
 
     # this gets called after the dataclass __init__
