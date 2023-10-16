@@ -10,14 +10,22 @@ e.g. smart power switching usb hubs https://github.com/mvp/uhubctl
 import subprocess
 from dataclasses import dataclass
 
-from typing_extensions import Literal
+from typing import Optional
+from typing_extensions import Literal, Annotated as A
 
-from maaspower.maasconfig import SwitchDevice
+from maaspower.maasconfig import RegexSwitchDevice
+from maaspower.maas_globals import desc
 
 
-@dataclass
-class CommandLine(SwitchDevice):
+@dataclass(kw_only=True)
+class CommandLine(RegexSwitchDevice):
     """A device controlled via a command line utility"""
+
+    on: A[str, desc("command line string to switch device on")]
+    off: A[str, desc("command line string to switch device off")]
+    query: A[str, desc("command line string to query device state")]
+    query_on_regex: A[str, desc("match the on status return from query")] = "on"
+    query_off_regex: A[str, desc("match the off status return from query")] = "off"
 
     type: Literal["CommandLine"] = "CommandLine"
 
@@ -38,5 +46,5 @@ class CommandLine(SwitchDevice):
     def turn_off(self):
         self.execute_command(self.off)
 
-    def query_state(self) -> str:
+    def run_query(self) -> str:
         return self.execute_command(self.query)

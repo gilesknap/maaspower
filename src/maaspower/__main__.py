@@ -13,11 +13,12 @@ from . import __version__, maas_globals
 from .devices.shell_cmd import CommandLine
 from .devices.smart_thing import SmartThing
 from .devices.web_ui import WebGui
+from .devices.web_device import WebDevice
 from .maasconfig import MaasConfig
 from .webhook import run_web_hook
 
 # avoid linter complaints
-required_to_find_subclasses = [SmartThing, CommandLine, WebGui]
+required_to_find_subclasses = [SmartThing, CommandLine, WebGui, WebDevice]
 
 cli = typer.Typer()
 yaml = YAML()

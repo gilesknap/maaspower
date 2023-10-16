@@ -21,7 +21,7 @@ jobs:
       - name: Run black, flake8, mypy
         uses: dls-controls/pipenv-run-action@v1
         with:
-          python-version: "3.8"
+          python-version: "3.10"
           pipenv-run: lint
 
   wheel:
@@ -56,7 +56,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"] # can add windows-latest, macos-latest
-        python: ["3.8", "3.9"]
+        python: ["3.10", "3.11", "3.12"]
         pipenv: ["skip-lock"]
 
         include:

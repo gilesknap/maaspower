@@ -13,34 +13,44 @@ manager devices for which to serve web hooks.
 """
 
 import re
+from abc import ABC, abstractmethod
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from typing import Any, ClassVar, Dict, Mapping, Optional, Sequence, Type
 
 from apischema import deserialize, identity
 from apischema.conversions import Conversion, deserializer
-from typing_extensions import Annotated as A
+from typing_extensions import Annotated as A, override
 
 from .maas_globals import MaasResponse, T, desc
 
 
-@dataclass
-class SwitchDevice:
+@dataclass(kw_only=True)
+class SwitchDevice(ABC):
     """
     A base class for the switching devices that the webhook server will control.
+
+    Concrete subclasses MUST provide a `type` field akin to this:
+
+    type: Literal["ConreteDevice"] = "ConcreteDevice"
+
     Concrete subclasses are found in the devices subfolder
     """
 
     name: A[str, desc("A name for the switching device")]
 
-    on: A[str, desc("command line string to switch device on")]
-    off: A[str, desc("command line string to switch device off")]
-    query: A[str, desc("command line string to query device state")]
-    query_on_regex: A[str, desc("match the on status return from query")] = "on"
-    query_off_regex: A[str, desc("match the off status return from query")] = "off"
+    # command functions to be implemented in the derived classes
+    @abstractmethod
+    def turn_on(self) -> None:
+        ...
 
-    description: A[Optional[str], desc("A description of the device")] = ""
-    type: str = "none"  # a literal to distinguish the subclasses of Device
+    @abstractmethod
+    def turn_off(self) -> None:
+        ...
+
+    @abstractmethod
+    def query_state(self) -> str:
+        ...
 
     def __post_init__(self):
         # allow regular expressions for names but if the name is an
@@ -55,38 +65,6 @@ class SwitchDevice:
         # Deserializers stack directly as a Union
         deserializer(Conversion(identity, source=cls, target=SwitchDevice))
 
-    # command functions to be implemented in the derived classes
-    def turn_on(self) -> None:
-        raise (NotImplementedError)
-
-    def turn_off(self) -> None:
-        raise (NotImplementedError)
-
-    def query_state(self) -> str:
-        raise (NotImplementedError)
-
-    def do_command(self, command) -> Optional[str]:
-        result = None
-
-        if command == "on":
-            self.turn_on()
-        elif command == "off":
-            self.turn_off()
-        elif command == "query":
-            query_response = self.query_state()
-            if re.search(self.query_on_regex, query_response, flags=re.MULTILINE):
-                result = MaasResponse.on.value
-            elif re.search(self.query_off_regex, query_response, flags=re.MULTILINE):
-                result = MaasResponse.off.value
-            else:
-                raise ValueError(
-                    f"Unknown power state response: \n{query_response}\n"
-                    f"\nfor regexes {self.query_on_regex}, {self.query_off_regex}"
-                )
-        else:
-            raise ValueError("Illegal Command")
-        return result
-
     def copy(self, new_name: str, match) -> "SwitchDevice":
         """
         Create a copy of this device with a new name.
@@ -98,16 +76,68 @@ class SwitchDevice:
         a regex defined device.
         """
         result = deepcopy(self)
-        result.name = new_name
 
         # TODO can't find an easy way to iterate over dataclass field instances
-        result.on = match.expand(result.on)
-        result.off = match.expand(result.off)
-        result.query = match.expand(result.query)
-        result.query_on_regex = match.expand(result.query_on_regex)
-        result.query_off_regex = match.expand(result.query_off_regex)
+        for field in fields(self):
+            if field.name == "name":
+                continue
+            setattr(result, field.name, match.expand(getattr(result, field.name)))
+
+        result.name = new_name
 
         return result
+
+    def do_command(self, command) -> Optional[str]:
+        result = None
+
+        if command == "on":
+            self.turn_on()
+        elif command == "off":
+            self.turn_off()
+        elif command == "query":
+            return self.query_state()
+        else:
+            raise ValueError("Illegal Command")
+        return result
+
+
+@dataclass(kw_only=True)
+class RegexSwitchDevice(SwitchDevice, ABC):
+    """
+    An abstract `SwitchDevice` which has the ability to interpret reponses
+    and convert them to the requisit MaasReponse values using regex.
+
+    """
+    query_on_regex: A[str, desc("match the on status return from query")] = "on"
+    query_off_regex: A[str, desc("match the off status return from query")] = "off"
+
+    @abstractmethod
+    def run_query(self) -> str:
+        """
+        Ths method should be overridden by concrete classes. This method
+        is called by query_state and it's response is run through query_regex_on
+        and query_regex_off.
+
+        returns: A value to be parsed by query_regex_on and query_regex_off.
+        """
+        ...
+
+    @override
+    def query_state(self) -> str:
+        """
+        Uses the regex patterns defined in query_on_regex and query_off_regex
+        to ascertain the correct response.
+        """
+        query_response = self.run_query()
+        if re.search(self.query_on_regex, query_response, flags=re.MULTILINE):
+            return MaasResponse.on.value
+        elif re.search(self.query_off_regex, query_response, flags=re.MULTILINE):
+            return MaasResponse.off.value
+        else:
+            raise ValueError(
+                f"Unknown power state response: \n{query_response}\n"
+                f"\nfor regexes {self.query_on_regex}, {self.query_off_regex}"
+            )
 
 
 @dataclass
@@ -150,7 +180,6 @@ class MaasConfig:
 
         TODO https://github.com/gilesknap/maaspower/issues/10#issue-1222292918
         """
-
         if name in self._devices:
             return self._devices[name]
         for device in self.devices:

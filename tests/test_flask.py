@@ -47,6 +47,7 @@ def test_webhook_cmdline(samples: Path):
 
     maas_config = MaasConfig.deserialize(config_dict)
     load_web_hook(maas_config)
+    app.testing = True
 
     with app.test_client() as test_client:
         response = test_client.post("/maaspower/pi1/on", headers=headers)
@@ -68,6 +69,7 @@ def test_regex(tmp_path: Path, samples: Path):
 
     maas_config = MaasConfig.deserialize(config_dict)
     load_web_hook(maas_config)
+    app.testing = True
 
     with app.test_client() as test_client:
         response = test_client.post("/maaspower/hello1/query", headers=headers)
@@ -76,7 +78,7 @@ def test_regex(tmp_path: Path, samples: Path):
         assert response.data == b"status : running"
 
 
-@patch("maaspower.devices.shell_cmd.CommandLine.execute_command")
+@patch("maaspower.devices.shell_cmd.CommandLine.execute_command", return_value="power")
 def test_substitution(command_line, tmp_path: Path, samples: Path):
     """
     Load up a config that tests regex in device names and call the webook
@@ -96,7 +98,7 @@ def test_substitution(command_line, tmp_path: Path, samples: Path):
         assert command_line.call_args.args[0] == "echo 192_168_1_3 power"
 
 
-@patch("maaspower.devices.shell_cmd.CommandLine.execute_command")
+@patch("maaspower.devices.shell_cmd.CommandLine.execute_command", return_value="power")
 def test_substitution_matches(command_line, samples: Path):
     """
     Load up a config that tests regex in device names and call the webook
@@ -109,6 +111,7 @@ def test_substitution_matches(command_line, samples: Path):
 
     maas_config = MaasConfig.deserialize(config_dict)
     load_web_hook(maas_config)
+    app.testing = True
 
     assert len(maas_config._devices) == 1
 

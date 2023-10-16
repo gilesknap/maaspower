@@ -1,5 +1,5 @@
 # python stage: install the maaspower python package
-FROM python:3.9-slim AS python
+FROM python:3.10-slim AS python
 
 RUN python -m pip install --upgrade pip && \
     pip install maaspower
