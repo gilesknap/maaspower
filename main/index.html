@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>maaspower &mdash; maaspower 0.7.0+1.ga57eb8e documentation</title>
+  <title>maaspower &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f108edbb"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -29,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
-            <a href="#" class="icon icon-home"> maaspower
-            <img src="_static/MaasLogo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="#" class="icon icon-home">
+            maaspower
+              <img src="_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -86,8 +91,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>maaspower</li>
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">maaspower</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,7 +103,7 @@
            <div itemprop="articleBody">
              
   <section id="maaspower">
-<h1>maaspower<a class="headerlink" href="#maaspower" title="Permalink to this headline"></a></h1>
+<h1>maaspower<a class="headerlink" href="#maaspower" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/gilesknap/maaspower/actions?query=workflow%3A%22Code+CI%22"><img alt="Code CI" src="https://github.com/gilesknap/maaspower/workflows/Code%20CI/badge.svg?branch=main" /></a> <a class="reference external" href="https://github.com/gilesknap/maaspower/actions?query=workflow%3A%22Docs+CI%22"><img alt="Docs CI" src="https://github.com/gilesknap/maaspower/workflows/Docs%20CI/badge.svg?branch=main" /></a> <a class="reference external" href="https://codecov.io/gh/gilesknap/maaspower"><img alt="Test Coverage" src="https://codecov.io/gh/gilesknap/maaspower/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://pypi.org/project/maaspower"><img alt="Latest PyPI version" src="https://img.shields.io/pypi/v/maaspower.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="Apache License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
 <p>Power control webhook server for Canonical’s MAAS. The requirements for
 such webhooks are defined here:</p>
@@ -106,10 +111,6 @@ such webhooks are defined here:</p>
 <li><p><a class="reference external" href="https://maas.io/docs/snap/3.1/ui/power-management#heading--webhook">https://maas.io/docs/snap/3.1/ui/power-management#heading–webhook</a></p></li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 82%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>PyPI</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">maaspower</span></code></p></td>
@@ -138,11 +139,11 @@ utility that can be installed on the machine running this webhook service.</p></
 thousands of devices</p></li>
 </ul>
 <section id="how-the-documentation-is-structured">
-<h2>How the documentation is structured<a class="headerlink" href="#how-the-documentation-is-structured" title="Permalink to this headline"></a></h2>
+<h2>How the documentation is structured<a class="headerlink" href="#how-the-documentation-is-structured" title="Link to this heading"></a></h2>
 <p>Documentation is split into four categories, also accessible from links in the
 side-bar.</p>
 <section class="columns" id="tutorials">
-<h3><a class="reference internal" href="tutorials.html"><span class="doc">Tutorials</span></a><a class="headerlink" href="#tutorials" title="Permalink to this headline"></a></h3>
+<h3><a class="reference internal" href="tutorials.html"><span class="doc">Tutorials</span></a><a class="headerlink" href="#tutorials" title="Link to this heading"></a></h3>
 <p>Tutorials for installation, configuration and command line usage.
 New users start here.</p>
 <div class="toctree-wrapper compound">
@@ -173,7 +174,7 @@ New users start here.</p>
 </div>
 </section>
 <section class="columns" id="how-to">
-<h3><a class="reference internal" href="how-to.html"><span class="doc">How-to Guides</span></a><a class="headerlink" href="#how-to" title="Permalink to this headline"></a></h3>
+<h3><a class="reference internal" href="how-to.html"><span class="doc">How-to Guides</span></a><a class="headerlink" href="#how-to" title="Link to this heading"></a></h3>
 <p>Practical step-by-step guides for the more experienced user.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
@@ -190,7 +191,7 @@ New users start here.</p>
 </div>
 </section>
 <section class="columns" id="explanations">
-<h3><a class="reference internal" href="explanations.html"><span class="doc">Explanations</span></a><a class="headerlink" href="#explanations" title="Permalink to this headline"></a></h3>
+<h3><a class="reference internal" href="explanations.html"><span class="doc">Explanations</span></a><a class="headerlink" href="#explanations" title="Link to this heading"></a></h3>
 <p>Explanation of how the library works and why it works that way.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
@@ -223,28 +224,51 @@ New users start here.</p>
 </div>
 </section>
 <section class="columns" id="reference">
-<h3><a class="reference internal" href="reference.html"><span class="doc">Reference</span></a><a class="headerlink" href="#reference" title="Permalink to this headline"></a></h3>
+<h3><a class="reference internal" href="reference.html"><span class="doc">Reference</span></a><a class="headerlink" href="#reference" title="Link to this heading"></a></h3>
 <p>Practical step-by-step guides for the more experienced user.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reference/api.html">Code</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/api.html#maaspower-package">maaspower package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference/api.html#maaspower"><code class="docutils literal notranslate"><span class="pre">maaspower</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#massconfig-py">massconfig.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower-maasconfig"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#webhook-py">webhook.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower-webhook"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html#maaspower-package">maaspower package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html#maaspower"><code class="docutils literal notranslate"><span class="pre">maaspower</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#maaspower.maaspower.__version__"><code class="docutils literal notranslate"><span class="pre">maaspower.__version__</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#massconfig-py">massconfig.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#maaspower-maasconfig"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.SwitchDevice"><code class="docutils literal notranslate"><span class="pre">SwitchDevice</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.SwitchDevice.copy"><code class="docutils literal notranslate"><span class="pre">SwitchDevice.copy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.RegexSwitchDevice"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.RegexSwitchDevice.run_query"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice.run_query()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.RegexSwitchDevice.query_state"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice.query_state()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.MaasConfig"><code class="docutils literal notranslate"><span class="pre">MaasConfig</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#maaspower.maasconfig.MaasConfig.find_device"><code class="docutils literal notranslate"><span class="pre">MaasConfig.find_device()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference/api.html#devices-package">devices package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference/api.html#module-maaspower.devices.smart_thing"><code class="docutils literal notranslate"><span class="pre">maaspower.devices</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#smart-thing-py">smart_thing.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower-devices-smart-thing"><code class="docutils literal notranslate"><span class="pre">maaspower.devices.smart_thing</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#shell-cmd-py">shell_cmd.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower-devices-shell-cmd"><code class="docutils literal notranslate"><span class="pre">maaspower.devices.shell_cmd</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#webhook-py">webhook.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#maaspower-webhook"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.webhook.command"><code class="docutils literal notranslate"><span class="pre">command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.webhook.load_web_hook"><code class="docutils literal notranslate"><span class="pre">load_web_hook()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.webhook.run_web_hook"><code class="docutils literal notranslate"><span class="pre">run_web_hook()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html#devices-package">devices package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html#module-maaspower.devices.smart_thing"><code class="docutils literal notranslate"><span class="pre">maaspower.devices</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#smart-thing-py">smart_thing.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#maaspower-devices-smart-thing"><code class="docutils literal notranslate"><span class="pre">maaspower.devices.smart_thing</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.devices.smart_thing.SmartThing"><code class="docutils literal notranslate"><span class="pre">SmartThing</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#shell-cmd-py">shell_cmd.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#maaspower-devices-shell-cmd"><code class="docutils literal notranslate"><span class="pre">maaspower.devices.shell_cmd</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#maaspower.devices.shell_cmd.CommandLine"><code class="docutils literal notranslate"><span class="pre">CommandLine</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -266,7 +290,7 @@ New users start here.</p>
 </div>
 </section>
 <section class="endcolumns" id="about-the-documentation">
-<h3>About the documentation<a class="headerlink" href="#about-the-documentation" title="Permalink to this headline"></a></h3>
+<h3>About the documentation<a class="headerlink" href="#about-the-documentation" title="Link to this heading"></a></h3>
 <p><a class="reference external" href="https://documentation.divio.com">Why is the documentation structured this way?</a></p>
 </section>
 </section>

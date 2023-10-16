@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to use MaasPower &mdash; maaspower 0.7.0+1.ga57eb8e documentation</title>
+  <title>How to use MaasPower &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f108edbb"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
-            <a href="../index.html" class="icon icon-home"> maaspower
-            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            maaspower
+              <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -92,8 +97,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>How to use MaasPower</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How to use MaasPower</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorials/getting-started.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,7 +109,7 @@
            <div itemprop="articleBody">
              
   <section id="how-to-use-maaspower">
-<h1>How to use MaasPower<a class="headerlink" href="#how-to-use-maaspower" title="Permalink to this headline"></a></h1>
+<h1>How to use MaasPower<a class="headerlink" href="#how-to-use-maaspower" title="Link to this heading"></a></h1>
 <p>To use maaspower you will first need to create a configuration file that
 describes the set of devices that you want to control and the webhooks that
 will be supplied to control them.</p>
@@ -112,7 +117,7 @@ will be supplied to control them.</p>
 <p>Finally configure MAAS to talk to the webhook server on behalf of each of the
 bare metal machines that you are controlling.</p>
 <section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
 <p>An example YAML config file is shown below. This configures the following
 devices, which include all device types currently supported</p>
 <ul>
@@ -120,77 +125,77 @@ devices, which include all device types currently supported</p>
 <li><p>2 Command line controlled devices pi1, p2.</p></li>
 <li><p>A Web GUI controlled device, pi5.</p>
 <blockquote>
-<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span><span class="w"></span>
-<span class="c1"># NOTE: above relative path to a schema file from &#39;maaspower schema &lt;filename&gt;&#39;</span><span class="w"></span>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span>
+<span class="c1"># NOTE: above relative path to a schema file from &#39;maaspower schema &lt;filename&gt;&#39;</span>
 
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my maas power control webhooks</span><span class="w"></span>
-<span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span><span class="w"></span>
-<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span><span class="w"></span>
-<span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_user</span><span class="w"></span>
-<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_pass</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my maas power control webhooks</span>
+<span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_user</span>
+<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_pass</span>
 
-<span class="nt">devices</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># This requires a smartThing compatible switching device and related</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># token, device ID.</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># token and id redacted</span><span class="w"></span>
-<span class="w">    </span><span class="nt">api_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span><span class="w"></span>
-<span class="w">    </span><span class="nt">device_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span><span class="w"></span>
-<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span><span class="w"></span>
+<span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># This requires a smartThing compatible switching device and related</span>
+<span class="w">  </span><span class="c1"># token, device ID.</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span>
+<span class="w">    </span><span class="c1"># token and id redacted</span>
+<span class="w">    </span><span class="nt">api_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span>
+<span class="w">    </span><span class="nt">device_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span>
 
-<span class="w">  </span><span class="c1"># These require that the server is running on a machine with USB</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># connection to a power control USB hub and the uhubctl utility installed.</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># These require that the server is running on a machine with USB</span>
+<span class="w">  </span><span class="c1"># connection to a power control USB hub and the uhubctl utility installed.</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi1</span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 1</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 1</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 1</span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span><span class="w"></span>
-<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span><span class="w"></span>
-<span class="w">    </span><span class="nt">connect_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span><span class="w"></span>
-<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
-<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span><span class="w"></span>
-<span class="w">    </span><span class="nt">login</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">      </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/link/POE</span><span class="w"></span>
-<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/cls/src-views-header-nav-icon-button</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/cls/icon-logout</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/id/modal_footer_button_primary</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span>
+<span class="w">    </span><span class="nt">connect_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span>
+<span class="w">    </span><span class="nt">login</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span>
+<span class="w">      </span><span class="no">click/link/POE</span>
+<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">click/cls/src-views-header-nav-icon-button</span>
+<span class="w">      </span><span class="no">click/cls/icon-logout</span>
+<span class="w">      </span><span class="no">click/id/modal_footer_button_primary</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span><span class="w"></span>
-<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/n/editPot3</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/link/Enable</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/n/editPot3</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/link/Disable</span><span class="w"></span>
-<span class="w">      </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">      </span><span class="no">delay/5</span><span class="w"></span>
-<span class="w">      </span><span class="no">get/cls/portPwr[2]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">click/n/isShowPot3</span>
+<span class="w">      </span><span class="no">click/n/editPot3</span>
+<span class="w">      </span><span class="no">click/cls/poePortPwrTxt</span>
+<span class="w">      </span><span class="no">click/link/Enable</span>
+<span class="w">      </span><span class="no">click/n/submitPotedit</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">click/n/isShowPot3</span>
+<span class="w">      </span><span class="no">click/n/editPot3</span>
+<span class="w">      </span><span class="no">click/cls/poePortPwrTxt</span>
+<span class="w">      </span><span class="no">click/link/Disable</span>
+<span class="w">      </span><span class="no">click/n/submitPotedit</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">delay/5</span>
+<span class="w">      </span><span class="no">get/cls/portPwr[2]</span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -198,7 +203,7 @@ devices, which include all device types currently supported</p>
 </ul>
 </section>
 <section id="launch-the-web-hook-server">
-<h2>Launch the Web Hook server<a class="headerlink" href="#launch-the-web-hook-server" title="Permalink to this headline"></a></h2>
+<h2>Launch the Web Hook server<a class="headerlink" href="#launch-the-web-hook-server" title="Link to this heading"></a></h2>
 <p>Once you have the correct configuration you can launch the server from
 the command line. This assumes you have activated a virtual environment
 with maaspower installed, see <a class="reference internal" href="installation.html#install"><span class="std std-ref">Installation</span></a>.</p>
@@ -208,7 +213,7 @@ network attached then the Web Server must run on the machine with these devices
 connected. A good option is to use a rack server and have all the necessary
 hardware connected to it.</p>
 <p>Use this command:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">maaspower run &lt;path to configuration file&gt;</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">maaspower run &lt;path to configuration file&gt;</span>
 </pre></div>
 </div>
 <p>This command will validate your config file against the schema and report
@@ -218,7 +223,7 @@ generate a schema file and use a schema aware editor which will give you
 hints and autocompletion. See <a class="reference internal" href="../how-to/edit-yaml.html#yaml-schema"><span class="std std-ref">YAML schema</span></a> for details.</p>
 </section>
 <section id="configure-maas-to-connect-to-the-webhook">
-<h2>Configure MAAS to connect to the webhook<a class="headerlink" href="#configure-maas-to-connect-to-the-webhook" title="Permalink to this headline"></a></h2>
+<h2>Configure MAAS to connect to the webhook<a class="headerlink" href="#configure-maas-to-connect-to-the-webhook" title="Link to this heading"></a></h2>
 <p>For each device configured in the maaspower config file. There needs to be
 an equivalent configuration of a MAAS controlled machine.</p>
 <p>To do this select a Machine in the MAAS Web GUI and go to the configuration

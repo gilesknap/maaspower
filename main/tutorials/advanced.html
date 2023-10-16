@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using Regular Expressions in Device Names &mdash; maaspower 0.7.0+1.ga57eb8e documentation</title>
+  <title>Using Regular Expressions in Device Names &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f108edbb"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
-            <a href="../index.html" class="icon icon-home"> maaspower
-            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            maaspower
+              <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -91,8 +96,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Using Regular Expressions in Device Names</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using Regular Expressions in Device Names</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorials/advanced.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,25 +108,25 @@
            <div itemprop="articleBody">
              
   <section id="using-regular-expressions-in-device-names">
-<h1>Using Regular Expressions in Device Names<a class="headerlink" href="#using-regular-expressions-in-device-names" title="Permalink to this headline"></a></h1>
+<h1>Using Regular Expressions in Device Names<a class="headerlink" href="#using-regular-expressions-in-device-names" title="Link to this heading"></a></h1>
 <p>Frequently there will be multiple similar devices to control with MaasPower.
 To save on repetition in the configuration YAML it is possible to use
 regular expressions for the device names and to have elements of the
 match against that expression be substituted into the command strings.</p>
 <section id="simple-example">
-<h2>Simple Example<a class="headerlink" href="#simple-example" title="Permalink to this headline"></a></h2>
+<h2>Simple Example<a class="headerlink" href="#simple-example" title="Link to this heading"></a></h2>
 <p>The substitution string \g&lt;0&gt; will be replaced with the name of the
 device that matched the regex in all command strings. (Apologies for
 the esoteric string - but this is a Python anomoly for regex since
 \0 has another meaning in python strings)</p>
 <p>This example YAML snippet will match all device names of the form
 “192_168_xxx_yyy” where xxx and yyy are 1 to 3 digits.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">devices</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;192_168_\d{1,3}_\d{1,3}&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myscript.sh \g&lt;0&gt; on</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myscript.sh \g&lt;0&gt; off</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myscript.sh \g&lt;0&gt; query</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">devices</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;192_168_\d{1,3}_\d{1,3}&#39;</span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myscript.sh \g&lt;0&gt; on</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myscript.sh \g&lt;0&gt; off</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myscript.sh \g&lt;0&gt; query</span>
 </pre></div>
 </div>
 <p>The on, off and query command line definitions will all have the \g&lt;0&gt;
@@ -131,7 +136,7 @@ substituted with the device name that was passed to the webhook server.</p>
 </pre></div>
 </div>
 <p>would execute the shell command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>myscript.sh 192_168_1_2 on
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>myscript.sh<span class="w"> </span>192_168_1_2<span class="w"> </span>on
 </pre></div>
 </div>
 <p>Note that the name is enclosed in single quotes to allow escape
@@ -140,7 +145,7 @@ on a tool like regex101. For example see the above regex being tested
 here: <a class="reference external" href="https://regex101.com/r/tE982R/1">https://regex101.com/r/tE982R/1</a>.</p>
 </section>
 <section id="use-of-capture-groups">
-<h2>Use of Capture Groups<a class="headerlink" href="#use-of-capture-groups" title="Permalink to this headline"></a></h2>
+<h2>Use of Capture Groups<a class="headerlink" href="#use-of-capture-groups" title="Link to this heading"></a></h2>
 <p>The text within capture group 1 will be used to replace the substitution string
 \1, group 2 is \2 etc.</p>
 <p>You can add capture groups to the regex by enclosing a section in round
@@ -150,25 +155,25 @@ string would be \p&lt;name&gt;.</p>
 <p>The following example could support multiple uhubctl devices in a single
 device YAML description.</p>
 <blockquote>
-<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span><span class="w"></span>
-<span class="c1"># NOTE: above relative path to a schema file from &#39;maaspower schema &lt;filename&gt;&#39;</span><span class="w"></span>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=maaspower.schema.json</span>
+<span class="c1"># NOTE: above relative path to a schema file from &#39;maaspower schema &lt;filename&gt;&#39;</span>
 
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my maas power control webhooks</span><span class="w"></span>
-<span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span><span class="w"></span>
-<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span><span class="w"></span>
-<span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a_user</span><span class="w"></span>
-<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a_pass</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my maas power control webhooks</span>
+<span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a_user</span>
+<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a_pass</span>
 
-<span class="nt">devices</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># encode the machine name and uhubctl port in the name like this</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># raspi2-p3</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;(raspi\d+)-p(\d+)&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;uhubctl</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">\2</span><span class="nv"> </span><span class="s">#</span><span class="nv"> </span><span class="s">turn</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">\1</span><span class="nv"> </span><span class="s">(full</span><span class="nv"> </span><span class="s">device</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">\g&lt;0&gt;)&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;uhubctl</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">\2&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;uhubctl</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">\2&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+<span class="nt">devices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span>
+<span class="w">    </span><span class="c1"># encode the machine name and uhubctl port in the name like this</span>
+<span class="w">    </span><span class="c1"># raspi2-p3</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;(raspi\d+)-p(\d+)&#39;</span>
+<span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;uhubctl</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">\2</span><span class="nv"> </span><span class="s">#</span><span class="nv"> </span><span class="s">turn</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">\1</span><span class="nv"> </span><span class="s">(full</span><span class="nv"> </span><span class="s">device</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">\g&lt;0&gt;)&#39;</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;uhubctl</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">\2&#39;</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;uhubctl</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">\2&#39;</span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -178,11 +183,11 @@ this device.</p>
 <p>Note that in this case the commands need to be enclosed in single quotes to
 escape \1 and \2.</p>
 <p>Hence posting to the URL:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">http://localhost:5000/maaspower/raspi1-p1/on</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">http://localhost:5000/maaspower/raspi1-p1/on</span>
 </pre></div>
 </div>
 <p>would execute the shell command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uhubctl -a <span class="m">1</span> -p <span class="m">1</span> <span class="c1"># turn on raspi1 (full device name was raspi1-p1)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uhubctl<span class="w"> </span>-a<span class="w"> </span><span class="m">1</span><span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># turn on raspi1 (full device name was raspi1-p1)</span>
 </pre></div>
 </div>
 </section>

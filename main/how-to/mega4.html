@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UUGear MEGA4 USB Hub &mdash; maaspower 0.7.0+1.ga57eb8e documentation</title>
+  <title>UUGear MEGA4 USB Hub &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f108edbb"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
-            <a href="../index.html" class="icon icon-home"> maaspower
-            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            maaspower
+              <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -87,8 +92,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>UUGear MEGA4 USB Hub</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">UUGear MEGA4 USB Hub</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/how-to/mega4.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,7 +104,7 @@
            <div itemprop="articleBody">
              
   <section id="uugear-mega4-usb-hub">
-<span id="mega4"></span><h1>UUGear MEGA4 USB Hub<a class="headerlink" href="#uugear-mega4-usb-hub" title="Permalink to this headline"></a></h1>
+<span id="mega4"></span><h1>UUGear MEGA4 USB Hub<a class="headerlink" href="#uugear-mega4-usb-hub" title="Link to this heading"></a></h1>
 <p>MaasPower has been tested with this device. It can power and control
 4 Raspberry Pi 4’s. Other USB powered SBCs should also work.</p>
 <a class="reference internal image-reference" href="../_images/mega4.png"><img alt="Alternative text" src="../_images/mega4.png" style="width: 600px;" /></a>
@@ -113,23 +118,23 @@ For details of power supply choice
 See the github repo for details on compiling this utility.</p>
 <p>On linux you need to enable permissions using the device’s vendor ID. The
 following steps will enable access:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo vim /etc/udev/rules.d/52-usb.rules
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/udev/rules.d/52-usb.rules
 <span class="c1"># add the following line</span>
 <span class="c1"># SUBSYSTEM==&quot;usb&quot;, ATTR{idVendor}==&quot;2109&quot;, MODE=&quot;0666&quot;</span>
 
-sudo usermod -a -G dialout <span class="nv">$USER</span>
-sudo udevadm trigger --attr-match<span class="o">=</span><span class="nv">subsystem</span><span class="o">=</span>usb
+sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
+sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger<span class="w"> </span>--attr-match<span class="o">=</span><span class="nv">subsystem</span><span class="o">=</span>usb
 </pre></div>
 </div>
 <p>The commands you will need are as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># turn on port 3</span>
-uhubctl -a <span class="m">1</span> -p <span class="m">3</span>
+uhubctl<span class="w"> </span>-a<span class="w"> </span><span class="m">1</span><span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>
 
 <span class="c1"># turn off port 3</span>
-uhubctl -a <span class="m">0</span> -p <span class="m">3</span>
+uhubctl<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span><span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>
 
 <span class="c1"># get status for port 3</span>
-uhubctl -p <span class="m">3</span>
+uhubctl<span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>
 
 <span class="c1"># for query use this regex for &#39;on&#39;</span>
 <span class="c1"># .* power</span>

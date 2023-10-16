@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TP Link Tapo Smart Plug &mdash; maaspower 0.7.0+1.ga57eb8e documentation</title>
+  <title>TP Link Tapo Smart Plug &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f108edbb"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
-            <a href="../index.html" class="icon icon-home"> maaspower
-            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            maaspower
+              <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -87,8 +92,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>TP Link Tapo Smart Plug</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TP Link Tapo Smart Plug</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/how-to/taposmartplug.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,7 +104,7 @@
            <div itemprop="articleBody">
              
   <section id="tp-link-tapo-smart-plug">
-<span id="tapo"></span><h1>TP Link Tapo Smart Plug<a class="headerlink" href="#tp-link-tapo-smart-plug" title="Permalink to this headline"></a></h1>
+<span id="tapo"></span><h1>TP Link Tapo Smart Plug<a class="headerlink" href="#tp-link-tapo-smart-plug" title="Link to this heading"></a></h1>
 <p>MaasPower has been tested with this device. It provides a remote switchable
 power socket and could be used to control power switching on any machine.</p>
 <a class="reference internal image-reference" href="../_images/tapo.png"><img alt="Alternative text" src="../_images/tapo.png" style="width: 400px;" /></a>
@@ -120,15 +125,15 @@ config file. Go to the ‘My Devices’ tab and copy the id from the
 the ID used by the python library. I provide a small test utility to find
 out the IDs of your Smarthings Devices. First make sure you have your
 venv activated as described in <a class="reference internal" href="../tutorials/installation.html#install"><span class="std std-ref">Installation</span></a>. Then run the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O https://raw.githubusercontent.com/gilesknap/maaspower/main/utils/smartthingtest.py
-python smartthingtest.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-O<span class="w"> </span>https://raw.githubusercontent.com/gilesknap/maaspower/main/utils/smartthingtest.py
+python<span class="w"> </span>smartthingtest.py
 
 <span class="c1"># you will see this and supply your API key when prompted</span>
-If you <span class="k">do</span> not have an API key, generate one here: https://account.smartthings.com/tokens
+If<span class="w"> </span>you<span class="w"> </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>have<span class="w"> </span>an<span class="w"> </span>API<span class="w"> </span>key,<span class="w"> </span>generate<span class="w"> </span>one<span class="w"> </span>here:<span class="w"> </span>https://account.smartthings.com/tokens
 
-Please enter the smartthings API key:
+Please<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>smartthings<span class="w"> </span>API<span class="w"> </span>key:
 xxxxxx-xxxxxx-xxxxxx-xxxxxx
-Please enter the device network ID <span class="o">(</span>blank <span class="k">for</span> ALL<span class="o">)</span>:
+Please<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>device<span class="w"> </span>network<span class="w"> </span>ID<span class="w"> </span><span class="o">(</span>blank<span class="w"> </span><span class="k">for</span><span class="w"> </span>ALL<span class="o">)</span>:
 </pre></div>
 </div>
 <dl class="simple">
@@ -139,7 +144,7 @@ Please enter the device network ID <span class="o">(</span>blank <span class="k"
 </dl>
 <p>Also Note that you can test your running WebHook Server with a command like
 this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --user test_user:test_pass http://192.168.0.104:5000/maaspower/nuc1/query
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--user<span class="w"> </span>test_user:test_pass<span class="w"> </span>http://192.168.0.104:5000/maaspower/nuc1/query
 </pre></div>
 </div>
 </section>

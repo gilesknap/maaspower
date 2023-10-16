@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supported Types of Device Control &mdash; maaspower 0.7.0+1.ga57eb8e documentation</title>
+  <title>Supported Types of Device Control &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f108edbb"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
-            <a href="../index.html" class="icon icon-home"> maaspower
-            <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            maaspower
+              <img src="../_static/MaasLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 main
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -102,8 +107,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Supported Types of Device Control</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Supported Types of Device Control</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/explanations/devicetypes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,9 +119,9 @@
            <div itemprop="articleBody">
              
   <section id="supported-types-of-device-control">
-<h1>Supported Types of Device Control<a class="headerlink" href="#supported-types-of-device-control" title="Permalink to this headline"></a></h1>
+<h1>Supported Types of Device Control<a class="headerlink" href="#supported-types-of-device-control" title="Link to this heading"></a></h1>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <p>This project has been tested against 3 power control devices. These specific
 examples have their own documentation pages as follows:</p>
 <ul class="simple">
@@ -126,9 +131,9 @@ examples have their own documentation pages as follows:</p>
 </ul>
 </section>
 <section id="command-line-control">
-<h2>Command Line Control<a class="headerlink" href="#command-line-control" title="Permalink to this headline"></a></h2>
+<h2>Command Line Control<a class="headerlink" href="#command-line-control" title="Link to this heading"></a></h2>
 <dl class="field-list simple">
-<dt class="field-odd">example</dt>
+<dt class="field-odd">example<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a></p>
 </dd>
 </dl>
@@ -142,23 +147,23 @@ controlled by the uhubctl command line tool.
 <p>Using uhubctl implies that the hub in question is plugged into a USB port
 on the webhook server.</p>
 <dl class="field-list simple">
-<dt class="field-odd">example yaml</dt>
+<dt class="field-odd">example yaml<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_on_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_off_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_on_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_off_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span>
 </pre></div>
 </div>
 </section>
 <section id="smartthings-control">
-<h2>SmartThings Control<a class="headerlink" href="#smartthings-control" title="Permalink to this headline"></a></h2>
+<h2>SmartThings Control<a class="headerlink" href="#smartthings-control" title="Link to this heading"></a></h2>
 <dl class="field-list simple">
-<dt class="field-odd">example</dt>
+<dt class="field-odd">example<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a></p>
 </dd>
 </dl>
@@ -185,21 +190,21 @@ specify query_on_regex, query_off_regex.</p>
 MAAS default values and hence no configuration of regex in
 MAAS itself are required.</p>
 <p>example yaml:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># token and id redacted</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">api_token</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">device_id</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># token and id redacted</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">api_token</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">device_id</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span>
 </pre></div>
 </div>
 </section>
 <section id="web-gui-control">
-<h2>Web GUI Control<a class="headerlink" href="#web-gui-control" title="Permalink to this headline"></a></h2>
+<h2>Web GUI Control<a class="headerlink" href="#web-gui-control" title="Link to this heading"></a></h2>
 <dl class="field-list simple">
-<dt class="field-odd">example</dt>
+<dt class="field-odd">example<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a></p>
 </dd>
 </dl>
@@ -208,23 +213,23 @@ a Web Scraping device type. This uses the python selenium library to
 click buttons and send text to forms on any Web UI. Defining the correct
 sequence should allow you to login to any Web GUI and control it.</p>
 <section id="per-control-device-configuration">
-<h3>Per Control Device Configuration<a class="headerlink" href="#per-control-device-configuration" title="Permalink to this headline"></a></h3>
+<h3>Per Control Device Configuration<a class="headerlink" href="#per-control-device-configuration" title="Link to this heading"></a></h3>
 <p>For this device type there are two types of entry. First is the global entry
 where you configure how to connect/disconnect to/from each device. (i.e.
 if you had 2 PoE switches you would have 2 of these)</p>
 <p>example WebGui yaml:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">connect_url</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">login</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">        </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/link/POE</span><span class="w"></span>
-<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/cls/src-views-header-nav-icon-button</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/cls/icon-logout</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/id/modal_footer_button_primary</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">connect_url</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">login</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span>
+<span class="w">        </span><span class="no">click/link/POE</span>
+<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">click/cls/src-views-header-nav-icon-button</span>
+<span class="w">        </span><span class="no">click/cls/icon-logout</span>
+<span class="w">        </span><span class="no">click/id/modal_footer_button_primary</span>
 </pre></div>
 </div>
 <p>You will need the chromedriver for selenium for this to work. Download from
@@ -239,7 +244,7 @@ specify.</p>
 tasks.</p>
 <p>The configuration strings are ‘/’ separated fields as follows:</p>
 <section id="commands">
-<h4>Commands<a class="headerlink" href="#commands" title="Permalink to this headline"></a></h4>
+<h4>Commands<a class="headerlink" href="#commands" title="Link to this heading"></a></h4>
 <dl class="simple">
 <dt>:click/…</dt><dd><p>clicks on the specified HTML Element</p>
 </dd>
@@ -254,7 +259,7 @@ tasks.</p>
 </dl>
 </section>
 <section id="field-identifiers">
-<h4>Field Identifiers<a class="headerlink" href="#field-identifiers" title="Permalink to this headline"></a></h4>
+<h4>Field Identifiers<a class="headerlink" href="#field-identifiers" title="Link to this heading"></a></h4>
 <p>The second and third parts of the / separated strings identify the HTML
 Element to target:</p>
 <dl class="simple">
@@ -282,7 +287,7 @@ due to inactivity and gone back to the login screen.</p>
 </section>
 </section>
 <section id="id1">
-<h3>Per Control Device Configuration<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<h3>Per Control Device Configuration<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>For each computer that you want to power control you will need an additional
 entry like the following example. On, Off and Query use the same syntax as
 described above.</p>
@@ -294,31 +299,31 @@ per web device and can control any number of target PCs.</p>
 the text returned from the final get in the query sequence. If there is
 a match it will return on or off to MAAS, or an error if there is none.</p>
 <p>example WebDevice yaml:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/n/editPot3</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/link/Enable</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/n/isShowPot3</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/n/editPot3</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/link/Disable</span><span class="w"></span>
-<span class="w">        </span><span class="no">click/n/submitPotedit</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">        </span><span class="no">delay/5</span><span class="w"></span>
-<span class="w">        </span><span class="no">get/cls/portPwr[2]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span><span class="w"></span>
-<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">click/n/isShowPot3</span>
+<span class="w">        </span><span class="no">click/n/editPot3</span>
+<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span>
+<span class="w">        </span><span class="no">click/link/Enable</span>
+<span class="w">        </span><span class="no">click/n/submitPotedit</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">click/n/isShowPot3</span>
+<span class="w">        </span><span class="no">click/n/editPot3</span>
+<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span>
+<span class="w">        </span><span class="no">click/link/Disable</span>
+<span class="w">        </span><span class="no">click/n/submitPotedit</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">delay/5</span>
+<span class="w">        </span><span class="no">get/cls/portPwr[2]</span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="working-with-another-web-gui">
-<h2>Working with another Web GUI<a class="headerlink" href="#working-with-another-web-gui" title="Permalink to this headline"></a></h2>
+<h2>Working with another Web GUI<a class="headerlink" href="#working-with-another-web-gui" title="Link to this heading"></a></h2>
 <p>This has been tested with the Netgear GS3008EP. I have tried to make a generic
 DSL that allows for most possible sequences of Web Element interactions, but
 YMMV.</p>
