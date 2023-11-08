@@ -12,8 +12,8 @@ from . import __version__, maas_globals
 # import all subclasses of SwitchDevice so ApiSchema sees them
 from .devices.shell_cmd import CommandLine
 from .devices.smart_thing import SmartThing
-from .devices.web_ui import WebGui
 from .devices.web_device import WebDevice
+from .devices.web_ui import WebGui
 from .maasconfig import MaasConfig
 from .webhook import run_web_hook
 

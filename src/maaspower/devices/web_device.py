@@ -4,10 +4,11 @@
 from dataclasses import dataclass
 from typing import Optional, cast
 
-from typing_extensions import Literal, Annotated as A
+from typing_extensions import Annotated as A
+from typing_extensions import Literal
 
-from maaspower.maasconfig import MaasConfig, SwitchDevice
 from maaspower.maas_globals import desc
+from maaspower.maasconfig import MaasConfig, SwitchDevice
 
 from ..webhook import app
 from .web_ui import WebGui

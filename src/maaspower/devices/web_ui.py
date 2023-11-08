@@ -14,9 +14,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from typing_extensions import Annotated as A
 from typing_extensions import Literal
 
-from maaspower.maasconfig import RegexSwitchDevice
 from maaspower.maas_globals import desc
-
+from maaspower.maasconfig import RegexSwitchDevice
 
 command_regex = re.compile(r"([^\/]*)\/([^\/]*)\/?([^\/]*)?\/?([^\/]*)?$")
 index_regex = re.compile(r"(.*)\[([0-9]*)\]")

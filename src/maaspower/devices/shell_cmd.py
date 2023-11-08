@@ -10,11 +10,11 @@ e.g. smart power switching usb hubs https://github.com/mvp/uhubctl
 import subprocess
 from dataclasses import dataclass
 
-from typing import Optional
-from typing_extensions import Literal, Annotated as A
+from typing_extensions import Annotated as A
+from typing_extensions import Literal
 
-from maaspower.maasconfig import RegexSwitchDevice
 from maaspower.maas_globals import desc
+from maaspower.maasconfig import RegexSwitchDevice
 
 
 @dataclass(kw_only=True)
