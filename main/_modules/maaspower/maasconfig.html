@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>maaspower.maasconfig &mdash; maaspower 0.7.0+3.g6daa3cd documentation</title>
+  <title>maaspower.maasconfig &mdash; maaspower 0.7.0+5.gd63b5b5 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -15,7 +15,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=f108edbb"></script>
+        <script src="../../_static/documentation_options.js?v=acd3b5af"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -123,7 +123,8 @@
 
 <span class="kn">from</span> <span class="nn">apischema</span> <span class="kn">import</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">identity</span>
 <span class="kn">from</span> <span class="nn">apischema.conversions</span> <span class="kn">import</span> <span class="n">Conversion</span><span class="p">,</span> <span class="n">deserializer</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span> <span class="k">as</span> <span class="n">A</span><span class="p">,</span> <span class="n">override</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span> <span class="k">as</span> <span class="n">A</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">override</span>
 
 <span class="kn">from</span> <span class="nn">.maas_globals</span> <span class="kn">import</span> <span class="n">MaasResponse</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">desc</span>
 
@@ -219,6 +220,7 @@
 <span class="sd">    and convert them to the requisit MaasReponse values using regex.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">query_on_regex</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;match the on status return from query&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;on&quot;</span>
     <span class="n">query_off_regex</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="s2">&quot;match the off status return from query&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;off&quot;</span>
 
