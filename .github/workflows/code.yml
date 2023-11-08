@@ -10,6 +10,8 @@ on:
     tags:
       - "*"
   pull_request:
+    branches:
+      - main
   schedule:
     # Run every Monday at 8am to check latest versions of dependencies
     - cron: "0 8 * * MON"
@@ -57,12 +59,11 @@ jobs:
       matrix:
         os: ["ubuntu-latest"] # can add windows-latest, macos-latest
         python: ["3.10", "3.11", "3.12"]
-        pipenv: ["skip-lock"]
-
+        pipenv: [""]
         include:
-          # Add an extra Python3.8 runner to use the lockfile
+          # Add an extra Python3.10 runner to use the lockfile
           - os: "ubuntu-latest"
-            python: "3.8"
+            python: "3.10"
             pipenv: "deploy"
 
     runs-on: ${{ matrix.os }}

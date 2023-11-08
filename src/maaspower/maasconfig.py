@@ -20,7 +20,8 @@ from typing import Any, ClassVar, Dict, Mapping, Optional, Sequence, Type
 
 from apischema import deserialize, identity
 from apischema.conversions import Conversion, deserializer
-from typing_extensions import Annotated as A, override
+from typing_extensions import Annotated as A
+from typing_extensions import override
 
 from .maas_globals import MaasResponse, T, desc
 
@@ -108,6 +109,7 @@ class RegexSwitchDevice(SwitchDevice, ABC):
     and convert them to the requisit MaasReponse values using regex.
 
     """
+
     query_on_regex: A[str, desc("match the on status return from query")] = "on"
     query_off_regex: A[str, desc("match the off status return from query")] = "off"
 

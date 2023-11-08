@@ -9,14 +9,14 @@ See https://www.smartthings.com/
 """
 import asyncio
 from dataclasses import dataclass
-from typing import Optional
 
 import aiohttp
 from pysmartthings import SmartThings
-from typing_extensions import Literal, Annotated as A
+from typing_extensions import Annotated as A
+from typing_extensions import Literal
 
-from maaspower.maasconfig import RegexSwitchDevice
 from maaspower.maas_globals import desc
+from maaspower.maasconfig import RegexSwitchDevice
 
 
 @dataclass(kw_only=True)
