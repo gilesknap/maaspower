@@ -1,0 +1,16 @@
+# Changes here will be overwritten by Copier
+_commit: 2.1.0
+_src_path: gh:diamondlightsource/python-copier-template
+author_email: gilesknap@gmail.com
+author_name: Giles Knap
+component_owner: ''
+description: Power control webhook server for Canonical's MAAS
+distribution_name: maaspower
+docker: true
+docs_type: sphinx
+git_platform: github.com
+github_org: gilesknap
+package_name: maaspower
+pypi: true
+repo_name: maaspower
+type_checker: mypy

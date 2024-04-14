@@ -1,6 +1,135 @@
 [build-system]
-# To get a reproducible wheel, wheel must be pinned to the same version as in
-# dls-python3, and setuptools must produce the same dist-info. Cap setuptools
-# to the last version that didn't add License-File to METADATA
-requires = ["setuptools<57", "wheel==0.33.1"]
+requires = ["setuptools>=64", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "maaspower"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+description = "Power control webhook server for Canonical's MAAS"
+dependencies = [
+    "flask",
+    "flask-basicauth",
+    "typing-extensions",
+    "pysmartthings",
+    "apischema",
+    "typer",
+    "ruamel.yaml",
+    "jsonschema",
+    "importlib_resources",
+    "selenium",
+    "netmiko==4.3.0",
+] # Add project dependencies here, e.g. ["click", "numpy"]
+dynamic = ["version"]
+license.file = "LICENSE"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "copier",
+    "mypy",
+    "myst-parser",
+    "pipdeptree",
+    "pre-commit",
+    "pydata-sphinx-theme>=0.12",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "sphinx-autobuild",
+    "sphinx-copybutton",
+    "sphinx-design",
+    "tox-direct",
+    "mock",
+    "types-mock",
+]
+
+[project.scripts]
+maaspower = "maaspower.__main__:cli"
+
+[project.urls]
+GitHub = "https://github.com/gilesknap/maaspower"
+
+[[project.authors]] # Further authors may be added by duplicating this section
+email = "gilesknap@gmail.com"
+name = "Giles Knap"
+
+
+[tool.setuptools_scm]
+write_to = "src/maaspower/_version.py"
+
+[tool.mypy]
+ignore_missing_imports = true # Ignore missing stubs in imported modules
+
+[tool.pytest.ini_options]
+# Run pytest with all our checkers, and don't spam us with massive tracebacks on error
+addopts = """
+    --tb=native -vv --doctest-modules --doctest-glob="*.rst"
+    """
+# https://iscinumpy.gitlab.io/post/bound-version-constraints/#watch-for-warnings
+# TODO we need to get rid of telnetlib from this project
+filterwarnings = ["error", "ignore::DeprecationWarning"]
+
+# Doctest python code in docs, python code in src docstrings, test functions in tests
+testpaths = "docs src tests"
+
+[tool.coverage.run]
+data_file = "/tmp/maaspower.coverage"
+
+[tool.coverage.paths]
+# Tests are run from installed location, map back to the src directory
+source = ["src", "**/site-packages/"]
+
+# tox must currently be configured via an embedded ini string
+# See: https://github.com/tox-dev/tox/issues/999
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+skipsdist=True
+
+[testenv:{pre-commit,type-checking,tests,docs}]
+# Don't create a virtualenv for the command, requires tox-direct plugin
+direct = True
+passenv = *
+allowlist_externals =
+    pytest
+    pre-commit
+    mypy
+    sphinx-build
+    sphinx-autobuild
+commands =
+    pre-commit: pre-commit run --all-files --show-diff-on-failure {posargs}
+    type-checking: mypy src tests {posargs}
+    tests: pytest --cov=maaspower --cov-report term --cov-report xml:cov.xml {posargs}
+    docs: sphinx-{posargs:build -EW --keep-going} -T docs build/html
+"""
+
+[tool.ruff]
+src = ["src", "tests"]
+line-length = 88
+lint.ignore = [
+    # this is how typer does its argument defaults
+    "B008", # Do not perform function call `typer.Argument` in argument defaults
+]
+lint.select = [
+    "B",  # flake8-bugbear - https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
+    "C4", # flake8-comprehensions - https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4
+    "E",  # pycodestyle errors - https://docs.astral.sh/ruff/rules/#error-e
+    "F",  # pyflakes rules - https://docs.astral.sh/ruff/rules/#pyflakes-f
+    "W",  # pycodestyle warnings - https://docs.astral.sh/ruff/rules/#warning-w
+    "I",  # isort - https://docs.astral.sh/ruff/rules/#isort-i
+    "UP", # pyupgrade - https://docs.astral.sh/ruff/rules/#pyupgrade-up
+]
+
+# previous flake ignores ...
+# See https://github.com/PyCQA/pycodestyle/issues/373
+#    E203,
+# support typing.overload decorator
+#    F811,
+# allow Annotated[typ, some_func("some string")]
+#    F722

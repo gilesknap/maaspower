@@ -34,7 +34,6 @@ import sys
 from enum import Enum
 from pathlib import Path
 from time import sleep
-from typing import List, Optional, Tuple
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -63,7 +62,7 @@ class FindBy(Enum):
     css = By.CSS_SELECTOR
 
 
-def process_arguments(by_str: str, value: str) -> Tuple[str, str, Optional[int]]:
+def process_arguments(by_str: str, value: str) -> tuple[str, str, int | None]:
     # convert our short fieldtype string to the full selenium string
     by = FindBy[by_str].value
 
@@ -108,7 +107,7 @@ def get(by_str: str, value) -> str:
     return elem.text
 
 
-def sequence(elements: List[str]):
+def sequence(elements: list[str]):
     """
     take a sequence of strings of the form
     command_by_value
@@ -120,7 +119,7 @@ def sequence(elements: List[str]):
     when the command is 'send' the next string in the sequence is the text to
     send to the html element
     """
-    for idx, element in enumerate(elements):
+    for element in elements:
         # separate out the elements of the string
         match = command_regex.match(element)
         if match is None:

@@ -276,7 +276,28 @@
               "type": {
                 "type": "string",
                 "const": "CiscoIOSPOESwitch",
-                "default": "CiscoIOSPOESwitch"
+                "default": "CiscoIOSPOESwitch""description": "A name for the switching device"
+              },
+              "on": {
+                "type": "string",
+                "description": "command line string to switch device on"
+              },
+              "off": {
+                "type": "string",
+                "description": "command line string to switch device off"
+              },
+              "query": {
+                "type": "string",
+                "description": "command line string to query device state"
+              },
+              "ip_address": {
+                "type": "string",
+                "description": "IP address of the Kasa device"
+              },
+              "type": {
+                "type": "string",
+                "const": "KasaDevice",
+                "default": "KasaDevice"
               }
             },
             "required": [
@@ -284,7 +305,11 @@
               "ip_address",
               "username",
               "password",
-              "port_selection_string"
+              "port_selection_string""on",
+              "off",
+              "query",
+              "ip_address",
+              "type"
             ],
             "additionalProperties": false
           }

@@ -5,8 +5,8 @@ out.
 
 from base64 import b64encode
 from pathlib import Path
+from unittest.mock import patch
 
-from mock import patch
 from ruamel.yaml import YAML
 
 # import all sublasses of SwitchDevice so ApiSchema sees them
@@ -23,7 +23,7 @@ required_to_find_subclasses = [SmartThing, CommandLine]
 
 userpass = "a_user:a_pass"
 encoded_u = b64encode(userpass.encode()).decode()
-headers = {"Authorization": "Basic %s" % encoded_u}
+headers = {"Authorization": f"Basic {encoded_u}"}
 
 
 def test_web_root():
