@@ -42,7 +42,7 @@ class KasaDevice(RegexSwitchDevice):
 
     def run_query(self) -> str:
         """Synchronously wraps the async method to query the plug's state."""
-        result = asyncio.run(self.query_state())
+        result = asyncio.run(self.query_state(self))
         return result
 
     def query_state(self) -> str:
