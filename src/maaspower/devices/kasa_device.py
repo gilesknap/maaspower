@@ -2,7 +2,7 @@
 kasa_device.py
 --------------
 
-Classes to represent the configuration and functionality for TP-Link Kasa smart devices 
+Classes to represent the configuration and functionality for TP-Link Kasa smart devices
 that can be controlled via the python-kasa API.
 """
 
