@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=maaspower.schema.json
+# NOTE: above relative path to a schema file from 'maaspower schema <filename>'
+
+name: my maas power control webhooks
+ip_address: 0.0.0.0
+port: 5000
+username: test_user
+password: test_pass
+
+devices:
+  # Kasa smart plug configuration
+  - type: KasaDevice
+    name: living_room_lamp
+    ip_address: 192.168.1.100  # IP address of the Kasa smart plug
+
+  - type: KasaDevice
+    name: bedroom_fan
+    ip_address: 192.168.1.101  # Another IP address for a different Kasa smart plug
