@@ -7,12 +7,27 @@ that can be controlled via the python-kasa API.
 """
 
 import asyncio
+import threading
 from dataclasses import dataclass, field
 from kasa import SmartPlug
 from typing_extensions import Annotated as A, Literal
 
 from maaspower.maas_globals import desc
 from maaspower.maasconfig import SwitchDevice
+
+
+def run_async(func):
+    """
+    Helper function to run an async function using threading.
+    """
+
+    def wrapper(*args, **kwargs):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(func(*args, **kwargs))
+        loop.close()
+
+    return wrapper
 
 
 @dataclass(kw_only=True)
@@ -25,10 +40,10 @@ class KasaDevice(SwitchDevice):
         self.plug = SmartPlug(self.ip_address)
 
     def turn_on(self) -> None:
-        asyncio.run(self._async_switch(True))
+        threading.Thread(target=run_async(self._async_switch), args=(True,)).start()
 
     def turn_off(self) -> None:
-        asyncio.run(self._async_switch(False))
+        threading.Thread(target=run_async(self._async_switch), args=(False,)).start()
 
     def query_state(self) -> str:
         return asyncio.run(self._async_query_power_status())
