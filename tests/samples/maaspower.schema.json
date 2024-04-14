@@ -247,16 +247,6 @@
                 "type": "string",
                 "description": "A name for the switching device"
               },
-              "query_on_regex": {
-                "type": "string",
-                "description": "match the on status return from query",
-                "default": "on"
-              },
-              "query_off_regex": {
-                "type": "string",
-                "description": "match the off status return from query",
-                "default": "off"
-              },
               "ip_address": {
                 "type": "string",
                 "description": "IP address of the Kasa device"
@@ -269,7 +259,8 @@
             },
             "required": [
               "name",
-              "ip_address"
+              "ip_address",
+              "type"
             ],
             "additionalProperties": false
           }
