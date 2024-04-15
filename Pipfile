@@ -8,6 +8,7 @@ maaspower = {editable = true, extras = ["dev"], path = "."}
 
 [packages]
 maaspower = {editable = true, path = "."}
+python-kasa = "*"
 
 [scripts]
 lint = "pre-commit run --all-files --show-diff-on-failure --color=always -v"
