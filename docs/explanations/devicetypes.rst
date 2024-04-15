@@ -4,12 +4,47 @@ Supported Types of Device Control
 Examples
 --------
 
-This project has been tested against 3 power control devices. These specific
-examples have their own documentation pages as follows:
+This project has been tested against several power control devices. These specific examples have their own documentation pages as follows:
 
-- `TP Link Tapo Smart Plug<tapo>` - Command line example
+- `TP-Link Tapo Smart Plug<tapo>` - Command line example
 - `UUGear MEGA4 USB Hub<mega4>` - SmartThings example
 - `Netgear GS803EP PoE 8 port switch<netgear>`  - Web GUI example
+- `TP-Link Kasa Smart Plug<kasa>` - Python-Kasa API example
+
+Kasa Device Control
+-------------------
+
+:example:
+    `TP-Link Kasa Smart Plug<kasa>`
+
+Kasa devices are controlled using the Python-Kasa library which interfaces 
+with TP-Link Kasa smart devices over the network. This method involves 
+asynchronous communication with devices to execute actions like turning 
+on or off and querying their current state.
+
+An example configuration for controlling a Kasa smart plug is shown below:
+
+:example yaml:
+
+.. code-block:: yaml
+
+        - type: KasaDevice
+            name: server01_plug
+            ip_address: 192.168.1.100
+            on: "python -m kasa --host 192.168.1.100 on"
+            off: "python -m kasa --host 192.168.1.100 off"
+            query: "python -m kasa --host 192.168.1.100 state"
+
+
+This configuration uses the Python-Kasa API to communicate with the plug. 
+The `ip_address` should be replaced with the IP address of your Kasa device. 
+The `on`, `off`, and `query` commands are examples of how you might invoke 
+device control through command line interfacing with the Python-Kasa library.
+
+.. note::
+    Ensure that the `python-kasa` library is installed in the environment 
+    where your server is running, as it is required for communication 
+    with Kasa devices.
 
 
 
