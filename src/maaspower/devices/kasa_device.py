@@ -7,82 +7,70 @@ that can be controlled via the python-kasa API.
 """
 
 import asyncio
-import threading
-from dataclasses import dataclass, field
-from typing_extensions import Annotated as A, Literal
+from dataclasses import dataclass
 from kasa import SmartPlug, SmartDeviceException
-
+from typing_extensions import Annotated as A, Literal
 from maaspower.maas_globals import desc
 from maaspower.maasconfig import SwitchDevice
-
-
-def run_async(func):
-    """
-    Decorator to run an async function in a new thread with its own event loop.
-    """
-
-    def wrapper(*args, **kwargs):
-        def inner():
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            try:
-                loop.run_until_complete(func(*args, **kwargs))
-            finally:
-                loop.close()
-
-        thread = threading.Thread(target=inner)
-        thread.start()
-        return thread
-
-    return wrapper
 
 
 @dataclass(kw_only=True)
 class KasaDevice(SwitchDevice):
     ip_address: A[str, desc("IP address of the Kasa device")]
     type: Literal["KasaDevice"] = "KasaDevice"
-    plug: SmartPlug = field(default_factory=lambda: None)
+    name: A[str, desc("A name for the switching device")]
 
     def __post_init__(self):
-        self.plug = SmartPlug(self.ip_address)
+        super().__post_init__()
+        self.plug = None
 
-    @run_async
-    async def turn_on(self) -> None:
-        """Turns on the smart plug asynchronously."""
-        await self._async_switch(True)
+    async def _initialize_plug(self):
+        """Initialize the smart plug if it hasn't been initialized already."""
+        if not self.plug:
+            self.plug = SmartPlug(self.ip_address)
+            try:
+                await self.plug.update()
+            except SmartDeviceException as e:
+                print(
+                    f"Failed to initialize the smart plug at {self.ip_address}: {str(e)}"
+                )
+                raise
 
-    @run_async
-    async def turn_off(self) -> None:
-        """Turns off the smart plug asynchronously."""
-        await self._async_switch(False)
+    def turn_on(self) -> None:
+        """Asynchronously turn the smart plug on."""
+        asyncio.run(self._turn_on())
 
-    @run_async
-    async def query_state(self) -> str:
-        """Queries the current state of the smart plug asynchronously."""
-        return await self._async_query_power_status()
-
-    async def _async_switch(self, turn_on: bool) -> None:
-        """
-        Internal method to handle turning the smart plug on or off asynchronously.
-        Handles device state updates and executes the turn on/off command.
-        """
+    async def _turn_on(self):
         try:
-            await self.plug.update()  # Make sure the plug's state is up to date
-            if turn_on:
-                await self.plug.turn_on()
-            else:
-                await self.plug.turn_off()
+            await self._initialize_plug()
+            await self.plug.turn_on()
         except SmartDeviceException as e:
-            print(f"Error operating the smart plug {self.ip_address}: {str(e)}")
+            print(f"Failed to turn on the smart plug at {self.ip_address}: {str(e)}")
+            raise
 
-    async def _async_query_power_status(self) -> str:
-        """
-        Internal method to asynchronously query the power status of the smart plug.
-        Returns 'on' if the plug is on, 'off' if off, or 'error' if an exception occurred.
-        """
+    def turn_off(self) -> None:
+        """Asynchronously turn the smart plug off."""
+        asyncio.run(self._turn_off())
+
+    async def _turn_off(self):
         try:
+            await self._initialize_plug()
+            await self.plug.turn_off()
+        except SmartDeviceException as e:
+            print(f"Failed to turn off the smart plug at {self.ip_address}: {str(e)}")
+            raise
+
+    def query_state(self) -> str:
+        """Asynchronously query the current state of the smart plug."""
+        return asyncio.run(self._query_state())
+
+    async def _query_state(self) -> str:
+        try:
+            await self._initialize_plug()
             await self.plug.update()
             return "on" if self.plug.is_on else "off"
         except SmartDeviceException as e:
-            print(f"Error querying the smart plug {self.ip_address}: {str(e)}")
+            print(
+                f"Failed to query state of the smart plug at {self.ip_address}: {str(e)}"
+            )
             return "error"
