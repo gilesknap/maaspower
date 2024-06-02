@@ -10,6 +10,7 @@ from ruamel.yaml import YAML
 from . import __version__, maas_globals
 
 # import all subclasses of SwitchDevice so ApiSchema sees them
+from .devices.cisco_ios_poe_switch import CiscoIOSPOESwitch
 from .devices.shell_cmd import CommandLine
 from .devices.smart_thing import SmartThing
 from .devices.web_device import WebDevice
@@ -18,7 +19,13 @@ from .maasconfig import MaasConfig
 from .webhook import run_web_hook
 
 # avoid linter complaints
-required_to_find_subclasses = [SmartThing, CommandLine, WebGui, WebDevice]
+required_to_find_subclasses = [
+    SmartThing,
+    CommandLine,
+    WebGui,
+    WebDevice,
+    CiscoIOSPOESwitch,
+]
 
 cli = typer.Typer()
 yaml = YAML()

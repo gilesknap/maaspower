@@ -239,6 +239,54 @@
               "query"
             ],
             "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Logical device name for server connected to the Cisco switch port"
+              },
+              "ip_address": {
+                "type": "string",
+                "description": "IP address of the Cisco IOS PoE switch"
+              },
+              "username": {
+                "type": "string",
+                "description": "Username for the Cisco IOS PoE switch"
+              },
+              "password": {
+                "type": "string",
+                "description": "Password for the Cisco IOS PoE switch"
+              },
+              "enable_password": {
+                "type": "string",
+                "description": "Enable/secret password for escalating privileges on the Cisco switch",
+                "default": ""
+              },
+              "port_selection_string": {
+                "type": "string",
+                "description": "Port selection for the target device connected to the switch in\n            Cisco format"
+              },
+              "port_poe_watts": {
+                "type": "integer",
+                "description": "Power budget (in watts) for the target Cisco switch port",
+                "default": -1
+              },
+              "type": {
+                "type": "string",
+                "const": "CiscoIOSPOESwitch",
+                "default": "CiscoIOSPOESwitch"
+              }
+            },
+            "required": [
+              "name",
+              "ip_address",
+              "username",
+              "password",
+              "port_selection_string"
+            ],
+            "additionalProperties": false
           }
         ]
       },
