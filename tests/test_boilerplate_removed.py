@@ -2,6 +2,7 @@
 This file checks that all the example boilerplate text has been removed.
 It can be deleted when all the contained tests pass
 """
+
 import configparser
 from pathlib import Path
 

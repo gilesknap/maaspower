@@ -4,7 +4,6 @@ cisco_ios_poe_switch.py
 
 Classes to represent the configuration and functionality for devices
 that can be controlled via Cisco IOS shell commands.
-
 """
 
 from dataclasses import dataclass
@@ -20,6 +19,8 @@ from maaspower.maasconfig import SwitchDevice
 
 @dataclass(kw_only=True)
 class CiscoIOSPOESwitch(SwitchDevice):
+    """A device controlled via a Cisco IOS PoE switch"""
+
     name: A[
         str, desc("Logical device name for server connected to the Cisco switch port")
     ]
@@ -44,6 +45,11 @@ class CiscoIOSPOESwitch(SwitchDevice):
     type: Literal["CiscoIOSPOESwitch"] = "CiscoIOSPOESwitch"
 
     def __post_init__(self):
+        """
+        Create the 'device' variable, containing properties for establishing \n
+        a connection via netmiko.
+        """
+
         super().__post_init__()
         self.mutex = Lock()
         self.device = {
@@ -63,6 +69,14 @@ class CiscoIOSPOESwitch(SwitchDevice):
         thread.start()
 
     def _change_power_state(self, state: bool):
+        """
+        Takes a boolean representation of the desired port power state and \n
+        affects the desired state on the switch via netmiko.
+
+        Args:
+            state: A boolean representation of the power state of the switch port.
+        """
+
         with self.mutex:
             if not state:
                 power_cmdline = "power inline never"
@@ -96,6 +110,11 @@ class CiscoIOSPOESwitch(SwitchDevice):
                 return "error"
 
     def query_state(self) -> str:
+        """
+        Requests the configuration of the desired switch port and parses it to \n
+        determine whether the power state is on or off.
+        """
+
         try:
             with ConnectHandler(**self.device) as cisco_conn:
                 output = cisco_conn.send_command(
