@@ -264,11 +264,14 @@ Cisco IOS PoE Switch Device Control
 :example:
     `Cisco IOS PoE Switches<ciscoiospoehowto>`
 
+.. warning::
+    This module has been developed against and only tested on a Cisco Catalyst 2960X
+    (WS-C2960X-24PS-L) with IOS version 15.2(7)E4.
+
 Cisco IOS PoE switches are controlled using the `netmiko`_ library, which
 interfaces with the switch using ssh. This method will manipulate the
 ``power inline`` configuration option on a switch port interface to turn a
-connected PoE device on or off. The actions of turning a device on/off are
-threaded, where the query action is not.
+connected PoE device on or off.
 
 .. _netmiko: https://github.com/ktbyers/netmiko
 
@@ -313,10 +316,5 @@ the ``enable_password`` unset.
 ``port_poe_watts``        N            Power budget (in watts) for the target
                                        Cisco switch port
 ========================= ============ ========================================
-
-
-.. warning::
-    This module has been developed against and only tested on a Cisco Catalyst 2960X
-    (WS-C2960X-24PS-L) with IOS version 15.2(7)E4.
 
 
