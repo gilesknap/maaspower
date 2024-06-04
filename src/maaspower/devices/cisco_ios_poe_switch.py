@@ -7,7 +7,6 @@ that can be controlled via Cisco IOS shell commands.
 """
 
 from dataclasses import dataclass
-from threading import Lock, Thread
 
 from netmiko import ConnectHandler
 from typing_extensions import Annotated as A
@@ -51,7 +50,6 @@ class CiscoIOSPOESwitch(SwitchDevice):
         """
 
         super().__post_init__()
-        self.mutex = Lock()
         self.device = {
             "device_type": "cisco_ios",
             "host": self.ip_address,
@@ -61,13 +59,11 @@ class CiscoIOSPOESwitch(SwitchDevice):
         }
 
     def turn_on(self) -> None:
-        thread = Thread(target=self._change_power_state, kwargs={"state": True})
-        thread.start()
+        self._change_power_state(True)
 
     def turn_off(self) -> None:
-        thread = Thread(target=self._change_power_state, kwargs={"state": False})
-        thread.start()
-
+        self._change_power_state(False)
+        
     def _change_power_state(self, state: bool):
         """
         Takes a boolean representation of the desired port power state and \n
@@ -76,38 +72,37 @@ class CiscoIOSPOESwitch(SwitchDevice):
         Args:
             state: A boolean representation of the power state of the switch port.
         """
-
-        with self.mutex:
-            if not state:
-                power_cmdline = "power inline never"
-            elif state:
-                if self.port_poe_watts > 0:
-                    power_cmdline = (
-                        f"power inline static max {self.port_poe_watts*1000}"
-                    )
-                else:
-                    power_cmdline = "power inline auto"
-            command_set = [
-                ["conf t", ""],
-                [f"interface {self.port_selection_string}", ""],
-                [power_cmdline, ""],
-            ]
-            try:
-                with ConnectHandler(**self.device) as cisco_conn:
-                    cisco_conn.enable()
-                    for cmd in command_set:
-                        cisco_conn.send_command(
-                            command_string=cmd[0],
-                            expect_string=cmd[1],
-                            cmd_verify=False,
-                        )
-                    cisco_conn.disconnect()
-            except Exception as e:
-                print(
-                    f"""Failed to turn device power f{'on' if state else 'off'} for
-                    port {self.port_selection_string}. Reason: {e}"""
+        
+        if not state:
+            power_cmdline = "power inline never"
+        elif state:
+            if self.port_poe_watts > 0:
+                power_cmdline = (
+                    f"power inline static max {self.port_poe_watts*1000}"
                 )
-                return "error"
+            else:
+                power_cmdline = "power inline auto"
+        command_set = [
+            ["conf t", ""],
+            [f"interface {self.port_selection_string}", ""],
+            [power_cmdline, ""],
+        ]
+        try:
+            with ConnectHandler(**self.device) as cisco_conn:
+                cisco_conn.enable()
+                for cmd in command_set:
+                    cisco_conn.send_command(
+                        command_string=cmd[0],
+                        expect_string=cmd[1],
+                        cmd_verify=False,
+                    )
+                cisco_conn.disconnect()
+        except Exception as e:
+            print(
+                f"""Failed to turn device power f{'on' if state else 'off'} for
+                port {self.port_selection_string}. Reason: {e}"""
+            )
+            return "error"
 
     def query_state(self) -> str:
         """
