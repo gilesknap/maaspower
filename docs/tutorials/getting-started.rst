@@ -1,7 +1,7 @@
 How to use MaasPower
 ====================
 
-To use maaspower you will first need to create a configuration file that 
+To use maaspower you will first need to create a configuration file that
 describes the set of devices that you want to control and the webhooks that
 will be supplied to control them.
 
@@ -13,12 +13,12 @@ bare metal machines that you are controlling.
 Configuration
 -------------
 
-An example YAML config file is shown below. This configures the following 
+An example YAML config file is shown below. This configures the following
 devices, which include all device types currently supported
 
-- A SmartThings controlled device, nuc1. 
-- 2 Command line controlled devices pi1, p2. 
-- A Web GUI controlled device, pi5. 
+- A SmartThings controlled device, nuc1.
+- 2 Command line controlled devices pi1, p2.
+- A Web GUI controlled device, pi5.
 
     .. highlight:: yaml
 
@@ -31,7 +31,7 @@ Launch the Web Hook server
 
 Once you have the correct configuration you can launch the server from
 the command line. This assumes you have activated a virtual environment
-with maaspower installed, see `install`.
+with maaspower installed, see `installation`.
 
 It is important to select an appropriate machine to run the Web Hook Server.
 First if there are any usb controlled hubs or other devices that are not
@@ -43,11 +43,11 @@ Use this command::
 
     maaspower run <path to configuration file>
 
-This command will validate your config file against the schema and report 
+This command will validate your config file against the schema and report
 any issues. Schema validation failure will abort the web server.
 
-If you wish to get assistance with the format of the config file you can 
-generate a schema file and use a schema aware editor which will give you 
+If you wish to get assistance with the format of the config file you can
+generate a schema file and use a schema aware editor which will give you
 hints and autocompletion. See `yaml_schema` for details.
 
 Configure MAAS to connect to the webhook
