@@ -45,14 +45,14 @@ def main(
         callback=version_callback,
         is_eager=True,
         help="Print the version of maaspower and exit",
-    )
+    ),
 ):
     """MAAS Power control webhook service"""
 
 
 @cli.command()
 def schema(
-    output: Path = typer.Argument(..., help="The filename to write the schema to")
+    output: Path = typer.Argument(..., help="The filename to write the schema to"),
 ):
     """Produce the JSON global schema for mmaaspower config files"""
     schema = json.dumps(deserialization_schema(MaasConfig), indent=2)
@@ -61,7 +61,7 @@ def schema(
 
 @cli.command()
 def run(
-    config: Path = typer.Argument(..., help="configuration for the webhook server")
+    config: Path = typer.Argument(..., help="configuration for the webhook server"),
 ):
     """Read the configuration file and stand up a web hook server"""
 

@@ -120,7 +120,7 @@ def sequence(elements: List[str]):
     when the command is 'send' the next string in the sequence is the text to
     send to the html element
     """
-    for idx, element in enumerate(elements):
+    for element in elements:
         # separate out the elements of the string
         match = command_regex.match(element)
         if match is None:

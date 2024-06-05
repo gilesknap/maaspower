@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: maaspower
+  title: maaspower
+  description: Power control webhook server for Canonical's MAAS
+spec:
+  type: documentation
+  lifecycle: experimental
+  owner: 

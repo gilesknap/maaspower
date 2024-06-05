@@ -5,25 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
-            "type": "python",
-            "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "app.py",
-                "FLASK_ENV": "development"
-            },
-            "cwd": "${workspaceFolder}/src/maaspower",
-            "args": [
-                "run",
-                "--no-debugger",
-                "--host=0.0.0.0"
-            ],
-            "jinja": true
-        },
-        {
             "name": "Debug Unit Test",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "justMyCode": false,
             "program": "${file}",
@@ -32,10 +15,8 @@
             ],
             "console": "integratedTerminal",
             "env": {
-                // The default config in setup.cfg's "[tool:pytest]" adds coverage.
-                // Cannot have coverage and debugging at the same time.
-                // https://github.com/microsoft/vscode-python/issues/693
-                "PYTEST_ADDOPTS": "--no-cov"
+                // Enable break on exception when debugging tests (see: tests/conftest.py)
+                "PYTEST_RAISE": "1",
             },
         }
     ]
