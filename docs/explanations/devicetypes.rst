@@ -38,12 +38,12 @@ An example configuration for controlling a Kasa smart plug is shown below:
 
 
 This configuration uses the Python-Kasa API to communicate with the plug.
-The `ip_address` should be replaced with the IP address of your Kasa device.
-The `on`, `off`, and `query` commands are examples of how you might invoke
+The 'ip_address' should be replaced with the IP address of your Kasa device.
+The 'on', 'off', and 'query' commands are examples of how you might invoke
 device control through command line interfacing with the Python-Kasa library.
 
 .. note::
-    Ensure that the `python-kasa` library is installed in the environment
+    Ensure that the 'python-kasa' library is installed in the environment
     where your server is running, as it is required for communication
     with Kasa devices.
 

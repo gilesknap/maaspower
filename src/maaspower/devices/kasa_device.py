@@ -9,8 +9,10 @@ and to query its current state.
 
 import asyncio
 from dataclasses import dataclass, field
-from kasa import SmartPlug, SmartDeviceException
-from typing_extensions import Annotated as A, Literal
+from typing import Annotated as A
+from typing import Literal
+
+from kasa import SmartDeviceException, SmartPlug
 
 from maaspower.maas_globals import desc
 from maaspower.maasconfig import SwitchDevice
