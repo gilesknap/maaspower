@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YAML schema &mdash; maaspower 0.7.0+13.gf44cb6e documentation</title>
+  <title>Cisco IOS PoE Switches &mdash; maaspower 0.7.0+13.gf44cb6e documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="UUGear MEGA4 USB Hub" href="mega4.html" />
-    <link rel="prev" title="How to add support for a new API" href="addapi.html" /> 
+    <link rel="next" title="Supported Types of Device Control" href="../explanations/devicetypes.html" />
+    <link rel="prev" title="Netgear GS308EP PoE 8 port switch" href="web_ui.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,11 +60,11 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="addapi.html">How to add support for a new API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">YAML schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edit-yaml.html">YAML schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mega4.html">UUGear MEGA4 USB Hub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taposmartplug.html">TP Link Tapo Smart Plug</a></li>
 <li class="toctree-l1"><a class="reference internal" href="web_ui.html">Netgear GS308EP PoE 8 port switch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ciscoiospoe.html">Cisco IOS PoE Switches</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cisco IOS PoE Switches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul>
@@ -96,9 +96,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">YAML schema</li>
+      <li class="breadcrumb-item active">Cisco IOS PoE Switches</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/how-to/edit-yaml.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/how-to/ciscoiospoe.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -106,34 +106,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="yaml-schema">
-<span id="id1"></span><h1>YAML schema<a class="headerlink" href="#yaml-schema" title="Link to this heading"></a></h1>
-<p>Maaspower provides a schema for its configuration file. If you use a schema
-aware YAML editor then this will use hints and auto completion to help
-create the config.</p>
-<p>You can generate a schema file with the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">masspower</span> <span class="n">schema</span> <span class="o">&lt;</span><span class="n">schema</span> <span class="n">file</span> <span class="n">name</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>You can instruct schema aware editors to use a schema file with the following
-modeline at the start of the YAML file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># yaml-language-server: $schema=https://my.url.to/the/schema</span>
-</pre></div>
-</div>
-<p>Note that local schema files are supported with relative or absolute file names
-(at least in vscode).</p>
-<p>A popular choice for YAML aware editing is vscode.</p>
-<p>Below is a useful discussion on yaml/json schema including how to enable
-schema validated editing of yaml files in vscode.</p>
-<p><a class="reference external" href="https://dev.to/brpaz/how-to-create-your-own-auto-completion-for-json-and-yaml-files-on-vs-code-with-the-help-of-json-schema-k1i">https://dev.to/brpaz/how-to-create-your-own-auto-completion-for-json-and-yaml-files-on-vs-code-with-the-help-of-json-schema-k1i</a></p>
+  <section id="cisco-ios-poe-switches">
+<span id="ciscoiospoehowto"></span><h1>Cisco IOS PoE Switches<a class="headerlink" href="#cisco-ios-poe-switches" title="Link to this heading"></a></h1>
+<p>Maaspower has been tested with specific devices in this
+category. So far, it has only been tested with a Cisco
+Catalyst 2960X 24-port PoE+ switch (WS-C2960X-24PS-L), but
+various Cisco IOS PoE switches should work with it.</p>
+<a class="reference internal image-reference" href="../_images/ciscoiospoeswitch.png"><img alt="A Cisco Catalyst 2960X 24-port PoE+ Network Switch" src="../_images/ciscoiospoeswitch.png" style="width: 600px;" /></a>
+<p>To use this device, ensure SSH authentication is enabled on
+the switch and that maaspower can reach its IP address. You
+will need to either use a privileged user account (such as
+the root account) or create an <code class="docutils literal notranslate"><span class="pre">enable</span></code> password and
+specify it in the maaspower device config YAML.</p>
+<p>Refer to <a class="reference internal" href="../explanations/devicetypes.html#ciscoiospoeconfig"><span class="std std-ref">Cisco IOS PoE Switch Device Control</span></a> for more information and examples
+on configuring a Cisco IOS switch for maaspower.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="addapi.html" class="btn btn-neutral float-left" title="How to add support for a new API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="mega4.html" class="btn btn-neutral float-right" title="UUGear MEGA4 USB Hub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="web_ui.html" class="btn btn-neutral float-left" title="Netgear GS308EP PoE 8 port switch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../explanations/devicetypes.html" class="btn btn-neutral float-right" title="Supported Types of Device Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

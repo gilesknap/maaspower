@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supported Types of Device Control &mdash; maaspower 0.7.0+7.g931fe48 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <title>Supported Types of Device Control &mdash; maaspower 0.7.0+13.gf44cb6e documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=e20ccd95" />
+
+  
     <link rel="shortcut icon" href="../_static/dls-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,14 +18,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=76915a59"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/documentation_options.js?v=80d550bd"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Security" href="security.html" />
-    <link rel="prev" title="Netgear GS308EP PoE 8 port switch" href="../how-to/web_ui.html" /> 
+    <link rel="prev" title="Cisco IOS PoE Switches" href="../how-to/ciscoiospoe.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,6 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../how-to/mega4.html">UUGear MEGA4 USB Hub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/taposmartplug.html">TP Link Tapo Smart Plug</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/web_ui.html">Netgear GS308EP PoE 8 port switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/ciscoiospoe.html">Cisco IOS PoE Switches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul class="current">
@@ -79,6 +82,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-another-web-gui">Working with another Web GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cisco-ios-poe-switch-device-control">Cisco IOS PoE Switch Device Control</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
@@ -128,6 +132,7 @@ examples have their own documentation pages as follows:</p>
 <li><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a> - Command line example</p></li>
 <li><p><a class="reference internal" href="../how-to/mega4.html#mega4"><span class="std std-ref">UUGear MEGA4 USB Hub</span></a> - SmartThings example</p></li>
 <li><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a>  - Web GUI example</p></li>
+<li><p><a class="reference internal" href="../how-to/ciscoiospoe.html#ciscoiospoehowto"><span class="std std-ref">Cisco IOS PoE Switches</span></a> - Cisco IOS PoE switch example</p></li>
 </ul>
 </section>
 <section id="command-line-control">
@@ -338,13 +343,97 @@ report any problems here <a class="reference external" href="https://github.com/
 post any working configurations too (you can do a PR to the docs or
 report in issues).</p>
 </section>
+<section id="cisco-ios-poe-switch-device-control">
+<span id="ciscoiospoeconfig"></span><h2>Cisco IOS PoE Switch Device Control<a class="headerlink" href="#cisco-ios-poe-switch-device-control" title="Link to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/ciscoiospoe.html#ciscoiospoehowto"><span class="std std-ref">Cisco IOS PoE Switches</span></a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This module has been developed against and only tested on a Cisco Catalyst 2960X
+(WS-C2960X-24PS-L) with IOS version 15.2(7)E4.</p>
+</div>
+<p>Cisco IOS PoE switches are controlled using the <a class="reference external" href="https://github.com/ktbyers/netmiko">netmiko</a> library, which
+interfaces with the switch using ssh. This method will manipulate the
+<code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">inline</span></code> configuration option on a switch port interface to turn a
+connected PoE device on or off.</p>
+<p>A YAML configuration example for controlling a Raspberry Pi 4B (PoE powered)
+is shown below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiscoIOSPOESwitch</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rpi_4b_1</span>
+<span class="w">  </span><span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;root&quot;</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123qwe&quot;</span>
+<span class="w">  </span><span class="nt">port_selection_string</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gigabitEthernet</span><span class="nv"> </span><span class="s">1/0/22&quot;</span>
+
+<span class="w">  </span><span class="c1"># Optional parameters</span>
+<span class="w">  </span><span class="c1">#enable_password: &quot;123qwe&quot;</span>
+<span class="w">  </span><span class="c1">#port_poe_watts: 30</span>
+</pre></div>
+</div>
+<p>The above example pertains to a Raspberry Pi 4B, labeled ‘<strong>rpi_4b_1</strong>’’ (with
+PoE HAT), connected to a Cisco Catalyst 2960X PoE switch at switchport
+‘<strong>gigabitEthernet 1/0/22</strong>’. The Cisco switch hosts SSH accessible at IP
+‘<strong>10.0.0.1</strong>’. Maaspower will establish an SSH connection to the switch
+utilizing the credentials ‘<strong>root</strong>’/’<strong>123qwe</strong>’. No specific PoE budget is
+necessary, hence the <code class="docutils literal notranslate"><span class="pre">port_poe_watts</span></code> parameter remains unset. Given the
+privileged status of the root user account, no enablement is required, rendering
+the <code class="docutils literal notranslate"><span class="pre">enable_password</span></code> unset.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Parameter</strong></p></td>
+<td><p><strong>Required</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Class/type of device controlling the
+endpoint device</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Logical device name for server connected
+to the Cisco switch port</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ip_address</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>IP address of the Cisco IOS PoE switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">username</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Username for the Cisco IOS PoE switch</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Password for the Cisco IOS PoE switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">port_selection_string</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Port selection for the target device
+connected to the switch in Cisco format</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable_password</span></code></p></td>
+<td><p>N</p></td>
+<td><p>Enable/secret password for escalating
+privileges on the Cisco switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">port_poe_watts</span></code></p></td>
+<td><p>N</p></td>
+<td><p>Power budget (in watts) for the target
+Cisco switch port</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../how-to/web_ui.html" class="btn btn-neutral float-left" title="Netgear GS308EP PoE 8 port switch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../how-to/ciscoiospoe.html" class="btn btn-neutral float-left" title="Cisco IOS PoE Switches" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
