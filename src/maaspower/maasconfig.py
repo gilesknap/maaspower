@@ -14,13 +14,14 @@ manager devices for which to serve web hooks.
 
 import re
 from abc import ABC, abstractmethod
+from collections.abc import Mapping, Sequence
 from copy import deepcopy
 from dataclasses import dataclass, fields
-from typing import Any, ClassVar, Dict, Mapping, Optional, Sequence, Type
+from typing import Annotated as A
+from typing import Any, ClassVar
 
 from apischema import deserialize, identity
 from apischema.conversions import Conversion, deserializer
-from typing_extensions import Annotated as A
 from typing_extensions import override
 
 from .maas_globals import MaasResponse, T, desc
@@ -85,7 +86,7 @@ class SwitchDevice(ABC):
 
         return result
 
-    def do_command(self, command) -> Optional[str]:
+    def do_command(self, command) -> str | None:
         result = None
 
         if command == "on":
@@ -161,10 +162,10 @@ class MaasConfig:
     ]
 
     # this is a classvar to stop it appearing in the schema
-    _devices: ClassVar[Dict[str, SwitchDevice]] = {}
+    _devices: ClassVar[dict[str, SwitchDevice]] = {}
 
     @classmethod
-    def deserialize(cls: Type[T], d: Mapping[str, Any]) -> T:
+    def deserialize(cls: type[T], d: Mapping[str, Any]) -> T:
         config: Any = deserialize(cls, d)
         # create indexed list of devices
         config._devices = {device.name: device for device in config.devices}

@@ -5,14 +5,13 @@ import re
 from dataclasses import dataclass
 from enum import Enum
 from time import sleep
-from typing import Optional, Tuple
+from typing import Annotated as A
+from typing import Literal
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from typing_extensions import Annotated as A
-from typing_extensions import Literal
 
 from maaspower.maas_globals import desc
 from maaspower.maasconfig import RegexSwitchDevice
@@ -108,9 +107,7 @@ class WebGui(RegexSwitchDevice):
                 # abort remaining commands when failed retry times
                 return
 
-    def process_arguments(
-        self, by_str: str, value: str
-    ) -> Tuple[str, str, Optional[int]]:
+    def process_arguments(self, by_str: str, value: str) -> tuple[str, str, int | None]:
         # convert our short fieldtype string to the full selenium string
         by = FindBy[by_str].value
 

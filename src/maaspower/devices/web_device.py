@@ -2,10 +2,8 @@
 # https://chromedriver.storage.googleapis.com/index.html?path=100.0.4896.20/
 
 from dataclasses import dataclass
-from typing import Optional, cast
-
-from typing_extensions import Annotated as A
-from typing_extensions import Literal
+from typing import Annotated as A
+from typing import Literal, cast
 
 from maaspower.maas_globals import desc
 from maaspower.maasconfig import MaasConfig, SwitchDevice
@@ -28,8 +26,8 @@ class WebDevice(SwitchDevice):
     # this gets called after the dataclass __init__
     def __post_init__(self):
         self.webgui_name = self.name.split("-")[0]
-        self.maas_config: Optional[MaasConfig] = None
-        self.web_ui: Optional[WebGui] = None
+        self.maas_config: MaasConfig | None = None
+        self.web_ui: WebGui | None = None
 
     def validate_command(self, command: str):
         # discover which WebGui we are associated with (name = WebGuiName-CommandName)

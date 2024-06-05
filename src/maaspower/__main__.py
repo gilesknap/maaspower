@@ -39,7 +39,8 @@ def version_callback(value: bool):
 
 @cli.callback()
 def main(
-    version: Optional[bool] = typer.Option(
+    # typer does not yet support 'bool | None' type hints
+    version: Optional[bool] = typer.Option(  # noqa E252
         None,
         "--version",
         callback=version_callback,
