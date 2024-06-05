@@ -23,7 +23,7 @@ async def switch():
             print("found device: ", device.device_id, device.name, device.label)
             if device.device_id == device_id or device_id == "":
                 await device.status.refresh()
-                print(" device status is :" + device.status.values.get("switch",""))
+                print(" device status is :" + device.status.values.get("switch", ""))
 
 
 asyncio.run(switch())

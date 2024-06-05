@@ -10,6 +10,7 @@ examples have their own documentation pages as follows:
 - `TP Link Tapo Smart Plug<tapo>` - Command line example
 - `UUGear MEGA4 USB Hub<mega4>` - SmartThings example
 - `Netgear GS803EP PoE 8 port switch<netgear>`  - Web GUI example
+- `Cisco IOS PoE Switches<ciscoiospoehowto>` - Cisco IOS PoE switch example
 
 
 
@@ -254,5 +255,66 @@ If you are brave enough to create your own config for a new device, please
 report any problems here https://github.com/gilesknap/maaspower/issues. Also
 post any working configurations too (you can do a PR to the docs or 
 report in issues).
+
+.. _ciscoiospoeconfig:
+
+Cisco IOS PoE Switch Device Control
+-----------------------------------
+
+:example:
+    `Cisco IOS PoE Switches<ciscoiospoehowto>`
+
+.. warning::
+    This module has been developed against and only tested on a Cisco Catalyst 2960X
+    (WS-C2960X-24PS-L) with IOS version 15.2(7)E4.
+
+Cisco IOS PoE switches are controlled using the `netmiko`_ library, which
+interfaces with the switch using ssh. This method will manipulate the
+``power inline`` configuration option on a switch port interface to turn a
+connected PoE device on or off.
+
+.. _netmiko: https://github.com/ktbyers/netmiko
+
+A YAML configuration example for controlling a Raspberry Pi 4B (PoE powered)
+is shown below:
+
+.. code-block:: yaml
+
+    - type: CiscoIOSPOESwitch
+      name: rpi_4b_1
+      ip_address: 10.0.0.1
+      username: "root"
+      password: "123qwe"
+      port_selection_string: "gigabitEthernet 1/0/22"
+
+      # Optional parameters
+      #enable_password: "123qwe"
+      #port_poe_watts: 30
+
+The above example pertains to a Raspberry Pi 4B, labeled '**rpi_4b_1**'' (with 
+PoE HAT), connected to a Cisco Catalyst 2960X PoE switch at switchport
+'**gigabitEthernet 1/0/22**'. The Cisco switch hosts SSH accessible at IP
+'**10.0.0.1**'. Maaspower will establish an SSH connection to the switch
+utilizing the credentials '**root**'/'**123qwe**'. No specific PoE budget is
+necessary, hence the ``port_poe_watts`` parameter remains unset. Given the
+privileged status of the root user account, no enablement is required, rendering
+the ``enable_password`` unset.
+
+========================= ============ ========================================
+**Parameter**             **Required** **Description**
+``type``                  Y            Class/type of device controlling the
+                                       endpoint device
+``name``                  Y            Logical device name for server connected
+                                       to the Cisco switch port
+``ip_address``            Y            IP address of the Cisco IOS PoE switch
+``username``              Y            Username for the Cisco IOS PoE switch
+``password``              Y            Password for the Cisco IOS PoE switch
+``port_selection_string`` Y            Port selection for the target device
+                                       connected to the switch in Cisco format
+``enable_password``       N            Enable/secret password for escalating
+                                       privileges on the Cisco switch
+``port_poe_watts``        N            Power budget (in watts) for the target
+                                       Cisco switch port
+========================= ============ ========================================
 
 

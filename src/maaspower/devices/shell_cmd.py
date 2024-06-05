@@ -7,6 +7,7 @@ that can be controlled via a command line utility.
 
 e.g. smart power switching usb hubs https://github.com/mvp/uhubctl
 """
+
 import subprocess
 from dataclasses import dataclass
 

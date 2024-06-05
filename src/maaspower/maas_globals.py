@@ -4,6 +4,7 @@ globals.py
 
 A few global defintions
 """
+
 from enum import Enum
 from typing import Any, TypeVar
 

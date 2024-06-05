@@ -42,16 +42,13 @@ class SwitchDevice(ABC):
 
     # command functions to be implemented in the derived classes
     @abstractmethod
-    def turn_on(self) -> None:
-        ...
+    def turn_on(self) -> None: ...
 
     @abstractmethod
-    def turn_off(self) -> None:
-        ...
+    def turn_off(self) -> None: ...
 
     @abstractmethod
-    def query_state(self) -> str:
-        ...
+    def query_state(self) -> str: ...
 
     def __post_init__(self):
         # allow regular expressions for names but if the name is an

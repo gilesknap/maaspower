@@ -7,6 +7,7 @@ that can be controlled via the SmartThings API.
 
 See https://www.smartthings.com/
 """
+
 import asyncio
 from dataclasses import dataclass
 
