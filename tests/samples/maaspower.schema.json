@@ -287,6 +287,29 @@
               "port_selection_string"
             ],
             "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the switching device."
+              },
+              "ip_address": {
+                "type": "string",
+                "description": "The IP address of the Kasa device."
+              },
+              "type": {
+                "type": "string",
+                "const": "KasaDevice",
+                "default": "KasaDevice"
+              }
+            },
+            "required": [
+              "name",
+              "ip_address"
+            ],
+            "additionalProperties": false
           }
         ]
       },
