@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Supported Types of Device Control &#8212; maaspower 0.8.0b3.dev1+gf507091 documentation</title>
+    <title>Supported Types of Device Control &#8212; maaspower 0.8.0b2.dev1+g92647c2 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script src="../_static/documentation_options.js?v=c91960c9"></script>
+    <script src="../_static/documentation_options.js?v=9e881239"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -495,49 +495,14 @@ document.write(`
 <h1>Supported Types of Device Control<a class="headerlink" href="#supported-types-of-device-control" title="Link to this heading">#</a></h1>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
-<p>This project has been tested against several power control devices. These specific examples have their own documentation pages as follows:</p>
+<p>This project has been tested against 3 power control devices. These specific
+examples have their own documentation pages as follows:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP-Link Tapo Smart Plug</span></a> - Command line example</p></li>
+<li><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a> - Command line example</p></li>
 <li><p><a class="reference internal" href="../how-to/mega4.html#mega4"><span class="std std-ref">UUGear MEGA4 USB Hub</span></a> - SmartThings example</p></li>
 <li><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a>  - Web GUI example</p></li>
 <li><p><a class="reference internal" href="../how-to/ciscoiospoe.html#ciscoiospoehowto"><span class="std std-ref">Cisco IOS PoE Switches</span></a> - Cisco IOS PoE switch example</p></li>
-<li><p><a class="reference internal" href="../how-to/kasasmartplug.html#kasa"><span class="std std-ref">TP-Link Kasa Smart Plug</span></a> - Python-Kasa API example</p></li>
 </ul>
-</section>
-<section id="kasa-device-control">
-<h2>Kasa Device Control<a class="headerlink" href="#kasa-device-control" title="Link to this heading">#</a></h2>
-<dl class="field-list simple">
-<dt class="field-odd">example<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../how-to/kasasmartplug.html#kasa"><span class="std std-ref">TP-Link Kasa Smart Plug</span></a></p>
-</dd>
-</dl>
-<p>Kasa devices are controlled using the Python-Kasa library which interfaces
-with TP-Link Kasa smart devices over the network. This method involves
-asynchronous communication with devices to execute actions like turning
-on or off and querying their current state.</p>
-<p>An example configuration for controlling a Kasa smart plug is shown below:</p>
-<dl class="field-list simple">
-<dt class="field-odd">example yaml<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KasaDevice</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server01_plug</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ip_address</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.100</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">kasa</span><span class="nv"> </span><span class="s">--host</span><span class="nv"> </span><span class="s">192.168.1.100</span><span class="nv"> </span><span class="s">on&quot;</span>
-<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">kasa</span><span class="nv"> </span><span class="s">--host</span><span class="nv"> </span><span class="s">192.168.1.100</span><span class="nv"> </span><span class="s">off&quot;</span>
-<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">kasa</span><span class="nv"> </span><span class="s">--host</span><span class="nv"> </span><span class="s">192.168.1.100</span><span class="nv"> </span><span class="s">state&quot;</span>
-</pre></div>
-</div>
-<p>This configuration uses the Python-Kasa API to communicate with the plug.
-The ‘ip_address’ should be replaced with the IP address of your Kasa device.
-The ‘on’, ‘off’, and ‘query’ commands are examples of how you might invoke
-device control through command line interfacing with the Python-Kasa library.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Ensure that the ‘python-kasa’ library is installed in the environment
-where your server is running, as it is required for communication
-with Kasa devices.</p>
-</div>
 </section>
 <section id="command-line-control">
 <h2>Command Line Control<a class="headerlink" href="#command-line-control" title="Link to this heading">#</a></h2>
@@ -881,7 +846,6 @@ Cisco switch port</p></td>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kasa-device-control">Kasa Device Control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-control">Command Line Control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smartthings-control">SmartThings Control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-gui-control">Web GUI Control</a><ul class="nav section-nav flex-column">
