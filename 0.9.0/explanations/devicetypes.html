@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Supported Types of Device Control &#8212; maaspower 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'explanations/devicetypes';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gilesknap.github.io/maaspower/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.9.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/dls-logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Purpose of this Package" href="purpose.html" />
+    <link rel="prev" title="2. Adopt python-copier-template for project structure" href="decisions/0002-switched-to-python-copier-template.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dls-logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/dls-logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">maaspower</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../how-to.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="../explanations.html">
+    Explanations
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../reference.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/gilesknap/maaspower" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/maaspower" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fas fa-cube fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../how-to.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="../explanations.html">
+    Explanations
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../reference.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/gilesknap/maaspower" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/maaspower" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fas fa-cube fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="decisions.html">Architectural Decision Records</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="decisions/0001-record-architecture-decisions.html">1. Record architecture decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisions/0002-switched-to-python-copier-template.html">2. Adopt python-copier-template for project structure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Supported Types of Device Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose of this Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO: Outstanding Work</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../explanations.html" class="nav-link">Explanations</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Supported...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="supported-types-of-device-control">
+<h1>Supported Types of Device Control<a class="headerlink" href="#supported-types-of-device-control" title="Link to this heading">#</a></h1>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>This project has been tested against several power control devices. These specific examples have their own documentation pages as follows:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP-Link Tapo Smart Plug</span></a> - Command line example</p></li>
+<li><p><a class="reference internal" href="../how-to/mega4.html#mega4"><span class="std std-ref">UUGear MEGA4 USB Hub</span></a> - SmartThings example</p></li>
+<li><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a>  - Web GUI example</p></li>
+<li><p><a class="reference internal" href="../how-to/ciscoiospoe.html#ciscoiospoehowto"><span class="std std-ref">Cisco IOS PoE Switches</span></a> - Cisco IOS PoE switch example</p></li>
+<li><p><a class="reference internal" href="../how-to/kasasmartplug.html#kasa"><span class="std std-ref">TP-Link Kasa Smart Plug</span></a> - Python-Kasa API example</p></li>
+</ul>
+</section>
+<section id="kasa-device-control">
+<h2>Kasa Device Control<a class="headerlink" href="#kasa-device-control" title="Link to this heading">#</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/kasasmartplug.html#kasa"><span class="std std-ref">TP-Link Kasa Smart Plug</span></a></p>
+</dd>
+</dl>
+<p>Kasa devices are controlled using the Python-Kasa library which interfaces
+with TP-Link Kasa smart devices over the network. This method involves
+asynchronous communication with devices to execute actions like turning
+on or off and querying their current state.</p>
+<p>An example configuration for controlling a Kasa smart plug is shown below:</p>
+<dl class="field-list simple">
+<dt class="field-odd">example yaml<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KasaDevice</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server01_plug</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ip_address</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.100</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">kasa</span><span class="nv"> </span><span class="s">--host</span><span class="nv"> </span><span class="s">192.168.1.100</span><span class="nv"> </span><span class="s">on&quot;</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">kasa</span><span class="nv"> </span><span class="s">--host</span><span class="nv"> </span><span class="s">192.168.1.100</span><span class="nv"> </span><span class="s">off&quot;</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">-m</span><span class="nv"> </span><span class="s">kasa</span><span class="nv"> </span><span class="s">--host</span><span class="nv"> </span><span class="s">192.168.1.100</span><span class="nv"> </span><span class="s">state&quot;</span>
+</pre></div>
+</div>
+<p>This configuration uses the Python-Kasa API to communicate with the plug.
+The ‘ip_address’ should be replaced with the IP address of your Kasa device.
+The ‘on’, ‘off’, and ‘query’ commands are examples of how you might invoke
+device control through command line interfacing with the Python-Kasa library.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that the ‘python-kasa’ library is installed in the environment
+where your server is running, as it is required for communication
+with Kasa devices.</p>
+</div>
+</section>
+<section id="command-line-control">
+<h2>Command Line Control<a class="headerlink" href="#command-line-control" title="Link to this heading">#</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a></p>
+</dd>
+</dl>
+<p>The simplest form of control is to execute a command line utility. Clearly
+the command tool needs to be installed on the machine running the webhook
+server, the server account needs permission to run it and the tool must
+be able to contact the device from the server.</p>
+<p>A common example for RPI power is a switchable USB hub. Most of these can be
+controlled by the uhubctl command line tool.
+(see <a class="github reference external" href="https://github.com/mvp/uhubctl">mvp/uhubctl</a>).</p>
+<p>Using uhubctl implies that the hub in question is plugged into a USB port
+on the webhook server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">example yaml<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLine</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 1 -p 2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -a 0 -p 2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uhubctl -p 2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_on_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*power$</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query_off_regex</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*off$</span>
+</pre></div>
+</div>
+</section>
+<section id="smartthings-control">
+<h2>SmartThings Control<a class="headerlink" href="#smartthings-control" title="Link to this heading">#</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/taposmartplug.html#tapo"><span class="std std-ref">TP Link Tapo Smart Plug</span></a></p>
+</dd>
+</dl>
+<p>SmartThings are IoT devices
+which are controlled using a SmartThing api token and SmartThing device
+ID. Once you have set up a SmartThing and tested it via the associated
+App you will be able to discover your device ID via the App. You can get
+your api token by logging in here: <a class="reference external" href="https://account.smartthings.com/login">https://account.smartthings.com/login</a>.</p>
+<p>Note that the ip_address of 0.0.0.0 tells the server to listen on all
+interfaces on the machine on which it is running. Instead one could
+supply the IP of a single NIC or for best security use 127.0.0.1, meaning
+that only processes on the same machine will have access (in this cases
+you would run the webhook server on the maas rack server).</p>
+<p>SmartThing commands for switch devices will usually take the exact same form
+as in the above example. Command line devices will just take a command line
+to execute in the shell.</p>
+<p>In all cases the response from the query command is passed through a regex search
+and will return ‘on’ if the the response matches query_on_regex and ‘off’ it
+matches query_off_regex. Note that the defaults for these regex are ‘on’ and
+‘off’ which is what SmartThing devices will return in the switch
+status field by default. This is why the nuc1 example is not required to
+specify query_on_regex, query_off_regex.</p>
+<p>Note that the query response which goes to MAAS is converted to
+MAAS default values and hence no configuration of regex in
+MAAS itself are required.</p>
+<p>example yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SmartThingDevice</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nuc1</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># token and id redacted</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">api_token</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THINGS_API_TOKEN</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">device_id</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_SMART_THING_DEVICE_ID</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">off</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch off</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main switch on</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch</span>
+</pre></div>
+</div>
+</section>
+<section id="web-gui-control">
+<h2>Web GUI Control<a class="headerlink" href="#web-gui-control" title="Link to this heading">#</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/web_ui.html#netgear"><span class="std std-ref">Netgear GS803EP PoE 8 port switch</span></a></p>
+</dd>
+</dl>
+<p>For those power control devices that are configured by a web UI only, I provide
+a Web Scraping device type. This uses the python selenium library to
+click buttons and send text to forms on any Web UI. Defining the correct
+sequence should allow you to login to any Web GUI and control it.</p>
+<section id="per-control-device-configuration">
+<h3>Per Control Device Configuration<a class="headerlink" href="#per-control-device-configuration" title="Link to this heading">#</a></h3>
+<p>For this device type there are two types of entry. First is the global entry
+where you configure how to connect/disconnect to/from each device. (i.e.
+if you had 2 PoE switches you would have 2 of these)</p>
+<p>example WebGui yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebGui</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">connect_url</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://GS308EP_IP_ADDRESS</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/giles/work/maaspower/utils/chromedriver</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">login</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">sendcr/cls/pwd-field-text/PASSWORD_GOES_HERE</span>
+<span class="w">        </span><span class="no">click/link/POE</span>
+<span class="w">    </span><span class="nt">logout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">click/cls/src-views-header-nav-icon-button</span>
+<span class="w">        </span><span class="no">click/cls/icon-logout</span>
+<span class="w">        </span><span class="no">click/id/modal_footer_button_primary</span>
+</pre></div>
+</div>
+<p>You will need the chromedriver for selenium for this to work. Download from
+here (pick one that matches your Chrome version):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://chromedriver.storage.googleapis.com/index.html">https://chromedriver.storage.googleapis.com/index.html</a></p></li>
+</ul>
+<p>The configuration ‘driver:’ needs to point at the downloaded file. ‘timeout:’
+should be the max time taken for any transitions in the click sequences you
+specify.</p>
+<p>‘login:’ and ‘logout’: specify the sequence of clicks to perform these two
+tasks.</p>
+<p>The configuration strings are ‘/’ separated fields as follows:</p>
+<section id="commands">
+<h4>Commands<a class="headerlink" href="#commands" title="Link to this heading">#</a></h4>
+<dl class="simple">
+<dt>:click/…</dt><dd><p>clicks on the specified HTML Element</p>
+</dd>
+<dt>send/…/text_to_send</dt><dd><p>sends text to a specified HTML Element</p>
+</dd>
+<dt>sendcr/…/text_to_send</dt><dd><p>sends text plus carriage return to a specified HTML Element</p>
+</dd>
+<dt>get/…</dt><dd><p>gets the text from a specified HTML Element</p>
+</dd>
+<dt>delay/n</dt><dd><p>pauses for n seconds (floating point supported)</p>
+</dd>
+</dl>
+</section>
+<section id="field-identifiers">
+<h4>Field Identifiers<a class="headerlink" href="#field-identifiers" title="Link to this heading">#</a></h4>
+<p>The second and third parts of the / separated strings identify the HTML
+Element to target:</p>
+<dl class="simple">
+<dt>n/value</dt><dd><p>finds the fields whose name is ‘value’</p>
+</dd>
+<dt>cls/value</dt><dd><p>finds the fields whose class is ‘value’</p>
+</dd>
+<dt>link/value</dt><dd><p>find the fields with link contents specified by a partial match on ‘value’</p>
+</dd>
+<dt>id/value</dt><dd><p>find the fields whose id is ‘value’</p>
+</dd>
+</dl>
+<p>NOTE: in all cases if more than one field is matched you can index it like this:</p>
+<blockquote>
+<div><p>command/match_type/value[n]</p>
+</div></blockquote>
+<p>Where n is the 0 based index into the list of fields.</p>
+<p>NOTE: in all cases the code will wait for the specified field to be seen
+if it cannot immediately be seen.
+‘timeout’ specifies the maximum wait time before an error.</p>
+<p>When the web scraper detects an error it will execute the logout script
+(ignoring errors) followed by the login script and try again. This has
+been shown to successfully recover on the GS308EP when it has timed out
+due to inactivity and gone back to the login screen.</p>
+</section>
+</section>
+<section id="id1">
+<h3>Per Control Device Configuration<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>For each computer that you want to power control you will need an additional
+entry like the following example. On, Off and Query use the same syntax as
+described above.</p>
+<p>Note that the name has the entry above’s name followed by a computer name
+separated by ‘-’ this is important as it associates this entry with the
+correct Web Device. Only one instance of the selenium driver is loaded
+per web device and can control any number of target PCs.</p>
+<p>The _regex parameters are regular expressions which will try to match
+the text returned from the final get in the query sequence. If there is
+a match it will return on or off to MAAS, or an error if there is none.</p>
+<p>example WebDevice yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebDevice</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GS308EP-pi5</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">click/n/isShowPot3</span>
+<span class="w">        </span><span class="no">click/n/editPot3</span>
+<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span>
+<span class="w">        </span><span class="no">click/link/Enable</span>
+<span class="w">        </span><span class="no">click/n/submitPotedit</span>
+<span class="w">    </span><span class="nt">off</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">click/n/isShowPot3</span>
+<span class="w">        </span><span class="no">click/n/editPot3</span>
+<span class="w">        </span><span class="no">click/cls/poePortPwrTxt</span>
+<span class="w">        </span><span class="no">click/link/Disable</span>
+<span class="w">        </span><span class="no">click/n/submitPotedit</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">delay/5</span>
+<span class="w">        </span><span class="no">get/cls/portPwr[2]</span>
+<span class="w">    </span><span class="nt">query_on_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable</span>
+<span class="w">    </span><span class="nt">query_off_regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="working-with-another-web-gui">
+<h2>Working with another Web GUI<a class="headerlink" href="#working-with-another-web-gui" title="Link to this heading">#</a></h2>
+<p>This has been tested with the Netgear GS3008EP. I have tried to make a generic
+DSL that allows for most possible sequences of Web Element interactions, but
+YMMV.</p>
+<p>To experiment with the approach and develop your own command sequences for
+this device type see the python script here:
+<a class="github reference external" href="https://github.com/gilesknap/maaspower/blob/main/utils/webuitest.py">gilesknap/maaspower</a>
+You can launch this script interactively with iPython and experiment with
+your device to get the right sequence of commands to turn devices on/off and
+query their state. See the comments in the file for details.</p>
+<p>If you are brave enough to create your own config for a new device, please
+report any problems here <a class="github reference external" href="https://github.com/gilesknap/maaspower/issues">gilesknap/maaspower#issues</a>. Also
+post any working configurations too (you can do a PR to the docs or
+report in issues).</p>
+</section>
+<section id="cisco-ios-poe-switch-device-control">
+<span id="ciscoiospoeconfig"></span><h2>Cisco IOS PoE Switch Device Control<a class="headerlink" href="#cisco-ios-poe-switch-device-control" title="Link to this heading">#</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">example<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../how-to/ciscoiospoe.html#ciscoiospoehowto"><span class="std std-ref">Cisco IOS PoE Switches</span></a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This module has been developed against and only tested on a Cisco Catalyst 2960X
+(WS-C2960X-24PS-L) with IOS version 15.2(7)E4.</p>
+</div>
+<p>Cisco IOS PoE switches are controlled using the <a class="reference external" href="https://github.com/ktbyers/netmiko">netmiko</a> library, which
+interfaces with the switch using ssh. This method will manipulate the
+<code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">inline</span></code> configuration option on a switch port interface to turn a
+connected PoE device on or off.</p>
+<p>A YAML configuration example for controlling a Raspberry Pi 4B (PoE powered)
+is shown below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiscoIOSPOESwitch</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rpi_4b_1</span>
+<span class="w">  </span><span class="nt">ip_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;root&quot;</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123qwe&quot;</span>
+<span class="w">  </span><span class="nt">port_selection_string</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gigabitEthernet</span><span class="nv"> </span><span class="s">1/0/22&quot;</span>
+
+<span class="w">  </span><span class="c1"># Optional parameters</span>
+<span class="w">  </span><span class="c1">#enable_password: &quot;123qwe&quot;</span>
+<span class="w">  </span><span class="c1">#port_poe_watts: 30</span>
+</pre></div>
+</div>
+<p>The above example pertains to a Raspberry Pi 4B, labeled ‘<strong>rpi_4b_1</strong>’’ (with
+PoE HAT), connected to a Cisco Catalyst 2960X PoE switch at switchport
+‘<strong>gigabitEthernet 1/0/22</strong>’. The Cisco switch hosts SSH accessible at IP
+‘<strong>10.0.0.1</strong>’. Maaspower will establish an SSH connection to the switch
+utilizing the credentials ‘<strong>root</strong>’/’<strong>123qwe</strong>’. No specific PoE budget is
+necessary, hence the <code class="docutils literal notranslate"><span class="pre">port_poe_watts</span></code> parameter remains unset. Given the
+privileged status of the root user account, no enablement is required, rendering
+the <code class="docutils literal notranslate"><span class="pre">enable_password</span></code> unset.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>Parameter</strong></p></td>
+<td><p><strong>Required</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Class/type of device controlling the
+endpoint device</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Logical device name for server connected
+to the Cisco switch port</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ip_address</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>IP address of the Cisco IOS PoE switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">username</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Username for the Cisco IOS PoE switch</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Password for the Cisco IOS PoE switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">port_selection_string</span></code></p></td>
+<td><p>Y</p></td>
+<td><p>Port selection for the target device
+connected to the switch in Cisco format</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable_password</span></code></p></td>
+<td><p>N</p></td>
+<td><p>Enable/secret password for escalating
+privileges on the Cisco switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">port_poe_watts</span></code></p></td>
+<td><p>N</p></td>
+<td><p>Power budget (in watts) for the target
+Cisco switch port</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="decisions/0002-switched-to-python-copier-template.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2. Adopt python-copier-template for project structure</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="purpose.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Purpose of this Package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kasa-device-control">Kasa Device Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-control">Command Line Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smartthings-control">SmartThings Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-gui-control">Web GUI Control</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#per-control-device-configuration">Per Control Device Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#commands">Commands</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#field-identifiers">Field Identifiers</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Per Control Device Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-another-web-gui">Working with another Web GUI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cisco-ios-poe-switch-device-control">Cisco IOS PoE Switch Device Control</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/gilesknap/maaspower/edit/0.9.0/docs/explanations/devicetypes.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/explanations/devicetypes.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
