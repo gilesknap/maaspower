@@ -7,10 +7,10 @@ that can be controlled via Cisco IOS shell commands.
 """
 
 from dataclasses import dataclass
+from typing import Annotated as A
+from typing import Literal
 
 from netmiko import ConnectHandler
-from typing_extensions import Annotated as A
-from typing_extensions import Literal
 
 from maaspower.maas_globals import desc
 from maaspower.maasconfig import SwitchDevice
