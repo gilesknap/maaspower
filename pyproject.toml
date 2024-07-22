@@ -23,7 +23,7 @@ dependencies = [
     "jsonschema",
     "importlib_resources",
     "selenium",
-    "netmiko==4.3.0",
+    "netmiko==4.4.0",
     "python-kasa>=0.4.0",
 ] # Add project dependencies here, e.g. ["click", "numpy"]
 dynamic = ["version"]
