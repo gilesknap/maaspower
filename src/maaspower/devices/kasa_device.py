@@ -23,15 +23,12 @@ class KasaDevice(SwitchDevice):
     ip_address: A[str, desc("The IP address of the Kasa device.")]
     type: Literal["KasaDevice"] = "KasaDevice"
     name: A[str, desc("The name of the switching device.")]
-    plug: SmartPlug = field(
-        init=False
-    )  # The SmartPlug instance is initialized in __post_init__.
 
     def __post_init__(self):
         """Initialize the smart plug with the provided IP address
         after the object is instantiated."""
         super().__post_init__()
-        self.plug = SmartPlug(self.ip_address)
+        # self.plug = SmartPlug(self.ip_address)
 
     def turn_on(self) -> None:
         """Asynchronously turn the smart plug on using a coroutine
@@ -41,9 +38,10 @@ class KasaDevice(SwitchDevice):
     async def _turn_on(self):
         """Private coroutine to turn the smart plug on, catching
         and logging any exceptions."""
+        plug = SmartPlug(self.ip_address)
         try:
-            await self.plug.update()
-            await self.plug.turn_on()
+            await plug.update()
+            await plug.turn_on()
         except SmartDeviceException as e:
             print(f"Failed to turn on the smart plug at {self.ip_address}: {str(e)}")
 
@@ -55,9 +53,10 @@ class KasaDevice(SwitchDevice):
     async def _turn_off(self):
         """Private coroutine to turn the smart plug off, catching
         and logging any exceptions."""
+        plug = SmartPlug(self.ip_address)
         try:
-            await self.plug.update()
-            await self.plug.turn_off()
+            await plug.update()
+            await plug.turn_off()
         except SmartDeviceException as e:
             print(f"Failed to turn off the smart plug at {self.ip_address}: {str(e)}")
 
@@ -69,9 +68,10 @@ class KasaDevice(SwitchDevice):
     async def _query_state(self) -> str:
         """Private coroutine to query the state of the smart plug,
         returning 'on', 'off', or 'error' if an exception occurs."""
+        plug = SmartPlug(self.ip_address)
         try:
-            await self.plug.update()
-            return "on" if self.plug.is_on else "off"
+            await plug.update()
+            return "on" if plug.is_on else "off"
         except SmartDeviceException as e:
             print(
                 f"Failed to query state of the smart plug \
