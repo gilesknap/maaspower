@@ -8,7 +8,7 @@ and to query its current state.
 """
 
 import asyncio
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Annotated as A
 from typing import Literal
 
