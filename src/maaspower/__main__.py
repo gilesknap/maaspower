@@ -66,7 +66,7 @@ def schema(
 def run(
     config: Path = typer.Argument(..., help="configuration for the webhook server"),
 ):
-    """Read the configuration file and stand up a web hook server"""
+    """Read the configuration file and stand up a web hook server."""
 
     config_dict = YAML().load(config)
     schema_config = deserialization_schema(MaasConfig)
