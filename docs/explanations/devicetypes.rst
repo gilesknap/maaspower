@@ -351,5 +351,3 @@ the ``enable_password`` unset.
 ``port_poe_watts``        N            Power budget (in watts) for the target
                                        Cisco switch port
 ========================= ============ ========================================
-
-

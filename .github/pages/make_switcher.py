@@ -1,3 +1,5 @@
+"""Make switcher.json to allow docs to switch between different versions."""
+
 import json
 import logging
 from argparse import ArgumentParser
@@ -6,6 +8,7 @@ from subprocess import CalledProcessError, check_output
 
 
 def report_output(stdout: bytes, label: str) -> list[str]:
+    """Print and return something received frm stdout."""
     ret = stdout.decode().strip().split("\n")
     print(f"{label}: {ret}")
     return ret
@@ -52,14 +55,12 @@ def get_versions(ref: str, add: str | None) -> list[str]:
     return versions
 
 
-def write_json(path: Path, repository: str, versions: str):
+def write_json(path: Path, repository: str, versions: list[str]):
+    """Write the JSON switcher to path."""
     org, repo_name = repository.split("/")
-    pages_url = f"https://{org}.github.io"
-    if repo_name != f"{org}.github.io":
-        # Only add the repo name if it isn't the source for the org pages site
-        pages_url += f"/{repo_name}"
     struct = [
-        {"version": version, "url": f"{pages_url}/{version}/"} for version in versions
+        {"version": version, "url": f"https://{org}.github.io/{repo_name}/{version}/"}
+        for version in versions
     ]
     text = json.dumps(struct, indent=2)
     print(f"JSON switcher:\n{text}")
@@ -67,6 +68,7 @@ def write_json(path: Path, repository: str, versions: str):
 
 
 def main(args=None):
+    """Parse args and write switcher."""
     parser = ArgumentParser(
         description="Make a versions.json file from gh-pages directories"
     )

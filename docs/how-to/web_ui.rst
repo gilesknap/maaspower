@@ -29,12 +29,3 @@ way e.g.
 .. image:: ../images/poehat.png
   :width: 400
   :alt: PoE
-
-
-
-
-
-
-
-
-

@@ -17,6 +17,9 @@ basic_auth = BasicAuth(app)
 
 @app.route("/")
 def hello():
+    """
+    Test root endpoint
+    """
     return "MAAS Power Web Hooks Server"
 
 

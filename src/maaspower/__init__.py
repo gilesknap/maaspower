@@ -3,13 +3,15 @@ maaspower package
 =================
 """
 
-from importlib.metadata import version
+"""Top level API.
 
-from . import maasconfig, webhook
+.. data:: __version__
+    :type: str
 
-__version__ = version("maaspower")
-del version
+    Version number as calculated by https://github.com/pypa/setuptools_scm
+"""
 
+from ._version import __version__  # noqa: E402
 
 # __all__ defines the public API for the package.
 # Each module also defines its own __all__.
