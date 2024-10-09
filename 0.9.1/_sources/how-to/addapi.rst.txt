@@ -26,4 +26,3 @@ There are only a few steps required.
 - regenerate a schema for helping define the configuration file
 
   - ``maaspower schema <path to new schema file>``
-

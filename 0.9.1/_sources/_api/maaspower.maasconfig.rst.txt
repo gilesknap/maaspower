@@ -1,0 +1,25 @@
+``maaspower.maasconfig``
+========================
+        
+        
+        
+
+.. automodule:: maaspower.maasconfig
+    :members:
+
+    
+    
+    
+
+    
+    
+    .. rubric:: Members
+
+    .. autosummary::
+        :nosignatures:
+    
+        MaasConfig
+        RegexSwitchDevice
+        SwitchDevice
+    
+    

@@ -50,4 +50,3 @@ The commands you will need are as follows:
     # .* power
     # for query use this regex for 'off'
     # .* off
-

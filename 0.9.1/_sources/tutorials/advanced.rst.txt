@@ -83,4 +83,3 @@ would execute the shell command
 .. code-block::  bash
 
     uhubctl -a 1 -p 1 # turn on raspi1 (full device name was raspi1-p1)
-

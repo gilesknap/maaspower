@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>maaspower.maasconfig &#8212; maaspower 0.9.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9dc39874"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_api/maaspower.maasconfig';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gilesknap.github.io/maaspower/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.9.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/MaasLogo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="maaspower.webhook" href="maaspower.webhook.html" />
+    <link rel="prev" title="maaspower" href="maaspower.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/MaasLogo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/MaasLogo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">maaspower</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how-to.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../explanations.html">
+    Explanations
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../reference.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/gilesknap/maaspower" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/maaspower" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-cube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how-to.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../explanations.html">
+    Explanations
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../reference.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/gilesknap/maaspower" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/maaspower" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-cube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="maaspower.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maaspower.webhook.html"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Release Notes</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../reference.html" class="nav-link">Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="maaspower.html" class="nav-link"><code class="docutils literal notranslate"><span class="pre">maaspower</span></code></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-maaspower.maasconfig">
+<span id="maaspower-maasconfig"></span><h1><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code><a class="headerlink" href="#module-maaspower.maasconfig" title="Link to this heading">#</a></h1>
+<section id="massconfig-py">
+<h2>massconfig.py<a class="headerlink" href="#massconfig-py" title="Link to this heading">#</a></h2>
+<p>This module uses APISchema to serialize and deserialize the config
+file, plus provides a schema for easy editing of the config.</p>
+<p>The MaasConfig class plus SwitchDevice derived classes in the devices folder
+provide an in memory representation of the contents of
+the maaspower YAML configuration file that specifies the set of power
+manager devices for which to serve web hooks.</p>
+</section>
+<p class="rubric">Members</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#maaspower.maasconfig.MaasConfig" title="maaspower.maasconfig.MaasConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaasConfig</span></code></a></p></td>
+<td><p>Provides global information regarding webhook address, passwords etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#maaspower.maasconfig.RegexSwitchDevice" title="maaspower.maasconfig.RegexSwitchDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegexSwitchDevice</span></code></a></p></td>
+<td><p>An abstract <a class="reference internal" href="#maaspower.maasconfig.SwitchDevice" title="maaspower.maasconfig.SwitchDevice"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SwitchDevice</span></code></a> which has the ability to interpret reponses and convert them to the requisit MaasReponse values using regex.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#maaspower.maasconfig.SwitchDevice" title="maaspower.maasconfig.SwitchDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SwitchDevice</span></code></a></p></td>
+<td><p>A base class for the switching devices that the webhook server will control.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="maaspower.maasconfig.SwitchDevice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maaspower.maasconfig.</span></span><span class="sig-name descname"><span class="pre">SwitchDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">name:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=A</span> <span class="pre">name</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">switching</span> <span class="pre">device,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#SwitchDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.SwitchDevice" title="Link to this definition">#</a></dt>
+<dd><p>A base class for the switching devices that the webhook server will control.</p>
+<p>Concrete subclasses MUST provide a <a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">type</span></code></a> field akin to this:</p>
+<p>type: Literal[“ConreteDevice”] = “ConcreteDevice”</p>
+<p>Concrete subclasses are found in the devices subfolder</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="maaspower.maasconfig.SwitchDevice.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#maaspower.maasconfig.SwitchDevice" title="maaspower.maasconfig.SwitchDevice"><span class="pre">SwitchDevice</span></a></span></span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#SwitchDevice.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.SwitchDevice.copy" title="Link to this definition">#</a></dt>
+<dd><p>Create a copy of this device with a new name.
+All the fields of the object are reformatted with substitutions in
+regex matches using {name} for the whole match and {m1} {m2} etc
+for matching subgroups.</p>
+<p>This is used for creating a specific instance of a device from
+a regex defined device.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="maaspower.maasconfig.RegexSwitchDevice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maaspower.maasconfig.</span></span><span class="sig-name descname"><span class="pre">RegexSwitchDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">name:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=A</span> <span class="pre">name</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">switching</span> <span class="pre">device,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)],</span> <span class="pre">query_on_regex:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=match</span> <span class="pre">the</span> <span class="pre">on</span> <span class="pre">status</span> <span class="pre">return</span> <span class="pre">from</span> <span class="pre">query,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)]</span> <span class="pre">=</span> <span class="pre">'on',</span> <span class="pre">query_off_regex:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=match</span> <span class="pre">the</span> <span class="pre">off</span> <span class="pre">status</span> <span class="pre">return</span> <span class="pre">from</span> <span class="pre">query,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)]</span> <span class="pre">=</span> <span class="pre">'off'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#RegexSwitchDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.RegexSwitchDevice" title="Link to this definition">#</a></dt>
+<dd><p>An abstract <a class="reference internal" href="#maaspower.maasconfig.SwitchDevice" title="maaspower.maasconfig.SwitchDevice"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SwitchDevice</span></code></a> which has the ability to interpret reponses
+and convert them to the requisit MaasReponse values using regex.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="maaspower.maasconfig.RegexSwitchDevice.run_query">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#RegexSwitchDevice.run_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.RegexSwitchDevice.run_query" title="Link to this definition">#</a></dt>
+<dd><p>Ths method should be overridden by concrete classes. This method
+is called by query_state and it’s response is run through query_regex_on
+and query_regex_off.</p>
+<p>returns: A value to be parsed by query_regex_on and query_regex_off.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="maaspower.maasconfig.RegexSwitchDevice.query_state">
+<span class="sig-name descname"><span class="pre">query_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#RegexSwitchDevice.query_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.RegexSwitchDevice.query_state" title="Link to this definition">#</a></dt>
+<dd><p>Uses the regex patterns defined in query_on_regex and query_off_regex
+to ascertain the correct response.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="maaspower.maasconfig.MaasConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maaspower.maasconfig.</span></span><span class="sig-name descname"><span class="pre">MaasConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=The</span> <span class="pre">name</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">webhook</span> <span class="pre">server</span> <span class="pre">instance,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)],</span> <span class="pre">ip_address:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=IP</span> <span class="pre">address</span> <span class="pre">to</span> <span class="pre">listen</span> <span class="pre">on,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)],</span> <span class="pre">port:</span> <span class="pre">~typing.Annotated[int,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=port</span> <span class="pre">to</span> <span class="pre">listen</span> <span class="pre">on,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)],</span> <span class="pre">username:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=username</span> <span class="pre">for</span> <span class="pre">connecting</span> <span class="pre">to</span> <span class="pre">webhook,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)],</span> <span class="pre">password:</span> <span class="pre">~typing.Annotated[str,</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=password</span> <span class="pre">for</span> <span class="pre">connecting</span> <span class="pre">to</span> <span class="pre">webhook,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)],</span> <span class="pre">devices:</span> <span class="pre">~collections.abc.Annotated[~collections.abc.Sequence[~maaspower.maasconfig.SwitchDevice],</span> <span class="pre">~apischema.schemas.Schema(title=None,</span> <span class="pre">description=A</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">devices</span> <span class="pre">that</span> <span class="pre">this</span> <span class="pre">webhook</span> <span class="pre">server</span> <span class="pre">will</span> <span class="pre">control,</span> <span class="pre">default=None,</span> <span class="pre">examples=None,</span> <span class="pre">format=None,</span> <span class="pre">deprecated=None,</span> <span class="pre">media_type=None,</span> <span class="pre">encoding=None,</span> <span class="pre">constraints=Constraints(min=None,</span> <span class="pre">max=None,</span> <span class="pre">exc_min=None,</span> <span class="pre">exc_max=None,</span> <span class="pre">mult_of=None,</span> <span class="pre">min_len=None,</span> <span class="pre">max_len=None,</span> <span class="pre">pattern=None,</span> <span class="pre">min_items=None,</span> <span class="pre">max_items=None,</span> <span class="pre">unique=None,</span> <span class="pre">min_props=None,</span> <span class="pre">max_props=None),</span> <span class="pre">extra=None,</span> <span class="pre">override=False,</span> <span class="pre">child=None)]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#MaasConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.MaasConfig" title="Link to this definition">#</a></dt>
+<dd><p>Provides global information regarding webhook address, passwords etc.</p>
+<p>Plus a list of switch devices. The devices are generic in this module,
+config definitions and function for specific device types are
+in the devices folder.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="maaspower.maasconfig.MaasConfig.find_device">
+<span class="sig-name descname"><span class="pre">find_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/maasconfig.html#MaasConfig.find_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.maasconfig.MaasConfig.find_device" title="Link to this definition">#</a></dt>
+<dd><p>use the indexed list to find the device or walk through the and check
+for regex matches.
+A regex match creates a new device which goes in the _devices cache
+so will not need matching a second time</p>
+<p>TODO <a class="github reference external" href="https://github.com/gilesknap/maaspower/issues/10#issue-1222292918">gilesknap/maaspower#10</a></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="maaspower.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">maaspower</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="maaspower.webhook.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#massconfig-py">massconfig.py</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.SwitchDevice"><code class="docutils literal notranslate"><span class="pre">SwitchDevice</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.SwitchDevice.copy"><code class="docutils literal notranslate"><span class="pre">SwitchDevice.copy()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.RegexSwitchDevice"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.RegexSwitchDevice.run_query"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice.run_query()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.RegexSwitchDevice.query_state"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice.query_state()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.MaasConfig"><code class="docutils literal notranslate"><span class="pre">MaasConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.maasconfig.MaasConfig.find_device"><code class="docutils literal notranslate"><span class="pre">MaasConfig.find_device()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/gilesknap/maaspower/edit/0.9.1/docs/_api/maaspower.maasconfig.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/_api/maaspower.maasconfig.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
