@@ -1,0 +1,23 @@
+﻿``maaspower``
+=============
+
+.. automodule:: maaspower
+    :members:
+
+    
+    
+    .. rubric:: Submodules
+
+    .. autosummary::
+        :toctree:
+        :template: custom-module-template.rst
+        :recursive:
+    
+        maasconfig
+        webhook
+    
+    
+
+    
+    
+    

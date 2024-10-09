@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Reference &#8212; maaspower 0.9.1.dev7+gb7d110f documentation</title>
+    <title>Reference &#8212; maaspower 0.9.2.dev2+g27d1caa documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=4ad72b08"></script>
+    <script src="_static/documentation_options.js?v=97bec2f1"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -51,10 +51,10 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'main';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
-    <link rel="icon" href="_static/dls-logo.svg"/>
+    <link rel="icon" href="_static/MaasLogo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API" href="reference/api.html" />
+    <link rel="next" title="Notes on Using a PoE switch With maaspower" href="reference/poe.html" />
     <link rel="prev" title="TODO: Outstanding Work" href="explanations/todo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -135,8 +135,8 @@
       
     
     
-    <img src="_static/dls-logo.svg" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="_static/dls-logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="_static/MaasLogo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/MaasLogo.png" class="logo__image only-dark" alt=""/>`);</script>
   
   
     <p class="title logo__title">maaspower</p>
@@ -427,8 +427,14 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="reference/api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="_api/maaspower.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="_api/maaspower.maasconfig.html"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="_api/maaspower.webhook.html"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Release Notes</a></li>
 </ul>
@@ -490,8 +496,40 @@ document.write(`
 <p>Technical reference material including APIs and release notes.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="reference/api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_api/maaspower.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_api/maaspower.html#maaspower-package">maaspower package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_api/maaspower.maasconfig.html"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.maasconfig.html#massconfig-py">massconfig.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.SwitchDevice"><code class="docutils literal notranslate"><span class="pre">SwitchDevice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.SwitchDevice.copy"><code class="docutils literal notranslate"><span class="pre">SwitchDevice.copy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.RegexSwitchDevice"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.RegexSwitchDevice.run_query"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice.run_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.RegexSwitchDevice.query_state"><code class="docutils literal notranslate"><span class="pre">RegexSwitchDevice.query_state()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.MaasConfig"><code class="docutils literal notranslate"><span class="pre">MaasConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_api/maaspower.maasconfig.html#maaspower.maasconfig.MaasConfig.find_device"><code class="docutils literal notranslate"><span class="pre">MaasConfig.find_device()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_api/maaspower.webhook.html"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.webhook.html#webhook-py">webhook.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.webhook.html#maaspower.webhook.hello"><code class="docutils literal notranslate"><span class="pre">hello()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.webhook.html#maaspower.webhook.command"><code class="docutils literal notranslate"><span class="pre">command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.webhook.html#maaspower.webhook.load_web_hook"><code class="docutils literal notranslate"><span class="pre">load_web_hook()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="_api/maaspower.webhook.html#maaspower.webhook.run_web_hook"><code class="docutils literal notranslate"><span class="pre">run_web_hook()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Release Notes</a></li>
 </ul>
@@ -518,11 +556,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="reference/api.html"
+       href="reference/poe.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">API</p>
+        <p class="prev-next-title">Notes on Using a PoE switch With maaspower</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

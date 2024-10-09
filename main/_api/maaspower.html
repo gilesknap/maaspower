@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TODO: Outstanding Work &#8212; maaspower 0.9.2.dev2+g27d1caa documentation</title>
+    <title>maaspower &#8212; maaspower 0.9.2.dev2+g27d1caa documentation</title>
   
   
   
@@ -44,7 +44,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'explanations/todo';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_api/maaspower';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gilesknap.github.io/maaspower/switcher.json';
@@ -54,8 +54,8 @@
     <link rel="icon" href="../_static/MaasLogo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Reference" href="../reference.html" />
-    <link rel="prev" title="Security" href="security.html" />
+    <link rel="next" title="maaspower.maasconfig" href="maaspower.maasconfig.html" />
+    <link rel="prev" title="Notes on Using a PoE switch With maaspower" href="../reference/poe.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,14 +167,14 @@
 </li>
 
 
-<li class="nav-item current active">
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../explanations.html">
     Explanations
   </a>
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../reference.html">
     Reference
   </a>
@@ -330,14 +330,14 @@ document.write(`
 </li>
 
 
-<li class="nav-item current active">
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../explanations.html">
     Explanations
   </a>
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../reference.html">
     Reference
   </a>
@@ -426,16 +426,17 @@ document.write(`
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="decisions.html">Architectural Decision Records</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="decisions/0001-record-architecture-decisions.html">1. Record architecture decisions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decisions/0002-switched-to-python-copier-template.html">2. Adopt python-copier-template for project structure</a></li>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="maaspower.maasconfig.html"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maaspower.webhook.html"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="devicetypes.html">Supported Types of Device Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose of this Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">TODO: Outstanding Work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Release Notes</a></li>
 </ul>
 </div>
 </nav></div>
@@ -474,9 +475,9 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../explanations.html" class="nav-link">Explanations</a></li>
+    <li class="breadcrumb-item"><a href="../reference.html" class="nav-link">Reference</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">TODO:...</li>
+    <li class="breadcrumb-item active" aria-current="page"><code...</li>
   </ul>
 </nav>
 </div>
@@ -493,20 +494,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="todo-outstanding-work">
-<span id="todo"></span><h1>TODO: Outstanding Work<a class="headerlink" href="#todo-outstanding-work" title="Link to this heading">#</a></h1>
-<p>Remaining work for release 1.0</p>
-<ul class="simple">
-<li><p>Provide a mechanism (or at least documentation) for deploying as a service</p></li>
-<li><p>add python.logging, put in more detailed logging and remove prints</p></li>
-<li><p>document the use of the hardware I have tested</p>
-<ul>
-<li><p>UUGear MEGA4 USB hub</p></li>
-<li><p>TP-Link Tapo Smart Plug</p></li>
-</ul>
-</li>
-<li><p>Add tests with mocks for SmartThing and get coverage to 95%</p></li>
-</ul>
+  <section id="module-maaspower">
+<span id="maaspower"></span><h1><code class="docutils literal notranslate"><span class="pre">maaspower</span></code><a class="headerlink" href="#module-maaspower" title="Link to this heading">#</a></h1>
+<section id="maaspower-package">
+<h2>maaspower package<a class="headerlink" href="#maaspower-package" title="Link to this heading">#</a></h2>
+</section>
+<p class="rubric">Submodules</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="maaspower.maasconfig.html#module-maaspower.maasconfig" title="maaspower.maasconfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maasconfig</span></code></a></p></td>
+<td><p>massconfig.py</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="maaspower.webhook.html#module-maaspower.webhook" title="maaspower.webhook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">webhook</span></code></a></p></td>
+<td><p>webhook.py
+
+Use Flask to implement a web server that provides web hooks based on
+the provided configuration</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 
 
@@ -520,20 +527,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="security.html"
+       href="../reference/poe.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Security</p>
+        <p class="prev-next-title">Notes on Using a PoE switch With maaspower</p>
       </div>
     </a>
     <a class="right-next"
-       href="../reference.html"
+       href="maaspower.maasconfig.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Reference</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -548,10 +555,22 @@ document.write(`
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower-package">maaspower package</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/gilesknap/maaspower/edit/main/docs/explanations/todo.rst">
+    <a href="https://github.com/gilesknap/maaspower/edit/main/docs/_api/maaspower.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -566,7 +585,7 @@ document.write(`
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/explanations/todo.rst.txt">
+    <a href="../_sources/_api/maaspower.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TODO: Outstanding Work &#8212; maaspower 0.9.2.dev2+g27d1caa documentation</title>
+    <title>maaspower.webhook &#8212; maaspower 0.9.2.dev2+g27d1caa documentation</title>
   
   
   
@@ -44,7 +44,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'explanations/todo';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_api/maaspower.webhook';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gilesknap.github.io/maaspower/switcher.json';
@@ -54,8 +54,8 @@
     <link rel="icon" href="../_static/MaasLogo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Reference" href="../reference.html" />
-    <link rel="prev" title="Security" href="security.html" />
+    <link rel="next" title="Index" href="../genindex.html" />
+    <link rel="prev" title="maaspower.maasconfig" href="maaspower.maasconfig.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,14 +167,14 @@
 </li>
 
 
-<li class="nav-item current active">
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../explanations.html">
     Explanations
   </a>
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../reference.html">
     Reference
   </a>
@@ -330,14 +330,14 @@ document.write(`
 </li>
 
 
-<li class="nav-item current active">
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../explanations.html">
     Explanations
   </a>
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../reference.html">
     Reference
   </a>
@@ -426,16 +426,17 @@ document.write(`
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="decisions.html">Architectural Decision Records</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="decisions/0001-record-architecture-decisions.html">1. Record architecture decisions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decisions/0002-switched-to-python-copier-template.html">2. Adopt python-copier-template for project structure</a></li>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/poe.html">Notes on Using a PoE switch With maaspower</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="maaspower.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="maaspower.maasconfig.html"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="devicetypes.html">Supported Types of Device Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose of this Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">TODO: Outstanding Work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gilesknap/maaspower/releases">Release Notes</a></li>
 </ul>
 </div>
 </nav></div>
@@ -474,9 +475,12 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../explanations.html" class="nav-link">Explanations</a></li>
+    <li class="breadcrumb-item"><a href="../reference.html" class="nav-link">Reference</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">TODO:...</li>
+    
+    <li class="breadcrumb-item"><a href="maaspower.html" class="nav-link"><code class="docutils literal notranslate"><span class="pre">maaspower</span></code></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code...</li>
   </ul>
 </nav>
 </div>
@@ -493,20 +497,55 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="todo-outstanding-work">
-<span id="todo"></span><h1>TODO: Outstanding Work<a class="headerlink" href="#todo-outstanding-work" title="Link to this heading">#</a></h1>
-<p>Remaining work for release 1.0</p>
-<ul class="simple">
-<li><p>Provide a mechanism (or at least documentation) for deploying as a service</p></li>
-<li><p>add python.logging, put in more detailed logging and remove prints</p></li>
-<li><p>document the use of the hardware I have tested</p>
-<ul>
-<li><p>UUGear MEGA4 USB hub</p></li>
-<li><p>TP-Link Tapo Smart Plug</p></li>
-</ul>
-</li>
-<li><p>Add tests with mocks for SmartThing and get coverage to 95%</p></li>
-</ul>
+  <section id="module-maaspower.webhook">
+<span id="maaspower-webhook"></span><h1><code class="docutils literal notranslate"><span class="pre">maaspower.webhook</span></code><a class="headerlink" href="#module-maaspower.webhook" title="Link to this heading">#</a></h1>
+<section id="webhook-py">
+<h2>webhook.py<a class="headerlink" href="#webhook-py" title="Link to this heading">#</a></h2>
+<p>Use Flask to implement a web server that provides web hooks based on
+the provided configuration</p>
+</section>
+<p class="rubric">Members</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#maaspower.webhook.command" title="maaspower.webhook.command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">command</span></code></a></p></td>
+<td><p>Accept webhooks at /maaspower/&lt;devicename&gt;/&lt;command&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#maaspower.webhook.hello" title="maaspower.webhook.hello"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hello</span></code></a></p></td>
+<td><p>Test root endpoint</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#maaspower.webhook.load_web_hook" title="maaspower.webhook.load_web_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_web_hook</span></code></a></p></td>
+<td><p>Setup config for the webserver</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#maaspower.webhook.run_web_hook" title="maaspower.webhook.run_web_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_web_hook</span></code></a></p></td>
+<td><p>Launch the webserver</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="maaspower.webhook.hello">
+<span class="sig-prename descclassname"><span class="pre">maaspower.webhook.</span></span><span class="sig-name descname"><span class="pre">hello</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/webhook.html#hello"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.webhook.hello" title="Link to this definition">#</a></dt>
+<dd><p>Test root endpoint</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="maaspower.webhook.command">
+<span class="sig-prename descclassname"><span class="pre">maaspower.webhook.</span></span><span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">devicename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/webhook.html#command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.webhook.command" title="Link to this definition">#</a></dt>
+<dd><p>Accept webhooks at /maaspower/&lt;devicename&gt;/&lt;command&gt;</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="maaspower.webhook.load_web_hook">
+<span class="sig-prename descclassname"><span class="pre">maaspower.webhook.</span></span><span class="sig-name descname"><span class="pre">load_web_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="maaspower.maasconfig.html#maaspower.maasconfig.MaasConfig" title="maaspower.maasconfig.MaasConfig"><span class="pre">MaasConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/webhook.html#load_web_hook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.webhook.load_web_hook" title="Link to this definition">#</a></dt>
+<dd><p>Setup config for the webserver</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="maaspower.webhook.run_web_hook">
+<span class="sig-prename descclassname"><span class="pre">maaspower.webhook.</span></span><span class="sig-name descname"><span class="pre">run_web_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="maaspower.maasconfig.html#maaspower.maasconfig.MaasConfig" title="maaspower.maasconfig.MaasConfig"><span class="pre">MaasConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maaspower/webhook.html#run_web_hook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maaspower.webhook.run_web_hook" title="Link to this definition">#</a></dt>
+<dd><p>Launch the webserver</p>
+</dd></dl>
+
 </section>
 
 
@@ -520,20 +559,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="security.html"
+       href="maaspower.maasconfig.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Security</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">maaspower.maasconfig</span></code></p>
       </div>
     </a>
     <a class="right-next"
-       href="../reference.html"
+       href="../genindex.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Reference</p>
+        <p class="prev-next-title">Index</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -548,10 +587,26 @@ document.write(`
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#webhook-py">webhook.py</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.webhook.hello"><code class="docutils literal notranslate"><span class="pre">hello()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.webhook.command"><code class="docutils literal notranslate"><span class="pre">command()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.webhook.load_web_hook"><code class="docutils literal notranslate"><span class="pre">load_web_hook()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maaspower.webhook.run_web_hook"><code class="docutils literal notranslate"><span class="pre">run_web_hook()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/gilesknap/maaspower/edit/main/docs/explanations/todo.rst">
+    <a href="https://github.com/gilesknap/maaspower/edit/main/docs/_api/maaspower.webhook.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -566,7 +621,7 @@ document.write(`
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/explanations/todo.rst.txt">
+    <a href="../_sources/_api/maaspower.webhook.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
