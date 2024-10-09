@@ -24,10 +24,9 @@ This project implements MAAS power control for machines that do not already have
 a BMC type supported by MAAS. It uses webhooks to control any number of
 remote switching devices that can power cycle such machines.
 
-The project uses an extensible architecture so more switching device types
-may be added, see `add_api`.
+The project uses an extensible architecture so more switching device types may be added see [Add API](https://gilesknap.github.io/maaspower/main/how-to/addapi.html)
 
-At present it supports two flavours of switching control:
+At present it supports these flavours of switching control:
 
 - Command line interface. Anything that is controllable by a command line
   utility that can be installed on the machine running this webhook service.
@@ -36,20 +35,7 @@ At present it supports two flavours of switching control:
 - Web UI controlled devices - uses selenium to connect to the web UI and control
   the device. A basic DSL describes the UI fields to scrape.
 - Cisco IOS PoE Switches
-
-
-
-```python
-from maaspower import __version__
-
-print(f"Hello maaspower {__version__}")
-```
-
-Or if it is a commandline tool then you might put some example commands here:
-
-```
-python -m maaspower --version
-```
+- TPLink Kasa Smart Plugs
 
 <!-- README only content. Anything below this line won't be included in index.md -->
 
