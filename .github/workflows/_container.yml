@@ -1,4 +1,4 @@
-Son:
+on:
   workflow_call:
 
 jobs:
