@@ -13,4 +13,3 @@ Remaining work for release 1.0
   - TP-Link Tapo Smart Plug
 
 - Add tests with mocks for SmartThing and get coverage to 95%
-

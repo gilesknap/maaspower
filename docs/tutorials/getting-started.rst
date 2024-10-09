@@ -66,4 +66,3 @@ on a machine with IP 192.168.0.1.
 .. image:: ../images/MaasGuiSettings.png
   :width: 600
   :alt: Alternative text
-

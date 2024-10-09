@@ -39,6 +39,7 @@ jobs:
     if: needs.check.outputs.branch-pr == ''
     uses: ./.github/workflows/_container.yml
     permissions:
+      contents: read
       packages: write
 
   docs:

@@ -43,7 +43,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 this_dir = Path(__file__).parent
 os.chdir(this_dir)
 
-driver = webdriver.Chrome("./chromedriver")
+driver = webdriver.Chrome("./chromedriver")  # type: ignore
 
 url = sys.argv[1]
 
