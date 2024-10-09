@@ -35,7 +35,7 @@ At present it supports these flavours of switching control:
 - Web UI controlled devices - uses selenium to connect to the web UI and control
   the device. A basic DSL describes the UI fields to scrape.
 - Cisco IOS PoE Switches
-- Kasa Smart Plugs
+- TPLink Kasa Smart Plugs
 
 <!-- README only content. Anything below this line won't be included in index.md -->
 
