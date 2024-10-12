@@ -57,7 +57,7 @@ def main(
 def schema(
     output: Path = typer.Argument(..., help="The filename to write the schema to"),
 ):
-    """Produce the JSON global schema for mmaaspower config files"""
+    """Produce the JSON global schema for maaspower config files"""
     schema = json.dumps(deserialization_schema(MaasConfig), indent=2)
     output.write_text(schema)
 
